@@ -1,0 +1,38 @@
+name: Publish site to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      # Preview build: asks search engines not to list the site.
+      # For launch: set SITE_URL to the real domain and remove NOINDEX.
+      - run: node build.mjs
+        env:
+          NOINDEX: "1"
+          BASE_PATH: /walking-rotarian
+      - run: node tools/check_site.mjs dist
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
