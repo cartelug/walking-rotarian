@@ -4,7 +4,7 @@ import { bio, timeline } from "../data/story.mjs";
 import { notes } from "../data/fieldnotes.mjs";
 import { listen } from "../data/media.mjs";
 import { esc, rel, ext, icons, img, figure, chip, md, paras } from "../lib/util.mjs";
-import { chapter, journeyRow, facts, externalButton, internalButton, evidenceTag } from "../lib/blocks.mjs";
+import { pledgeSection, chapter, journeyRow, facts, externalButton, internalButton, evidenceTag } from "../lib/blocks.mjs";
 
 export function home() {
   const p = "/";
@@ -21,6 +21,7 @@ export function home() {
         ${internalButton(p, "/journeys/", "Explore the journeys", "button--clay")}
         <a class="button button--ghost" href="${a("/journeys/walk-for-education/")}">Follow the current walk</a>
       </p>
+      <p class="hero__pledge"><a href="${a("/#pledge")}">Or make a pledge</a></p>
       <p class="hero__motto">${esc(site.motto)}</p>
     </div>
     <figure class="hero__figure">
@@ -204,6 +205,7 @@ ${people}
 ${voice}
 ${fieldCh}
 </div>
+${pledgeSection(p)}
 ${carry}`;
 
   const jsonld = [

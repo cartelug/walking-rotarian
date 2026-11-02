@@ -297,6 +297,78 @@
     });
   }
 
+
+  /* Pledge: builds a tidy WhatsApp message and opens it. No money moves on this site. */
+  (function () {
+    const pf = doc.querySelector("form.pledge-form");
+    if (!pf) return;
+    const status = doc.getElementById("pledge-status");
+    const amt = pf.elements.amount;
+    const chips = pf.querySelectorAll(".amt");
+    // Key words in the message use a bold sans alphabet (Unicode), so they stand out in WhatsApp.
+    const fancy = (t) => Array.from(t).map((c) => {
+      const k = c.codePointAt(0);
+      if (k >= 65 && k <= 90) return String.fromCodePoint(0x1d5d4 + k - 65);
+      if (k >= 97 && k <= 122) return String.fromCodePoint(0x1d5ee + k - 97);
+      if (k >= 48 && k <= 57) return String.fromCodePoint(0x1d7ec + k - 48);
+      return c;
+    }).join("");
+    const clean = (t, n) => t.replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, n);
+    const money = (v) => { const n = Number(String(v).replace(/[\s,]/g, "")); return Number.isFinite(n) && n > 0 ? n : 0; };
+    const showAmt = () => chips.forEach((c) => c.setAttribute("aria-pressed", String(money(amt.value) === Number(c.dataset.amt))));
+    chips.forEach((c) => c.addEventListener("click", () => {
+      pf.elements.currency.value = "UGX";
+      amt.value = Number(c.dataset.amt).toLocaleString("en-US");
+      showAmt();
+      unfail(amt);
+    }));
+    amt.addEventListener("input", () => { showAmt(); unfail(amt); });
+    pf.elements.name.addEventListener("input", () => unfail(pf.elements.name));
+    amt.addEventListener("blur", () => { const n = money(amt.value); if (n) amt.value = n.toLocaleString("en-US"); });
+    const unfail = (el) => {
+      const f = el.closest(".field");
+      f.classList.remove("is-invalid");
+      const m = f.querySelector(".field__error"); if (m) m.remove();
+      el.removeAttribute("aria-invalid"); el.removeAttribute("aria-describedby");
+    };
+    const fail = (el, text) => {
+      const f = el.closest(".field");
+      f.classList.add("is-invalid");
+      if (!f.querySelector(".field__error")) {
+        const m = doc.createElement("p"); m.className = "field__error"; m.id = el.id + "-err"; m.textContent = "Error: " + text; f.appendChild(m);
+      }
+      el.setAttribute("aria-invalid", "true");
+      el.setAttribute("aria-describedby", el.id + "-err");
+    };
+    pf.addEventListener("submit", (e) => {
+      e.preventDefault();
+      pf.querySelectorAll(".field.is-invalid").forEach((f) => { f.classList.remove("is-invalid"); const m = f.querySelector(".field__error"); if (m) m.remove(); });
+      pf.querySelectorAll("[aria-invalid]").forEach((el) => { el.removeAttribute("aria-invalid"); el.removeAttribute("aria-describedby"); });
+      status.textContent = ""; status.classList.remove("is-error");
+      const name = clean(pf.elements.name.value, 80), note = clean(pf.elements.note.value, 200), n = money(amt.value);
+      let first = null;
+      if (!name) { fail(pf.elements.name, "please add your name."); first = pf.elements.name; }
+      if (!n) { fail(amt, "enter an amount, for example 50,000."); first = amt; }
+      if (first) { first.focus(); return; }
+      const cur = pf.elements.currency.value === "USD" ? "USD" : "UGX";
+      const lines = [
+        "Hello Mbanda Shyaka,", "",
+        "I would like to make a " + fancy("pledge") + " to " + fancy("The Walking Rotarian") + ".", "",
+        fancy("Name") + ": " + name,
+        fancy("Pledge amount") + ": " + cur + " " + n.toLocaleString("en-US"),
+      ];
+      if (note) lines.push(fancy("Note") + ": " + note);
+      lines.push("", fancy("Every step has a story") + ".");
+      const url = "https://wa.me/" + pf.getAttribute("data-wa") + "?text=" + encodeURIComponent(lines.join("\n"));
+      const win = window.open(url, "_blank", "noopener");
+      const p = doc.createElement("p");
+      p.append("WhatsApp should open with your message ready. Nothing has been sent until you press Send there. If it did not open, ");
+      const a = doc.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "open it here"; p.append(a, ".");
+      status.appendChild(p);
+      if (!win) status.focus();
+    });
+  })();
+
   /* Enquiry form: says honestly what happened */
   doc.querySelectorAll("[data-pick]").forEach((a) =>
     a.addEventListener("click", () => {
