@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(process.argv.slice(2).find((a) => !a.startsWith("--")) || "dist");
+const base = (process.env.BASE_PATH || "").replace(/\/+$/, ""); // site lives under a sub-folder, e.g. GitHub Pages
 const problems = [];
 const notes = [];
 const externals = new Map();
@@ -27,7 +28,7 @@ const resolveTarget = (fromFile, url) => {
   const [p0, hash] = url.split("#");
   const p = p0.split("?")[0];
   let target = p === "" ? fromFile : path.resolve(path.dirname(fromFile), p);
-  if (p.startsWith("/")) target = path.join(root, p);
+  if (p.startsWith("/")) target = path.join(root, base && p.startsWith(base + "/") ? p.slice(base.length) : p);
   if (fs.existsSync(target) && fs.statSync(target).isDirectory()) target = path.join(target, "index.html");
   return { target, hash };
 };

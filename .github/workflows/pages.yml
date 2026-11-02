@@ -31,6 +31,8 @@ jobs:
           NOINDEX: "1"
           BASE_PATH: /walking-rotarian
       - run: node tools/check_site.mjs dist
+        env:
+          BASE_PATH: /walking-rotarian
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
