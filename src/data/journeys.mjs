@@ -64,7 +64,7 @@ export const journeys = [
     },
     cta: {
       heading: "Support the current walk",
-      text: "Pledge steps, follow the campaign and find the official ways to give on PCI’s Walk for Education page. This site does not collect money and does not show payment details.",
+      text: "Follow the campaign and find the official ways to give on PCI’s Walk for Education page. This site does not collect money and does not show payment details.",
       label: "Go to the Walk for Education page",
       url: "https://pamodzici.com/walk-for-education/",
     },

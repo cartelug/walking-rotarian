@@ -32,7 +32,7 @@ export const site = {
   formEndpoint: process.env.FORM_ENDPOINT || "",
   email: "pci.uganda@gmail.com",
 
-  // Pledges open WhatsApp with a message ready, addressed to Mbanda Shyaka.
+  // Donations open WhatsApp with a message ready, addressed to Mbanda Shyaka.
   // Digits only, with the country code and no plus sign. No money is handled by this site.
   whatsapp: "256757112376",
 

@@ -4,7 +4,7 @@ import { bio, timeline } from "../data/story.mjs";
 import { notes } from "../data/fieldnotes.mjs";
 import { listen } from "../data/media.mjs";
 import { esc, rel, ext, icons, img, figure, chip, md, paras } from "../lib/util.mjs";
-import { pledgeSection, chapter, journeyRow, facts, externalButton, internalButton, evidenceTag } from "../lib/blocks.mjs";
+import { donateSection, chapter, journeyRow, facts, externalButton, internalButton, evidenceTag } from "../lib/blocks.mjs";
 
 export function home() {
   const p = "/";
@@ -21,7 +21,7 @@ export function home() {
         ${internalButton(p, "/journeys/", "Explore the journeys", "button--clay")}
         <a class="button button--ghost" href="${a("/journeys/walk-for-education/")}">Follow the current walk</a>
       </p>
-      <p class="hero__pledge"><a href="${a("/#pledge")}">Or make a pledge</a></p>
+      <p class="hero__donate"><a href="${a("/#donate")}">Or make a donation</a></p>
       <p class="hero__motto">${esc(site.motto)}</p>
     </div>
     <figure class="hero__figure">
@@ -182,7 +182,7 @@ ${notes
     <p class="eyebrow eyebrow--onink">08 · Carry the purpose</p>
     <h2 id="carry-h">You do not have to walk to be part of a walk.</h2>
     <ul class="cards cards--three cards--onink">
-      <li class="card"><h3>Support the current walk</h3><p>Pledge steps and find the official ways to give on PCI’s Walk for Education page.</p><p>${externalButton(currentWalk.url, "Go to PCI", "button--onink")}</p></li>
+      <li class="card"><h3>Support the current walk</h3><p>Follow the walk and find the official ways to give on PCI’s Walk for Education page.</p><p>${externalButton(currentWalk.url, "Go to PCI", "button--onink")}</p></li>
       <li class="card"><h3>Host a stop</h3><p>Welcome a walk at your school, church, club or community.</p><p>${internalButton(p, "/get-involved/#enquiry", "Tell us where", "button--onink")}</p></li>
       <li class="card"><h3>Invite him to speak</h3><p>Talks, interviews and media requests.</p><p>${internalButton(p, "/get-involved/#enquiry", "Send an enquiry", "button--onink")}</p></li>
     </ul>
@@ -205,7 +205,7 @@ ${people}
 ${voice}
 ${fieldCh}
 </div>
-${pledgeSection(p)}
+${donateSection(p)}
 ${carry}`;
 
   const jsonld = [

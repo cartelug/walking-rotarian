@@ -298,11 +298,11 @@
   }
 
 
-  /* Pledge: builds a tidy WhatsApp message and opens it. No money moves on this site. */
+  /* Donate: builds a tidy WhatsApp message and opens it. No money moves on this site. */
   (function () {
-    const pf = doc.querySelector("form.pledge-form");
+    const pf = doc.querySelector("form.donate-form");
     if (!pf) return;
-    const status = doc.getElementById("pledge-status");
+    const status = doc.getElementById("donate-status");
     const amt = pf.elements.amount;
     const chips = pf.querySelectorAll(".amt");
     // Key words in the message use a bold sans alphabet (Unicode), so they stand out in WhatsApp.
@@ -353,9 +353,9 @@
       const cur = pf.elements.currency.value === "USD" ? "USD" : "UGX";
       const lines = [
         "Hello Mbanda Shyaka,", "",
-        "I would like to make a " + fancy("pledge") + " to " + fancy("The Walking Rotarian") + ".", "",
+        "I would like to make a " + fancy("donation") + " to " + fancy("The Walking Rotarian") + ".", "",
         fancy("Name") + ": " + name,
-        fancy("Pledge amount") + ": " + cur + " " + n.toLocaleString("en-US"),
+        fancy("Donation amount") + ": " + cur + " " + n.toLocaleString("en-US"),
       ];
       if (note) lines.push(fancy("Note") + ": " + note);
       lines.push("", fancy("Every step has a story") + ".");

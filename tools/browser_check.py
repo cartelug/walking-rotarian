@@ -264,26 +264,26 @@ def interactions(browser):
             page.click('.enquiry button[type="submit"]')
             page.wait_for_selector("#form-status:has-text('Nothing has been sent yet')", timeout=4000)
             info.append("form: empty send shows errors; delivered, not-delivered and email-app messages all appear")
-            # pledge: empty send is refused; a good one builds the WhatsApp message for the right number
+            # donate: empty send is refused; a good one builds the WhatsApp message for the right number
             page.evaluate("window.__opened = []; window.open = (u) => { window.__opened.push(u); return {}; }")
-            page.click('.pledge-form button[type="submit"]')
-            if page.locator(".pledge-form .field.is-invalid").count() != 2:
-                bad("pledge: expected 2 invalid fields on empty send")
+            page.click('.donate-form button[type="submit"]')
+            if page.locator(".donate-form .field.is-invalid").count() != 2:
+                bad("donate: expected 2 invalid fields on empty send")
             page.click('.amt[data-amt="50000"]')
-            if page.locator(".pledge-form .field__error").count() != 1:
-                bad("pledge: amount error should clear when a suggested amount is picked")
+            if page.locator(".donate-form .field__error").count() != 1:
+                bad("donate: amount error should clear when a suggested amount is picked")
             page.fill("#p-name", "Test Person")
-            page.click('.pledge-form button[type="submit"]')
+            page.click('.donate-form button[type="submit"]')
             opened = [u for u in page.evaluate("window.__opened") if u and "wa.me" in u]
             from urllib.parse import urlparse, parse_qs
             if len(opened) != 1 or not opened[0].startswith("https://wa.me/256757112376?text="):
-                bad(f"pledge: WhatsApp link wrong: {opened}")
+                bad(f"donate: WhatsApp link wrong: {opened}")
             else:
                 text = parse_qs(urlparse(opened[0]).query)["text"][0]
                 for need in ("Test Person", "UGX 50,000", "Mbanda Shyaka"):
                     if need not in text:
-                        bad(f"pledge: message is missing {need!r}")
-            info.append("pledge: empty send refused; good send opens wa.me with name, amount and message")
+                        bad(f"donate: message is missing {need!r}")
+            info.append("donate: empty send refused; good send opens wa.me with name, amount and message")
             ctx.close()
 
 

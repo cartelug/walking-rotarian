@@ -80,7 +80,7 @@ ${nav}
       <ul>
         <li><a href="${a("/")}">Home</a></li>
 ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></li>`).join("\n")}
-        <li><a href="${a("/get-involved/#pledge")}">Make a pledge</a></li>
+        <li><a href="${a("/get-involved/#donate")}">Make a donation</a></li>
       </ul>
     </nav>
     <div class="site-footer__col">

@@ -6,7 +6,7 @@ import { items as galleryItems, filterLabels } from "../data/gallery.mjs";
 import * as media from "../data/media.mjs";
 import { esc, md, rel, ext, icons, img, manifest, chip, paras } from "../lib/util.mjs";
 import { pageHead } from "../lib/layout.mjs";
-import { pledgeSection, chapter, evidenceTag, sourceList, facts, journeyRow, filterBar, externalButton, internalButton } from "../lib/blocks.mjs";
+import { donateSection, chapter, evidenceTag, sourceList, facts, journeyRow, filterBar, externalButton, internalButton } from "../lib/blocks.mjs";
 
 const evidenceLegend = () => `<details class="legend">
   <summary>How to read the evidence labels</summary>
@@ -474,7 +474,7 @@ export function getInvolved() {
   <div class="container">
     <h2 id="ways-h" class="visually-hidden">Ways to take part</h2>
     <ul class="cards cards--three">
-      <li class="card"><h3>Support the current walk</h3><p>Make a pledge to Mbanda on WhatsApp, follow the campaign and find the official ways to give on PCI’s Walk for Education page. This site does not collect money and shows no payment details. Check the recipient’s name on PCI’s pages before you send anything.</p><p>${externalButton(currentWalk.url, "Go to PCI’s Walk for Education page")} <a class="button button--secondary" href="${a("/get-involved/#pledge")}">Make a pledge</a></p></li>
+      <li class="card"><h3>Support the current walk</h3><p>Make a donation to Mbanda on WhatsApp, follow the campaign and find the official ways to give on PCI’s Walk for Education page. This site does not collect money and shows no payment details. Check the recipient’s name on PCI’s pages before you send anything.</p><p>${externalButton(currentWalk.url, "Go to PCI’s Walk for Education page")} <a class="button button--secondary" href="${a("/get-involved/#donate")}">Donate</a></p></li>
       <li class="card"><h3>Host a walk stop</h3><p>If your school, church, club or community would like to welcome a walk, say where and when. A date and a place help most.</p><p><a class="button button--secondary" href="${a("/get-involved/#enquiry")}" data-pick="host">Write to the team${icons.arrow}</a></p></li>
       <li class="card"><h3>Invite him to speak</h3><p>Talks, panels and interviews. Tell us the audience, the date and the place.</p><p><a class="button button--secondary" href="${a("/get-involved/#enquiry")}" data-pick="speak">Send an invitation${icons.arrow}</a></p></li>
     </ul>
@@ -505,7 +505,7 @@ export function getInvolved() {
 </section>`;
   const body = `${head}
 ${ways}
-${pledgeSection(p)}
+${donateSection(p)}
 ${form}`;
   return { path: p, title: "Get involved", description: "Support the current walk, host a stop or invite Mbanda Shyaka to speak.", body, current: "get-involved" };
 }
