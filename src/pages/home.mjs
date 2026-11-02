@@ -188,7 +188,13 @@ ${notes
   </div>
 </section>`;
 
+  // A slow-moving strip of the three walks. Each figure belongs to its own walk; nothing is added together.
+  const tickerItems = ["Faith in Motion · about 400 km · 2026", "Peace walk · 300 km · 2024 to 2025", "Walk for Education · about 1,100 km planned · 2026", "Every step has a story"];
+  const tickerRun = (hidden) => `<ul class="ticker__run"${hidden ? ' aria-hidden="true"' : ""}>${tickerItems.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`;
+  const ticker = `<div class="ticker" role="group" aria-label="The three walks"><div class="ticker__track">${tickerRun(false)}${tickerRun(true)}</div></div>`;
+
   const body = `${hero}
+${ticker}
 <div class="container thread" data-thread>
 ${meet}
 ${now}

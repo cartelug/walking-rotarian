@@ -41,6 +41,72 @@
     onScroll();
   }
 
+
+  /* Headlines: wrap each word so it can rise into place */
+  if (!calm) {
+    let n = 0;
+    const split = (node) => {
+      Array.from(node.childNodes).forEach((c) => {
+        if (c.nodeType === 3) {
+          const frag = doc.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach((t) => {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(doc.createTextNode(t)); return; }
+            const w = doc.createElement("span"); w.className = "w";
+            const i = doc.createElement("span"); i.className = "w__i"; i.style.setProperty("--i", n++); i.textContent = t;
+            w.appendChild(i); frag.appendChild(w);
+          });
+          c.replaceWith(frag);
+        } else if (c.nodeType === 1) split(c);
+      });
+    };
+    doc.querySelectorAll(".hero--home h1, .page-head--art h1").forEach((h) => { n = 0; split(h); });
+  }
+
+  /* Hero figures count up once the page is ready */
+  function countUp() {
+    if (calm) return;
+    doc.querySelectorAll(".hero__num").forEach((el) => {
+      const text = el.textContent;
+      const m = text.match(/(\d[\d,]*)/);
+      if (!m) return;
+      const end = Number(m[1].replace(/,/g, ""));
+      const pre = text.slice(0, m.index), post = text.slice(m.index + m[1].length);
+      el.innerHTML = "";
+      const full = doc.createElement("span"); full.className = "visually-hidden"; full.textContent = text;
+      const vis = doc.createElement("span"); vis.setAttribute("aria-hidden", "true");
+      el.append(full, vis);
+      const start = performance.now(), dur = 1800;
+      const fmt = (v) => pre + Math.round(v).toLocaleString("en-US") + post;
+      vis.textContent = fmt(0);
+      const tick = (t) => {
+        const k = Math.min(1, (t - start) / dur);
+        vis.textContent = fmt(end * (1 - Math.pow(1 - k, 4)));
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+  if (!calm && doc.querySelector(".hero__num")) {
+    const t = setInterval(() => { if (root.classList.contains("is-ready")) { clearInterval(t); setTimeout(countUp, 500); } }, 100);
+  }
+
+  /* Scroll progress bar and a slow parallax on the hero picture */
+  if (!calm) {
+    const bar = doc.createElement("div"); bar.className = "progress"; bar.setAttribute("aria-hidden", "true");
+    doc.body.appendChild(bar);
+    const bg = doc.querySelector(".hero__bg");
+    let queued = false;
+    const paint = () => {
+      queued = false;
+      const max = doc.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty("--prog", max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : 0);
+      if (bg && window.scrollY < window.innerHeight * 1.5) bg.style.setProperty("--py", (window.scrollY * 0.22).toFixed(1) + "px");
+    };
+    window.addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(paint); } }, { passive: true });
+    paint();
+  }
+
   /* Gentle reveal of sections as they scroll into view */
   if ("IntersectionObserver" in window && !calm) {
     const targets = doc.querySelectorAll(".chapter__main > *, .block .container > *:not(.filters), .cards > li, .jlist > li, .timeline > li, .notes-list > li, .medialist > li, .band--dark .container > *, .gallery-grid > *");
