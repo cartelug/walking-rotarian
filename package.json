@@ -1,0 +1,13 @@
+{
+  "name": "walking-rotarian-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static website for Mbanda Shyaka, the Walking Rotarian. No dependencies.",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node tools/check_site.mjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "engines": { "node": ">=18" }
+}

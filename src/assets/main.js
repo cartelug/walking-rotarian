@@ -1,0 +1,354 @@
+/* The Walking Rotarian: small, optional helpers. The site reads fine without this file. */
+(function () {
+  "use strict";
+  const doc = document;
+
+  /* Opening the files straight from a folder (no web server): folder links need "index.html". */
+  const fix = (href) => (location.protocol === "file:" && href && !/^(https?:|mailto:|tel:|#)/.test(href) ? href.replace(/\/(#|$)/, "/index.html$1") : href);
+  if (location.protocol === "file:") {
+    doc.querySelectorAll("a[href]").forEach((a) => a.setAttribute("href", fix(a.getAttribute("href"))));
+  }
+
+  /* Page loader: a short walk across the screen, then the page.
+     Longer on the first page of a visit, brief after that. */
+  const root = doc.documentElement;
+  const pre = doc.querySelector(".preloader");
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem("wr-seen") === "1";
+    sessionStorage.setItem("wr-seen", "1");
+  } catch (e) { /* private mode: treat as a first visit */ }
+  const reveal = () => {
+    root.classList.add("is-ready");
+    if (pre) {
+      pre.classList.add("is-done");
+      setTimeout(() => pre.remove(), 700);
+    }
+  };
+  const minShow = calm ? 0 : seen ? 450 : 1300;
+  const whenLoaded = () => setTimeout(reveal, Math.max(0, minShow - performance.now()));
+  if (doc.readyState === "complete") whenLoaded();
+  else window.addEventListener("load", whenLoaded, { once: true });
+  setTimeout(reveal, 5000); // never keep anyone waiting on a slow picture
+  window.addEventListener("pageshow", (e) => { if (e.persisted) reveal(); });
+
+  /* Header shadow once the page moves */
+  const header = doc.querySelector(".site-header");
+  if (header) {
+    const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* Gentle reveal of sections as they scroll into view */
+  if ("IntersectionObserver" in window && !calm) {
+    const targets = doc.querySelectorAll(".chapter__main > *, .block .container > *:not(.filters), .cards > li, .jlist > li, .timeline > li, .notes-list > li, .medialist > li, .band--dark .container > *, .gallery-grid > *");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("is-in");
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+    targets.forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) return; // already on screen: leave it be
+      const sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.setProperty("--d", Math.min(sib % 3, 2) * 90 + "ms");
+      el.classList.add("reveal");
+      io.observe(el);
+    });
+  }
+
+  /* Menu on small screens */
+  const toggle = doc.querySelector(".menu-toggle");
+  const panel = doc.getElementById("site-menu");
+  if (toggle && panel) {
+    const label = toggle.querySelector(".menu-toggle__label");
+    const setOpen = (open) => {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      panel.classList.toggle("is-open", open);
+      if (label) label.textContent = open ? "Close" : "Menu";
+    };
+    toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+    doc.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    panel.addEventListener("click", (e) => {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    window.matchMedia("(min-width: 64rem)").addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+
+  /* The journey thread: a fine line that follows how far down the chapters you have read */
+  const thread = doc.querySelector("[data-thread]");
+  if (thread) {
+    const chapters = Array.from(thread.querySelectorAll("[data-chapter]"));
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const r = thread.getBoundingClientRect();
+      const mark = window.innerHeight * 0.45;
+      const p = Math.max(0, Math.min(1, (mark - r.top) / r.height));
+      thread.style.setProperty("--p", p.toFixed(4));
+      chapters.forEach((c) => {
+        const cr = c.getBoundingClientRect();
+        c.classList.toggle("is-passed", cr.bottom < mark);
+        c.classList.toggle("is-current", cr.top <= mark && cr.bottom >= mark);
+      });
+    };
+    const queue = () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
+    update();
+  }
+
+  /* Filters: journeys, timeline, gallery */
+  doc.querySelectorAll("[data-filters]").forEach((bar) => {
+    const list = doc.querySelector(bar.getAttribute("data-target"));
+    if (!list) return;
+    const items = Array.from(list.children);
+    const noun = bar.getAttribute("data-noun") || "items";
+    const count = bar.querySelector("[data-count]");
+    const state = {};
+    const buttons = Array.from(bar.querySelectorAll(".filter-btn"));
+    buttons.forEach((b) => {
+      if (b.getAttribute("aria-pressed") === "true") state[b.getAttribute("data-attr")] = b.getAttribute("data-value");
+    });
+    const apply = () => {
+      let shown = 0;
+      items.forEach((it) => {
+        const ok = Object.keys(state).every((a) => {
+          const v = state[a];
+          if (v === "*") return true;
+          return (it.getAttribute("data-" + a) || "").split(/\s+/).includes(v);
+        });
+        it.hidden = !ok;
+        if (ok) shown += 1;
+      });
+      if (count) count.textContent = "Showing " + shown + " of " + items.length + " " + noun + ".";
+    };
+    buttons.forEach((b) =>
+      b.addEventListener("click", () => {
+        const a = b.getAttribute("data-attr");
+        buttons.filter((x) => x.getAttribute("data-attr") === a).forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+        state[a] = b.getAttribute("data-value");
+        apply();
+      })
+    );
+    bar.hidden = false;
+    apply();
+  });
+
+  /* Gallery viewer */
+  const dataEl = doc.getElementById("gallery-data");
+  const dlg = doc.getElementById("viewer");
+  if (dataEl && dlg && typeof dlg.showModal === "function") {
+    const data = JSON.parse(dataEl.textContent);
+    const byId = {};
+    data.forEach((d) => (byId[d.id] = d));
+    const tiles = Array.from(doc.querySelectorAll(".tile"));
+    const visible = () => tiles.filter((t) => !t.closest("[hidden]"));
+    let opener = null;
+    const add = (dl, k, v) => {
+      if (!v) return;
+      const row = doc.createElement("div");
+      const dt = doc.createElement("dt");
+      const dd = doc.createElement("dd");
+      dt.textContent = k;
+      if (typeof v === "string") dd.textContent = v;
+      else dd.appendChild(v);
+      row.append(dt, dd);
+      dl.appendChild(row);
+    };
+    const show = (id) => {
+      const d = byId[id];
+      if (!d) return;
+      const img = doc.getElementById("viewer-img");
+      img.src = d.src;
+      img.alt = d.alt;
+      img.width = d.w;
+      img.height = d.h;
+      doc.getElementById("viewer-caption").textContent = d.caption;
+      doc.getElementById("viewer-title").textContent = d.title;
+      doc.getElementById("viewer-kind").textContent = d.kind + (d.artwork ? ": designed artwork, not a photograph" : "");
+      const dl = doc.getElementById("viewer-dl");
+      dl.textContent = "";
+      add(dl, "Source", d.source);
+      add(dl, "Credit", d.credit);
+      add(dl, "Date", d.date);
+      if (d.journey) {
+        const a = doc.createElement("a");
+        a.href = fix(d.journeyHref);
+        a.textContent = d.journey;
+        add(dl, "Journey", a);
+      }
+      add(dl, "Permission", d.permission);
+      const vis = visible();
+      const i = vis.findIndex((t) => t.getAttribute("data-id") === id);
+      doc.getElementById("viewer-count").textContent = (i + 1) + " of " + vis.length;
+      dlg.setAttribute("data-current", id);
+    };
+    const step = (dir) => {
+      const vis = visible();
+      const i = vis.findIndex((t) => t.getAttribute("data-id") === dlg.getAttribute("data-current"));
+      const next = vis[(i + dir + vis.length) % vis.length];
+      opener = next;
+      show(next.getAttribute("data-id"));
+    };
+    tiles.forEach((t) =>
+      t.addEventListener("click", (e) => {
+        e.preventDefault();
+        opener = t;
+        show(t.getAttribute("data-id"));
+        dlg.showModal();
+        dlg.querySelector("[data-viewer-close]").focus();
+      })
+    );
+    dlg.querySelector("[data-viewer-next]").addEventListener("click", () => step(1));
+    dlg.querySelector("[data-viewer-prev]").addEventListener("click", () => step(-1));
+    dlg.querySelector("[data-viewer-close]").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    dlg.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
+    });
+    dlg.addEventListener("close", () => {
+      if (opener) opener.focus();
+    });
+  }
+
+  /* Enquiry form: says honestly what happened */
+  doc.querySelectorAll("[data-pick]").forEach((a) =>
+    a.addEventListener("click", () => {
+      const s = doc.getElementById("f-type");
+      if (s) s.value = a.getAttribute("data-pick");
+    })
+  );
+  const form = doc.querySelector("form.enquiry");
+  if (form) {
+    const status = doc.getElementById("form-status");
+    const button = form.querySelector('button[type="submit"]');
+    const say = (kind, ...nodes) => {
+      status.textContent = "";
+      status.classList.toggle("is-error", kind === "error");
+      nodes.forEach((n) => status.appendChild(typeof n === "string" ? Object.assign(doc.createElement("p"), { textContent: n }) : n));
+      status.focus();
+    };
+    const clearErrors = () => {
+      form.querySelectorAll(".field.is-invalid").forEach((f) => {
+        f.classList.remove("is-invalid");
+        const e = f.querySelector(".field__error");
+        if (e) e.remove();
+      });
+      form.querySelectorAll("[aria-invalid]").forEach((el) => {
+        el.removeAttribute("aria-invalid");
+        el.removeAttribute("aria-describedby");
+      });
+    };
+    const validate = () => {
+      clearErrors();
+      let first = null;
+      form.querySelectorAll("[required]").forEach((el) => {
+        let ok = el.type === "checkbox" ? el.checked : el.value.trim() !== "";
+        if (ok && el.type === "email") ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+        if (ok) return;
+        const f = el.closest(".field");
+        f.classList.add("is-invalid");
+        const msg = doc.createElement("p");
+        msg.className = "field__error";
+        msg.id = el.id + "-err";
+        msg.textContent = "Error: " + (el.type === "checkbox" ? "tick the box to continue." : el.type === "email" ? "enter a valid email address." : "this is needed.");
+        f.appendChild(msg);
+        el.setAttribute("aria-invalid", "true");
+        el.setAttribute("aria-describedby", msg.id);
+        if (!first) first = el;
+      });
+      if (first) {
+        status.textContent = "";
+        status.classList.add("is-error");
+        const p = doc.createElement("p");
+        p.textContent = "The message has not been sent. Check the marked fields.";
+        status.appendChild(p);
+        first.focus();
+        return false;
+      }
+      status.textContent = "";
+      return true;
+    };
+    const message = () => {
+      const g = (n) => (form.elements[n] ? form.elements[n].value.trim() : "");
+      const type = form.elements.type.options[form.elements.type.selectedIndex].text;
+      const lines = ["Name: " + g("name"), "Email: " + g("email")];
+      if (g("organisation")) lines.push("Organisation: " + g("organisation"));
+      lines.push("About: " + type);
+      if (g("where")) lines.push("Proposed date and place: " + g("where"));
+      lines.push("", g("message"));
+      return { subject: "Website enquiry: " + type, body: lines.join("\n") };
+    };
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+      if (form.elements.website && form.elements.website.value) {
+        say("ok", "Thank you.");
+        return;
+      }
+      const m = message();
+      const endpoint = form.getAttribute("data-endpoint");
+      const email = form.getAttribute("data-email");
+      if (endpoint) {
+        button.disabled = true;
+        button.setAttribute("aria-busy", "true");
+        say("ok", "Sending your message…");
+        fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+          .then((r) => {
+            if (!r.ok) throw new Error("status " + r.status);
+            form.reset();
+            say("ok", "Delivered. The form service accepted your message, and the campaign team can now read it. Thank you.");
+          })
+          .catch(() => {
+            const p = doc.createElement("p");
+            p.append("Not delivered. The form service did not accept the message, and nothing was sent. What you typed is still here. Try again, or write to ");
+            const a = doc.createElement("a");
+            a.href = "mailto:" + email;
+            a.textContent = email;
+            p.append(a, ".");
+            say("error", p);
+          })
+          .finally(() => {
+            button.disabled = false;
+            button.removeAttribute("aria-busy");
+          });
+        return;
+      }
+      // No form service: open the visitor's own email app, and say plainly that nothing is sent yet.
+      const area = doc.createElement("textarea");
+      area.readOnly = true;
+      area.rows = 7;
+      area.value = m.body;
+      area.setAttribute("aria-label", "Your message, to copy");
+      area.style.cssText = "width:100%;margin:.5rem 0";
+      const p = doc.createElement("p");
+      p.append("Nothing has been sent yet. Your email app should now open with the message ready. Press Send there. If nothing opened, copy the message below and send it to ");
+      const a = doc.createElement("a");
+      a.href = "mailto:" + email;
+      a.textContent = email;
+      p.append(a, ".");
+      say("ok", p, area);
+      window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(m.subject) + "&body=" + encodeURIComponent(m.body);
+    });
+  }
+})();

@@ -1,0 +1,34 @@
+FONT NOTICE (read before a public launch)
+
+This folder holds four web-font files used by the Walking Rotarian site:
+
+  MTNBrighterSans-Bold   headings
+  SkyText-Regular        body text
+  SkyText-Bold           navigation, buttons, emphasis
+  SkyText-Light          large introductory text only (24px and above)
+
+Where they came from
+  The files came from the Drive font package, which credits "Web Fonts"
+  (https://www.onlinewebfonts.com) and states the licence "CC BY 4.0".
+  The site footer carries that credit line. Do not remove it unless the
+  fonts are replaced.
+
+What the files themselves say (embedded copyright text)
+  MTN Brighter Sans Bold : (c) 2017 Newlyn Works Limited. Licensing: www.newlyn.com/licensing
+  Sky Text Regular/Bold  : (c) 2009 BSkyB Ltd.
+  Sky Text Light         : (c) 2017 Dalton Maag Ltd. The file states that modification
+                           needs prior written permission (www.daltonmaag.com/eula).
+
+What that means
+  These are brand typefaces. A "CC BY 4.0" label on a download site does not, by
+  itself, give you the owners' permission. The files are fine for building,
+  reviewing and a private preview. Before a public launch, confirm you may use
+  them, or replace them with fonts you are licensed for.
+
+How to swap them
+  1. Put the new .woff2 files in this folder.
+  2. Change the @font-face lines at the top of src/assets/main.css.
+  3. Run: node build.mjs
+  4. Run: python3 -I tools/check_glyphs.py   (checks every character on the site exists in the new fonts)
+
+The font files are not modified by this project.
