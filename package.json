@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Static website for Mbanda Shyaka, the Walking Rotarian. No dependencies.",
+  "description": "Walking Rotarian website, live journal and secure publishing server. No third-party runtime dependencies.",
   "scripts": {
     "build": "node build.mjs",
     "check": "node tools/check_site.mjs",
-    "serve": "node tools/serve.mjs"
+    "serve": "node tools/serve.mjs",
+    "dev": "node server/index.mjs",
+    "start": "node server/index.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "create-owner": "node server/create-owner.mjs"
   },
-  "engines": { "node": ">=18" }
+  "engines": { "node": ">=24.14" }
 }

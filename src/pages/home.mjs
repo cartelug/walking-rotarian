@@ -5,6 +5,7 @@ import { notes } from "../data/fieldnotes.mjs";
 import { listen } from "../data/media.mjs";
 import { esc, rel, ext, icons, img, figure, chip, md, paras } from "../lib/util.mjs";
 import { donateSection, chapter, journeyRow, facts, externalButton, internalButton, evidenceTag } from "../lib/blocks.mjs";
+import { homepageJournal } from './platform.mjs';
 
 export function home() {
   const p = "/";
@@ -19,7 +20,7 @@ export function home() {
       <p class="intro intro--light hero__intro">Meet ${esc(site.person)}, the Walking Rotarian. Explore the journeys, the people and the causes behind the miles.</p>
       <p class="hero__actions">
         ${internalButton(p, "/journeys/", "Explore the journeys", "button--clay")}
-        <a class="button button--ghost" href="${a("/journeys/walk-for-education/")}">Follow the current walk</a>
+        <a class="button button--ghost" href="${a('/live/?journey=walk-for-education')}">Follow the live journal</a>
       </p>
       <p class="hero__donate"><a href="${a("/#donate")}">Or make a donation</a></p>
       <p class="hero__motto">${esc(site.motto)}</p>
@@ -196,6 +197,7 @@ ${notes
 
   const body = `${hero}
 ${ticker}
+${homepageJournal()}
 <div class="container thread" data-thread>
 ${meet}
 ${now}

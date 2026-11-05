@@ -2,3 +2,11 @@ build-notes/
 dist/
 node_modules/
 .DS_Store
+runtime/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+coverage/
+backups/

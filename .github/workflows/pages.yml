@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
       - uses: actions/configure-pages@v5
         with:
           enablement: true
@@ -30,6 +30,9 @@ jobs:
         env:
           NOINDEX: "1"
           BASE_PATH: /walking-rotarian
+          SITE_URL: https://cartelug.github.io/walking-rotarian
+          API_URL: ${{ vars.WALKING_ROTARIAN_API_URL }}
+      - run: npm test
       - run: node tools/check_site.mjs dist
         env:
           BASE_PATH: /walking-rotarian

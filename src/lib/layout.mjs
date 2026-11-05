@@ -1,6 +1,6 @@
 // The shared frame around every page: <head>, header, footer.
 import { site, currentWalk } from "../data/site.mjs";
-import { esc, rel, ext, icons, img } from "./util.mjs";
+import { esc, rel, ext, icons, img, BASE } from "./util.mjs";
 
 export function logoPlate(ctx, { height = 64, cls = "", alt = "The Walking Rotarian logo" } = {}) {
   // The supplied logo in its own navy, with the white paper removed (see tools/make_design_assets.py).
@@ -18,6 +18,7 @@ export function layout({ path: p, title, description, body, current = "", ogImag
   const ogUrl = site.url ? `${site.url}/assets/img/${ogImage}` : "";
   const robots = site.indexing ? "index, follow" : "noindex, nofollow";
   const a = (to) => rel(p, to);
+  const feed = site.apiUrl ? site.apiUrl.replace(/\/api$/, "") + "/rss.xml" : a("/rss.xml");
 
   const head = `<!doctype html>
 <html lang="${site.lang}">
@@ -28,6 +29,10 @@ export function layout({ path: p, title, description, body, current = "", ogImag
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="${robots}">
 <meta name="theme-color" content="#f3efe6">
+<meta name="wr-api" content="${esc(site.apiUrl)}">
+<meta name="wr-base" content="${esc(BASE)}">
+<link rel="manifest" href="${a('/manifest.webmanifest')}">
+<link rel="alternate" type="application/rss+xml" title="The Walking Rotarian journal" href="${esc(feed)}">
 ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ""}
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:type" content="${isHome ? "website" : "article"}">
@@ -40,8 +45,10 @@ ${ogUrl ? `<meta property="og:image" content="${esc(ogUrl)}">\n<meta property="o
 <link rel="preload" href="${a("/assets/fonts/MTNBrighterSans-Bold.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${a("/assets/fonts/SkyText-Regular.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${a("/assets/main.css")}?v=${assetVersion.css}">
+<link rel="stylesheet" href="${a('/assets/platform/platform.css')}?v=${assetVersion.platformCSS}">
 <script>document.documentElement.className+=" js";</script>
 <script src="${a("/assets/main.js")}?v=${assetVersion.js}" defer></script>
+<script type="module" src="${a('/assets/platform/main.js')}?v=${assetVersion.platformJS}"></script>
 ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, "\\u003c")}</script>`).join("\n")}
 </head>`;
 
@@ -81,6 +88,11 @@ ${nav}
         <li><a href="${a("/")}">Home</a></li>
 ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></li>`).join("\n")}
         <li><a href="${a("/get-involved/#donate")}">Make a donation</a></li>
+        <li><a href="${a('/journey-atlas/')}">Journey atlas</a></li>
+        <li><a href="${a('/archive/')}">Search &amp; archive</a></li>
+        <li><a href="${a('/gallery/')}">Gallery</a></li>
+        <li><a href="${a('/field-notes/')}">Field notes</a></li>
+        <li><a href="${a('/partners/')}">Causes &amp; partnerships</a></li>
       </ul>
     </nav>
     <div class="site-footer__col">
@@ -96,8 +108,11 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
         <ul>
           <li><a href="${a("/privacy/")}">Privacy</a></li>
           <li><a href="${a("/get-involved/#enquiry")}">Send a correction</a></li>
+          <li><a href="${a('/studio/')}">Team publishing</a></li>
+          <li><a href="${esc(feed)}">Journal RSS feed</a></li>
         </ul>
       </nav>
+      <p data-social-links></p>
     </div>
   </div>
   <div class="container site-footer__base">
@@ -117,6 +132,7 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
   </div>
 </div>
 ${header}
+<div class="wr-utility"><nav class="container" aria-label="Reading tools"><a href="${a('/archive/')}">Search</a><a href="${a('/saved/')}">Saved stories</a><button type="button" data-low-data aria-pressed="false">Low data: off</button><button type="button" data-install>Add to home screen</button><span data-social-links></span></nav></div>
 <main id="main" tabindex="-1">
 ${body}
 </main>

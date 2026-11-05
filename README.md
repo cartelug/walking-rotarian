@@ -1,6 +1,10 @@
 # The Walking Rotarian: website
 
-A small, fast website for Mbanda Shyaka, the Walking Rotarian. 15 pages. No database, no logins, nothing to keep patched. It is plain files you upload to any web host.
+A fast website for Mbanda Shyaka, the Walking Rotarian, with an expanded live journal, journey tools and a secure publishing server. The existing public pages remain static-compatible. Shared posts, logins, uploads, moderation and email subscriptions use the included Node 24/SQLite backend with persistent storage.
+
+**Start here for the new platform:** [Publishing and deployment](docs/PUBLISHING.md) · [All 48 capabilities and their connection requirements](docs/FEATURES.md).
+
+The backend is not activated merely by publishing static files to GitHub Pages. The Studio and community pages accurately identify their current connection state; no production account or external service credentials are embedded in this repository.
 
 **Built from:** the Walking Rotarian creative plan and typography tokens in Google Drive, the PCI archive (read-only), and the research notes on Shyaka's walks.
 
@@ -68,7 +72,7 @@ Nothing here blocks the site from working. These are decisions, not bugs.
 
 ## 4. Changing things
 
-You need Node 18 or newer on your computer only for this part. (Download "LTS" from nodejs.org.)
+You need Node 24.14 or newer on your computer only for this part. (Download "LTS" from nodejs.org.)
 
 1. Edit a file in `src/data/` (the comments at the top of each file say what goes where).
 2. In a terminal, in this folder, run: `node build.mjs`
@@ -107,7 +111,7 @@ Each photo needs several widths (480, 800, 1080 pixels wide, as `.webp`) in `src
 - **345 km and 400 km are the same walk.** 345 km is an earlier estimate. They are never added.
 - **Walk for Education's 1,100 km is the planned route.** It is not distance walked.
 - **Nothing is written in Mbanda's voice** unless he wrote the words himself.
-- **No payment details, phone numbers or money totals** are shown. Giving happens on PCI's own pages.
+- **Payments stay on the authorised campaign flow.** New finance panels require reviewed figures and keep funds separate from pledges.
 - **News photographs are linked, not copied.**
 - **Wellbeing statements are personal views, not medical advice.**
 - **The footer says this is not an official Rotary International website.**

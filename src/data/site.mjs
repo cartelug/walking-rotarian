@@ -30,6 +30,8 @@ export const site = {
   // The email below is the public campaign address published by PCI. Replace it
   // with the booking address when the owner confirms one.
   formEndpoint: process.env.FORM_ENDPOINT || "",
+  // Public server address only. Credentials stay in the backend environment.
+  apiUrl: (process.env.API_URL || "").replace(/\/+$/, ""),
   email: "pci.uganda@gmail.com",
 
   // Donations open WhatsApp with a message ready, addressed to Mbanda Shyaka.
@@ -37,11 +39,11 @@ export const site = {
   whatsapp: "256757112376",
 
   nav: [
-    { label: "His story", href: "/his-story/" },
+    { label: "Live journal", href: "/live/" },
     { label: "Journeys", href: "/journeys/" },
-    { label: "Field notes", href: "/field-notes/" },
-    { label: "Gallery", href: "/gallery/" },
+    { label: "His story", href: "/his-story/" },
     { label: "Media", href: "/media/" },
+    { label: "Community", href: "/community/" },
     { label: "Get involved", href: "/get-involved/" },
   ],
 

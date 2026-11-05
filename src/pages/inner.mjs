@@ -514,14 +514,18 @@ ${form}`;
 export function privacy() {
   const p = "/privacy/";
   const a = (to) => rel(p, to);
-  const head = pageHead({ eyebrow: "The Walking Rotarian", title: "Privacy", intro: "What this site does with your information. It is short because the site does very little." });
+  const head = pageHead({ eyebrow: "The Walking Rotarian", title: "Privacy", intro: "How reading preferences, team publishing and supporter messages are handled." });
   const body = `${head}
 <section class="block"><div class="container reading prose">
   <h2>What the site collects</h2>
-  <p>Nothing on its own. This site sets no cookies, runs no analytics and shows no advertising. Its fonts and pictures are served from the site itself.</p>
+  <p>Reading does not require an account. Saved stories, low-data preferences and draft text use storage on the current device. Use the saved-stories page to remove saved copies. Shared publishing, when connected, keeps entries and media on the publishing server.</p>
+  <p>Team sign-in uses a session cookie on the publishing server. When the server is connected, aggregate website events record story views, sharing actions, support-link clicks and referral domains. They do not certify donations or identify unique readers. No advertising tracker is added.</p>
   <p>The web host keeps ordinary server records, such as the time of a visit and the page asked for. That is a feature of every web host, and it is the host’s record, not this site’s.</p>
   <h2>The enquiry form</h2>
   <p>${site.formEndpoint ? "When you press Send, what you typed is sent to the form service that delivers it to the campaign team." : "When you press the button, your own email app opens with what you typed already in the message. The site itself sends nothing."} It is used to reply to you and for nothing else.</p>
+  <p>On the community page, connected forms save your request and contact details for authorised team members to follow up. Public encouragement and supporter recognition require consent and review. When shared delivery is unavailable, the page prepares an email and clearly says that nothing has been sent by the website.</p>
+  <h2>Email updates and embedded posts</h2>
+  <p>Email subscriptions, when available, begin only after confirmation. Each email includes a preference or unsubscribe link. Facebook posts load only after you choose to load an embed; Facebook and other linked services have their own policies. Fonts and supplied photographs are served from this website.</p>
   <h2>Links to other sites</h2>
   <p>Sources, news reports and campaign pages open on other sites. They have their own policies, and this site cannot see what they collect.</p>
   <h2>Corrections and removal</h2>
