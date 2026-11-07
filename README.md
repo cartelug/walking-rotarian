@@ -1,10 +1,10 @@
 # The Walking Rotarian: website
 
-A fast website for Mbanda Shyaka, the Walking Rotarian, with an expanded live journal, journey tools and a secure publishing server. The existing public pages remain static-compatible. Shared posts, logins, uploads, moderation and email subscriptions use the included Node 24/SQLite backend with persistent storage.
+A fast website for Mbanda Shyaka, the Walking Rotarian, with a live journal, journey tools and a WhatsApp enquiry shop. The current GitHub Pages website publishes journal stories and shop changes through approved forms linked from `/studio/`. Submit a form, then the workflow saves the content, builds and deploys the website.
 
 **Start here for the new platform:** [Publishing and deployment](docs/PUBLISHING.md) · [All 48 capabilities and their connection requirements](docs/FEATURES.md).
 
-The backend is not activated merely by publishing static files to GitHub Pages. The Studio and community pages accurately identify their current connection state; no production account or external service credentials are embedded in this repository.
+The existing repository owner is approved for form publishing. Add Mbanda's GitHub username to `src/data/publishing.json` for his own login. Submitted forms and attachments are public on GitHub. Products begin as enquiries until actual stock, prices and photographs are confirmed. Independent logins, private uploads, moderation, email subscriptions and automatic Facebook posting are available through the optional Node 24/SQLite backend and its service connections.
 
 **Built from:** the Walking Rotarian creative plan and typography tokens in Google Drive, the PCI archive (read-only), and the research notes on Shyaka's walks.
 

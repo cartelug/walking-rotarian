@@ -2,12 +2,16 @@
 
 `Browser` means implemented on the static-compatible website. `Server` means implemented in the included persistent Node/SQLite service and Studio; production activation needs its hosting connection. `Service` adds the stated external account requirements. The site does not claim that an unconnected service is operational.
 
+The current GitHub Pages website also supports approved form publishing through `/studio/`. Journal text, photographs, corrections, draft exclusion, withdrawal, permanent story pages and RSS update after the automatic website build. The existing owner account is enabled. Independent server logins and the remaining server features still use the optional backend. See [the publishing guide](PUBLISHING.md).
+
+The added `/shop/` supports merchandise, books, accessories, search, filters, size/colour selections, quantities, a saved enquiry list and a prepared WhatsApp quote request. Approved product forms manage photographs, prices, availability and visibility. Starter collection ideas have illustrative artwork and require confirmation of price and stock.
+
 | ID | Capability | Implementation |
 |---|---|---|
-| 01 | Mobile composer | Server: Studio write screen, optional title, current journey and phone dictation. |
-| 02 | Rich media entries | Browser + server: text, photographs, audio/video, captions and credits. |
-| 03 | Live reading feed | Browser: 45-second checks and a new-updates prompt; server for shared live posts. |
-| 04 | Permanent story links | Browser: existing records; server: new SSR story URLs and metadata. |
+| 01 | Mobile composer | Approved GitHub form from Studio for the current website; optional server Studio with phone dictation. |
+| 02 | Rich media entries | Form-published text and photographs; server adds protected uploads, audio/video, captions and credits. |
+| 03 | Live reading feed | Browser checks for new entries; forms publish through an automatic Pages build, or the server publishes immediately. |
+| 04 | Permanent story links | Build-generated pages for source and form-published stories; server SSR for its own entries. |
 | 05 | Distinct story types | Browser filters + Studio entry types. |
 | 06 | Pinned notices and corrections | Browser display + versioned server fields. |
 | 07 | Draft recovery | Browser autosave keyed by signed-in author; server drafts and retry messages. |
@@ -39,7 +43,7 @@
 | 33 | Sharing and caption tools | Browser Facebook, WhatsApp, native sharing, copied links/captions. |
 | 34 | Connected Page publishing | Server + authorised Meta Page access: queued delivery, status and duplicate protection. |
 | 35 | Branded social cards | Browser local portrait/square JPEG export using the original WR mark. |
-| 36 | RSS updates | Build-time archive feed; live server feed for newly published entries. |
+| 36 | RSS updates | Build-time feed includes source and form-published stories; live feed for optional server entries. |
 | 37 | Cause and impact pages | Browser cause hub; server editable beneficiary/impact records. |
 | 38 | Support and step calculator | Browser UGX step calculation linked to the official campaign contribution flow. |
 | 39 | Verified funding panel | Finance-only server records; separate funds/pledges, source and date. |

@@ -14,6 +14,8 @@ import { home } from "./src/pages/home.mjs";
 import { story, journeysIndex, journeyPage, fieldNotes, gallery, mediaPage, getInvolved, privacy, notFound } from "./src/pages/inner.mjs";
 import { platformPages } from './src/pages/platform.mjs';
 import { platformData } from './src/lib/platform-data.mjs';
+import { shopPage } from './src/pages/shop.mjs';
+import { shopData } from './src/lib/shop.mjs';
 
 const OUT = path.join(ROOT, process.env.OUT_DIR || "dist");
 const SRC = path.join(ROOT, "src");
@@ -42,7 +44,7 @@ const hash = (file) => crypto.createHash("sha1").update(fs.readFileSync(file)).d
 const assetVersion = { css: hash(path.join(OUT, "assets", "main.css")), js: hash(path.join(OUT, "assets", "main.js")), platformCSS:hash(path.join(OUT,'assets/platform/platform.css')),platformJS:hash(path.join(OUT,'assets/platform/main.js')) };
 
 // ---- pages ----------------------------------------------------------------
-const pages = [home(), story(), journeysIndex(), fieldNotes(), gallery(), mediaPage(), getInvolved(), privacy()];
+const pages = [home(), story(), journeysIndex(), fieldNotes(), gallery(), mediaPage(), getInvolved(), privacy(), shopPage()];
 pages.push(...platformPages());
 
 const withPages = journeys.filter((j) => j.page).sort((a, b) => b.sortKey - a.sortKey);
@@ -118,16 +120,19 @@ Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 writeFile(path.join(OUT, ".nojekyll"), "");
 const platform = platformData();
 writeFile(path.join(OUT,'data/platform.json'),JSON.stringify(platform));
+writeFile(path.join(OUT,'data/shop.json'), JSON.stringify(shopData()));
 const xml = value => String(value||'').replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));
 const absolute = p => site.url ? site.url+p : BASE+p;
 writeFile(path.join(OUT,'rss.xml'),`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Walking Rotarian</title><link>${xml(absolute('/'))}</link><description>Stories from the road, with dates and sources.</description>${platform.entries.map(e=>`<item><title>${xml(e.title)}</title><link>${xml(absolute('/journal/'+e.id+'/'))}</link><guid>${xml(absolute('/journal/'+e.id+'/'))}</guid><description>${xml(e.body)}</description><pubDate>${new Date(e.publishedAt).toUTCString()}</pubDate></item>`).join('')}</channel></rss>`);
 writeFile(path.join(OUT,'manifest.webmanifest'),JSON.stringify({name:site.name,short_name:'Walking Rotarian',description:site.description,id:BASE+'/',start_url:BASE+'/live/',scope:BASE+'/',display:'standalone',background_color:'#f3efe6',theme_color:'#152a34',icons:[{src:BASE+'/assets/platform/icon.svg',sizes:'any',type:'image/svg+xml',purpose:'any'},{src:BASE+'/assets/img/apple-touch-icon.png',sizes:'180x180',type:'image/png',purpose:'any'}]}));
-const cacheVersion=crypto.createHash('sha1').update(JSON.stringify(assetVersion)+JSON.stringify(platform)).digest('hex').slice(0,12);
-const precache=['/','/live/','/archive/','/saved/','/offline/','/data/platform.json','/assets/main.css','/assets/main.js','/assets/platform/platform.css','/assets/platform/main.js','/assets/platform/client.js','/assets/platform/model.js','/assets/platform/readers.js','/assets/platform/studio.js','/assets/platform/exports.js'].map(p=>BASE+p);
+const platformAssets = fs.readdirSync(path.join(OUT, 'assets/platform')).filter(file => file.endsWith('.js') || file.endsWith('.css'));
+const platformHash = platformAssets.map(file => hash(path.join(OUT, 'assets/platform', file))).join('');
+const cacheVersion=crypto.createHash('sha1').update(JSON.stringify(assetVersion)+platformHash+JSON.stringify(platform)+JSON.stringify(shopData())).digest('hex').slice(0,12);
+const precache=['/','/live/','/archive/','/saved/','/shop/','/offline/','/data/platform.json','/data/shop.json','/assets/main.css','/assets/main.js',...platformAssets.map(file => '/assets/platform/' + file)].map(p=>BASE+p);
 writeFile(path.join(OUT,'sw.js'),`const CACHE='wr-${cacheVersion}';const BASE=${JSON.stringify(BASE)};const FILES=${JSON.stringify(precache)};
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('wr-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==location.origin||/\\/(api|studio|subscribe|uploads)\\//.test(u.pathname))return;if(e.request.mode==='navigate'||u.pathname.endsWith('/data/platform.json')){e.respondWith(fetch(e.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(e.request,r.clone()));return r;}).catch(async()=>await caches.match(e.request)||await caches.match(BASE+'/offline/')));return;}if(u.pathname.includes('/assets/'))e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(response=>{if(response.ok)caches.open(CACHE).then(c=>c.put(e.request,response.clone()));return response;})));});`);
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==location.origin||/\\/(api|studio|subscribe|uploads)\\//.test(u.pathname))return;if(e.request.mode==='navigate'||u.pathname.includes('/data/')){e.respondWith(fetch(e.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(e.request,r.clone()));return r;}).catch(async()=>await caches.match(e.request)||await caches.match(BASE+'/offline/')));return;}if(u.pathname.includes('/assets/'))e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(response=>{if(response.ok)caches.open(CACHE).then(c=>c.put(e.request,response.clone()));return response;})));});`);
 
 // ---- report ---------------------------------------------------------------
 const count = (dir) => fs.readdirSync(dir, { withFileTypes: true }).reduce((n, e) => n + (e.isDirectory() ? count(path.join(dir, e.name)) : 1), 0);

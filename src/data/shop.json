@@ -1,0 +1,66 @@
+{
+  "currency": "UGX",
+  "intro": "Choose what interests you and send your list to the team. We will confirm availability, prices and delivery before you order.",
+  "products": [
+    {
+      "id": "walking-t-shirt",
+      "title": "Walking T-shirt",
+      "category": "clothing",
+      "description": "Ask about a Walking Rotarian T-shirt for your next walk or community event.",
+      "illustration": "shirt",
+      "status": "enquiry",
+      "price": null,
+      "sizes": ["S", "M", "L", "XL", "2XL"],
+      "colours": [],
+      "image": ""
+    },
+    {
+      "id": "walking-cap",
+      "title": "Walking cap",
+      "category": "accessories",
+      "description": "Add a cap to your enquiry and ask the team about available colours and designs.",
+      "illustration": "cap",
+      "status": "enquiry",
+      "price": null,
+      "sizes": [],
+      "colours": [],
+      "image": ""
+    },
+    {
+      "id": "reusable-bottle",
+      "title": "Reusable bottle",
+      "category": "accessories",
+      "description": "Interested in a bottle for the road? Request the available options and a quote.",
+      "illustration": "bottle",
+      "status": "enquiry",
+      "price": null,
+      "sizes": [],
+      "colours": [],
+      "image": ""
+    },
+    {
+      "id": "journey-publications",
+      "title": "Books & journey publications",
+      "category": "books",
+      "description": "Ask about available books, printed stories and publications connected with the journey.",
+      "illustration": "book",
+      "status": "enquiry",
+      "price": null,
+      "sizes": [],
+      "colours": [],
+      "image": ""
+    },
+    {
+      "id": "everyday-tote",
+      "title": "Everyday tote",
+      "category": "accessories",
+      "description": "Ask about a reusable carry bag for everyday essentials and community gatherings.",
+      "illustration": "tote",
+      "status": "enquiry",
+      "price": null,
+      "sizes": [],
+      "colours": [],
+      "image": ""
+    }
+  ]
+}

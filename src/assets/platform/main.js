@@ -1,6 +1,7 @@
 import {createClient,h,readLocal,writeLocal,toast} from './client.js';
 import {entryCard,renderJournal,renderArchive,renderSaved,renderAtlas,renderCommunity,renderPartners,renderReports,renderSubscription,bindReaderActions} from './readers.js';
 import {renderStudio} from './studio.js';
+import {renderShop} from './shop.js';
 const ctx=createClient();
 const setLowData=value=>{document.documentElement.classList.toggle('wr-low-data',value);document.querySelectorAll('[data-low-data]').forEach(b=>{b.setAttribute('aria-pressed',String(value));b.textContent=value?'Low data: on':'Low data: off';});};
 setLowData(readLocal('wr.low-data',navigator.connection?.saveData===true));
@@ -20,6 +21,7 @@ async function start(){
       if(type==='reports')renderReports(root,ctx);
       if(type==='subscription')await renderSubscription(root,ctx);
       if(type==='studio')await renderStudio(root,ctx);
+      if(type==='shop')await renderShop(root,ctx);
       if(type==='preview')root.innerHTML=ctx.data.entries.slice(0,3).map(e=>`<article class="wr-entry"><p class="eyebrow">${h(e.publishedAt.slice(0,10))} · ${h(e.place)}</p><h3><a href="${h(ctx.entryURL(e))}">${h(e.title)}</a></h3><p>${h(e.body.slice(0,190))}…</p><a href="${h(ctx.entryURL(e))}">Read this story</a></article>`).join('');
       if(type==='story'){const entry=ctx.data.entries.find(e=>e.id===root.dataset.entry);if(entry){root.innerHTML=entryCard(entry,ctx,{full:true,heading:'h1'});ctx.event('story_view',entry.id);}}
     }

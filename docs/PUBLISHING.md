@@ -1,6 +1,24 @@
 # Publishing and operating the Walking Rotarian
 
-The current GitHub Pages address and the existing design remain in place. New reader features are static-compatible. Shared content and team publishing use the included Node server; browser storage is used only for drafts, reading preferences and saved copies on one device.
+## Simple publishing on the current website
+
+Open `/studio/`, choose **Write a live update**, sign in to an approved GitHub account, write the headline and story, attach photographs, and choose **Publish now**. Submitting the form starts the publishing workflow, then builds and deploys the website. Check the workflow result if a submitted update has not appeared. Publishing takes the time of a Pages build rather than appearing immediately.
+
+Edit the same submission to correct a story. Choose **Draft - keep off website** or **Withdraw from website** to remove it from the next build. GitHub form submissions and attachments are public even when marked Draft. Keep private drafts on your own device.
+
+The existing `cartelug` account is approved. Add Mbanda's exact GitHub username to `src/data/publishing.json` to let him publish with his own account. The workflow checks both the submitter and actor against this list. Approved publishers need a GitHub login but do not need repository write access. Do not share an account or place a token in the website.
+
+The workflow writes only `src/data/journal.json` or `src/data/shop.json`. It uses the temporary Actions token, checks the current form, retries content conflicts against fresh data, and invokes the Pages workflow directly after saving. Earlier content versions remain in Git history.
+
+## Shop on the current website
+
+The `/shop/` page supports category and text filters, size and colour choices, quantities, a device-local enquiry list, and one prepared WhatsApp message. The contact is the site's existing public WhatsApp number. Visitors review and send the message themselves. The team confirms stock, item prices, delivery and payment arrangements in that conversation.
+
+Starter merchandise and publication categories are enquiries with illustrative artwork. Their actual designs, stock and prices need the team's confirmation. No sale or donation total is inferred from an enquiry.
+
+Use **Add or update a product** in `/studio/` to maintain the collection. Use the existing product identifier to update it. **Available** requires a confirmed price in whole UGX. **Enquiry** requests a quote, **Sold out** disables adding the item, and **Hidden** removes it from the public catalogue. Attach a real product photograph to replace an illustration. Edit the original product submission for later corrections.
+
+The optional server deployment below provides an independent publishing login, moderation, protected uploads, email delivery and automatic Facebook Page posting. Browser storage holds reading preferences, saved copies and enquiry selections on one device.
 
 ## What works on GitHub Pages
 

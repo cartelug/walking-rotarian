@@ -38,12 +38,19 @@ export const site = {
   // Digits only, with the country code and no plus sign. No money is handled by this site.
   whatsapp: "256757112376",
 
+  publishing: {
+    repository: 'https://github.com/cartelug/walking-rotarian',
+    journalForm: 'https://github.com/cartelug/walking-rotarian/issues/new?template=journal.yml',
+    productForm: 'https://github.com/cartelug/walking-rotarian/issues/new?template=product.yml',
+  },
+
   nav: [
     { label: "Live journal", href: "/live/" },
     { label: "Journeys", href: "/journeys/" },
     { label: "His story", href: "/his-story/" },
     { label: "Media", href: "/media/" },
     { label: "Community", href: "/community/" },
+    { label: "Shop", href: "/shop/" },
     { label: "Get involved", href: "/get-involved/" },
   ],
 

@@ -1,0 +1,74 @@
+name: Add or update a shop item
+description: Manage products, prices and availability using a short form.
+title: "[Product] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write the product name in the title above. Approved publishers can add and update the shop. Use the same product identifier to update an existing item. Leave the price empty and choose Enquiry when details still need confirmation.
+  - type: input
+    id: product-id
+    attributes:
+      label: Product identifier
+      description: A short permanent name, such as walking-t-shirt. Keep this unchanged when editing an item.
+      placeholder: walking-t-shirt
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Clothing
+        - Books & publications
+        - Accessories
+        - Other items
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the actual item, design and what is included.
+    validations:
+      required: true
+  - type: input
+    id: price
+    attributes:
+      label: Price in UGX
+      description: Confirmed price per item in whole Uganda shillings. Leave empty for a quote.
+      placeholder: "25000"
+  - type: dropdown
+    id: availability
+    attributes:
+      label: Availability
+      default: 0
+      options:
+        - Enquiry - confirm with team
+        - Available - confirmed price and stock
+        - Sold out
+        - Hidden
+    validations:
+      required: true
+  - type: textarea
+    id: photograph
+    attributes:
+      label: Product photograph
+      description: Optional. Attach one photograph or paste its complete HTTPS image address.
+  - type: input
+    id: sizes
+    attributes:
+      label: Sizes
+      description: Optional sizes separated by commas, such as S, M, L, XL.
+  - type: input
+    id: colours
+    attributes:
+      label: Colours
+      description: Optional confirmed colours separated by commas.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Product confirmation
+      options:
+        - label: I confirm the product details, availability and any stated price for the public shop.
+          required: true

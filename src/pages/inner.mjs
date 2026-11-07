@@ -524,6 +524,9 @@ export function privacy() {
   <h2>The enquiry form</h2>
   <p>${site.formEndpoint ? "When you press Send, what you typed is sent to the form service that delivers it to the campaign team." : "When you press the button, your own email app opens with what you typed already in the message. The site itself sends nothing."} It is used to reply to you and for nothing else.</p>
   <p>On the community page, connected forms save your request and contact details for authorised team members to follow up. Public encouragement and supporter recognition require consent and review. When shared delivery is unavailable, the page prepares an email and clearly says that nothing has been sent by the website.</p>
+  <h2>Shop enquiries and publishing forms</h2>
+  <p>Your shop list is stored in this browser. Use Remove beside an item to clear it. The WhatsApp button prepares a message containing your selected items, sizes, quantities and any note you add. Review it and send it in WhatsApp to share it with the shop team. The team confirms availability, delivery and payment arrangements in that conversation.</p>
+  <p>The simple publishing forms open GitHub and use the authorised publisher’s GitHub account. Submissions and attached media are public in the repository, including draft submissions. Approved entries become part of the website after its build completes. GitHub keeps earlier revisions under its own policies.</p>
   <h2>Email updates and embedded posts</h2>
   <p>Email subscriptions, when available, begin only after confirmation. Each email includes a preference or unsubscribe link. Facebook posts load only after you choose to load an embed; Facebook and other linked services have their own policies. Fonts and supplied photographs are served from this website.</p>
   <h2>Links to other sites</h2>

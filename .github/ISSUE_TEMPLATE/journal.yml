@@ -1,0 +1,57 @@
+name: Publish a journal update
+description: Share a story or photograph from the road.
+title: "[Journal] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add your headline above, then write your update below. Approved publishers can publish directly to the website. You can attach photographs in the Story box. Forms and attachments are public on GitHub, including drafts.
+  - type: textarea
+    id: story
+    attributes:
+      label: Story
+      description: Write naturally or use the microphone on your phone keyboard. Add photographs with the attachment button.
+      placeholder: What happened on the walk today?
+    validations:
+      required: true
+  - type: dropdown
+    id: journey
+    attributes:
+      label: Journey
+      default: 0
+      options:
+        - Walk for Education
+        - Faith in Motion
+        - Nakivale to Makerere peace walk
+        - General update
+    validations:
+      required: true
+  - type: input
+    id: place
+    attributes:
+      label: Place
+      description: Optional town or location.
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      value: Walking Rotarian team
+      description: Use Mbanda Shyaka when publishing his own words.
+  - type: dropdown
+    id: publication
+    attributes:
+      label: Publication
+      default: 0
+      options:
+        - Publish now
+        - Draft - keep off website
+        - Withdraw from website
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Publishing confirmation
+      options:
+        - label: I approve this content and its photographs for the public website.
+          required: true

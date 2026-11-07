@@ -1,0 +1,41 @@
+name: Publish approved journal and shop forms
+on:
+  issues:
+    types: [opened, edited, reopened]
+permissions:
+  contents: read
+concurrency:
+  group: approved-content-publishing
+  cancel-in-progress: false
+jobs:
+  save:
+    if: startsWith(github.event.issue.title, '[Journal]') || startsWith(github.event.issue.title, '[Product]')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: read
+    outputs:
+      changed: ${{ steps.publish.outputs.changed }}
+      commit_sha: ${{ steps.publish.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - id: publish
+        run: node tools/publish-issue.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+  website:
+    needs: save
+    if: needs.save.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      source-ref: ${{ needs.save.outputs.commit_sha }}
