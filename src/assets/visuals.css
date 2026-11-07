@@ -1,0 +1,101 @@
+/* Campaign imagery is kept distinct from the dated documentary records. */
+.hero--photographic {
+  min-height: auto;
+  padding-block: 2.75rem 2rem;
+}
+.hero--photographic .hero__bg { display: none; }
+.hero--photographic::before { background: #11282f; }
+.hero--photographic::after { opacity: .1; }
+.hero--photographic .hero__grid { display: block; }
+.hero--photographic .hero__text { max-width: 43rem; }
+.hero__mobile-art { margin: 2rem 0 0; }
+.hero__mobile-art img { width: 100%; height: auto; border-radius: .75rem; }
+.hero__mobile-art figcaption { margin-top: .5rem; font-size: .75rem; color: #d9dfd6; }
+.hero--photographic .hero__stats { margin-top: 1.75rem; border-radius: .5rem; }
+.hero--photographic .hero__stats > div { padding: 1rem 1.25rem; background: #10252fe0; }
+.hero--photographic .hero__num { font-size: clamp(1.6rem, 2.6vw, 2.3rem); }
+.hero__footnote { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 2rem; align-items: center; margin-top: 1rem; }
+.hero__footnote .hero__note { margin: 0; font-size: .75rem; }
+.hero__footnote > a { display: inline-flex; gap: .4rem; align-items: center; font-size: .75rem; color: #e9e4d8; }
+
+.page-head--art::before {
+  background: linear-gradient(90deg, #0d252eef 0%, #0d252ec9 39%, #0d252e45 73%, #0d252e18 100%);
+}
+.page-head--art::after { opacity: .09; }
+.page-head--art .intro { max-width: 42rem; }
+.page-head__credit { margin: 2rem 0 -1rem; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: #d6dfd8; text-align: right; }
+.page-head--journal { background-image: url('./img/campaign-journal-960.webp'); background-position: 70% 43%; }
+.page-head--community { background-image: url('./img/campaign-community-960.webp'); background-position: 65% 35%; }
+.page-head--highlands { background-image: url('./img/campaign-highlands-960.webp'); background-position: center 55%; }
+.page-head--forest { background-image: url('./img/campaign-forest-960.webp'); }
+.page-head--learning { background-image: url('./img/campaign-learning-960.webp'); background-position: center 57%; }
+.page-head--evening { background-image: url('./img/campaign-evening-960.webp'); }
+.page-head--footsteps { background-image: url('./img/campaign-footsteps-960.webp'); }
+.page-head--open-road { background-image: url('./img/campaign-open-road-960.webp'); background-position: 70% 36%; }
+.page-head--road { background-image: url('./img/campaign-highlands-960.webp'); }
+.page-head--path { background-image: url('./img/campaign-open-road-960.webp'); }
+.page-head--paths { background-image: url('./img/campaign-forest-960.webp'); }
+.page-head--purpose { background-image: url('./img/campaign-learning-960.webp'); }
+
+.visual-stories { background: #e8e9df; }
+.visual-stories__heading { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 2.5rem; }
+.visual-stories__heading h2 { font-size: clamp(2.5rem, 5.3vw, 5rem); line-height: 1.02; margin: .8rem 0 0; letter-spacing: -.035em; }
+.visual-stories__heading > p { max-width: 31rem; font-size: clamp(1.1rem, 1.8vw, 1.35rem); padding-bottom: .2rem; }
+.visual-stories__grid { display: grid; grid-template-columns: .85fr 1.15fr; grid-template-rows: repeat(2, 21rem); gap: 1.25rem; }
+.visual-story { position: relative; display: block; overflow: hidden; color: #fff; border-radius: .6rem; isolation: isolate; }
+.visual-story::after { content: ''; position: absolute; inset: 25% 0 0; background: linear-gradient(0deg, #0e252ded, transparent); z-index: 0; pointer-events: none; }
+.visual-story img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
+.visual-story:hover img { transform: scale(1.025); }
+.visual-story:focus-visible { outline: 4px solid var(--clay); outline-offset: 4px; }
+.visual-story--portrait { grid-row: 1 / 3; }
+.visual-story--portrait img { object-position: 48% 28%; }
+.visual-story > span { position: absolute; inset: auto 1.6rem 1.6rem; z-index: 1; display: grid; gap: .4rem; padding-right: 2rem; }
+.visual-story small { font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: #e8d5ad; }
+.visual-story strong { font-size: clamp(1.4rem, 2.5vw, 2.2rem); line-height: 1.15; }
+.visual-story span > svg { position: absolute; right: 0; bottom: .3rem; width: 1.3rem; height: 1.3rem; }
+.visual-stories__credit { font-size: .75rem; color: #58635c; margin: 1.2rem 0 0; }
+
+.band--dark { background-image: url('./img/campaign-evening-960.webp'); background-attachment: scroll; background-position: center 60%; }
+.band--dark::before { background: linear-gradient(90deg, #0e252de8, #0e252db5 60%, #0e252d88); }
+.donate { background-image: linear-gradient(90deg, #f3efe6f7 5%, #f3efe6e0 60%, #f3efe6cf), url('./img/campaign-learning-960.webp'); background-size: cover; background-position: center; }
+.wr-shop-hero { background: #e7e8dd; }
+.wr-shop-hero > .container { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 3rem; }
+.wr-shop-hero__art { margin: 0; }
+.wr-shop-hero__art img { width: 100%; height: auto; aspect-ratio: 1.15; object-fit: cover; object-position: 70% 50%; border-radius: .5rem; box-shadow: 0 15px 55px #172d3426; }
+.wr-shop-hero__art figcaption { font-size: .7rem; color: #58635c; padding-top: .65rem; }
+
+@media (min-width: 60rem) {
+  .page-head--journal { background-image: url('./img/campaign-journal-1672.webp'); }
+  .page-head--community { background-image: url('./img/campaign-community-1672.webp'); }
+  .page-head--highlands, .page-head--road { background-image: url('./img/campaign-highlands-1913.webp'); }
+  .page-head--forest, .page-head--paths { background-image: url('./img/campaign-forest-1914.webp'); }
+  .page-head--learning, .page-head--purpose { background-image: url('./img/campaign-learning-1672.webp'); }
+  .page-head--evening { background-image: url('./img/campaign-evening-1913.webp'); }
+  .page-head--footsteps { background-image: url('./img/campaign-footsteps-1672.webp'); }
+  .page-head--open-road, .page-head--path { background-image: url('./img/campaign-open-road-1672.webp'); }
+  .band--dark { background-image: url('./img/campaign-evening-1913.webp'); }
+}
+@media (min-width: 64rem) {
+  .hero--photographic { min-height: min(52rem, calc(100svh - 8rem)); padding-block: 3.5rem 1.5rem; }
+  .hero--photographic .hero__bg { display: block; background-image: url('./img/campaign-hero-1672.webp'); background-position: 68% 35%; animation: none; transform: none; translate: none; }
+  .hero--photographic::before { background: linear-gradient(90deg, #0b2229d9 0%, #0b22298a 40%, #0b222915 68%), linear-gradient(0deg, #0b2229d9, transparent 65%); }
+  .hero--photographic::after { background: none; }
+  .hero--photographic .hero__grid { min-height: 27rem; }
+  .hero--photographic .hero__text { max-width: min(48%, 42rem); }
+  .hero--photographic h1 { font-size: clamp(3.6rem, 5.3vw, 6.4rem); line-height: 1.02; }
+  .hero__mobile-art { display: none; }
+}
+@media (max-width: 48rem) {
+  .visual-stories__heading, .wr-shop-hero > .container { grid-template-columns: 1fr; gap: 1.5rem; }
+  .visual-stories__heading h2 { line-height: 1.1; }
+  .visual-stories__grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .visual-story { aspect-ratio: 1.45; }
+  .visual-story--portrait { grid-row: auto; aspect-ratio: 1; }
+  .visual-story--portrait img { object-position: 50% 25%; }
+  .wr-shop-hero__art img { aspect-ratio: 1.5; }
+}
+.wr-low-data .page-head--art, .wr-low-data .band--dark, .wr-low-data .donate { background-image: none !important; }
+.wr-low-data .hero__mobile-art { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .visual-story img { transition: none; }
+}

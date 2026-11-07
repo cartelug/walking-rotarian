@@ -189,6 +189,12 @@
     const count = bar.querySelector("[data-count]");
     const state = {};
     const buttons = Array.from(bar.querySelectorAll(".filter-btn"));
+    if (list.id === 'gallery') {
+      const collection = new URLSearchParams(location.search).get('collection');
+      if (collection && buttons.some(button => button.dataset.value === collection)) {
+        buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.value === collection)));
+      }
+    }
     buttons.forEach((b) => {
       if (b.getAttribute("aria-pressed") === "true") state[b.getAttribute("data-attr")] = b.getAttribute("data-value");
     });

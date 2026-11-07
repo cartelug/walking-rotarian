@@ -1,6 +1,6 @@
 import {shopData, productCard} from '../lib/shop.mjs';
 import {SHOP_CATEGORIES} from '../assets/platform/shop-model.js';
-import {esc, rel} from '../lib/util.mjs';
+import {esc, rel, img} from '../lib/util.mjs';
 
 export function shopPage() {
   const p = '/shop/';
@@ -8,7 +8,7 @@ export function shopPage() {
   return {
     path: p, title: 'Shop', current: 'shop',
     description: 'Explore Walking Rotarian merchandise, books and accessories. Build an enquiry and confirm availability and prices with the team on WhatsApp.',
-    body: `<section class="wr-shop-hero"><div class="container"><div><p class="eyebrow">The Walking Rotarian shop</p><h1>Carry the<br><em>journey.</em></h1><p class="intro">Merchandise, books and everyday companions for the road.</p><p>${esc(data.intro)}</p><a class="button button--secondary" href="#collection">Explore the collection</a></div><div class="wr-shop-hero__seal" aria-hidden="true"><img src="${rel(p, '/assets/img/logo-ink-320.webp')}" width="703" height="977" alt=""><span>Every step has a story.</span></div></div></section>
+    body: `<section class="wr-shop-hero"><div class="container"><div><p class="eyebrow">The Walking Rotarian shop</p><h1>Carry the<br><em>journey.</em></h1><p class="intro">Merchandise, books and everyday companions for the road.</p><p>${esc(data.intro)}</p><a class="button button--secondary" href="#collection">Explore the collection</a></div><figure class="wr-shop-hero__art">${img('campaign-essentials',{ctx:p,alt:'Product concept artwork showing a cap, T-shirt, bottle, backpack and book.',sizes:'(min-width: 720px) 55vw, 100vw',lazy:false})}<figcaption>Product concept artwork · designs and availability confirmed by the team.</figcaption></figure></div></section>
     <section class="block"><div class="container wr-platform" data-wr="shop">
       <div class="wr-shop-intro"><p><strong>Choose your items.</strong> Send one list on WhatsApp. The team confirms the details with you.</p><a class="wr-action" href="#order-list" data-cart-link>Your list <span data-cart-count>0</span></a></div>
       <div class="wr-shop-layout"><div id="collection"><div class="wr-toolbar"><div class="wr-field wr-field--grow"><label for="shop-search">Find an item</label><input class="wr-search" id="shop-search" type="search" placeholder="Try a T-shirt, cap or book" maxlength="120"></div><div class="wr-field"><label for="shop-category">Collection</label><select id="shop-category"><option value="">Everything</option>${Object.entries(SHOP_CATEGORIES).map(([id, label]) => `<option value="${id}">${esc(label)}</option>`).join('')}</select></div></div><p data-shop-results class="wr-muted" aria-live="polite"></p><div class="wr-products">${data.products.map(product => productCard(product, p)).join('')}</div><p class="wr-empty" data-shop-empty hidden>No items match that search. Try another word or choose Everything.</p><p class="wr-muted">The illustrations show collection ideas. The team will confirm the actual designs, stock, prices and delivery options in your quote.</p></div>

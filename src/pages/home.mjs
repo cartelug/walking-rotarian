@@ -11,7 +11,7 @@ export function home() {
   const p = "/";
   const a = (to) => rel(p, to);
 
-  const hero = `<section class="hero hero--home" aria-labelledby="hero-h">
+  const hero = `<section class="hero hero--home hero--photographic" aria-labelledby="hero-h">
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="container hero__grid">
     <div class="hero__text">
@@ -25,10 +25,9 @@ export function home() {
       <p class="hero__donate"><a href="${a("/#donate")}">Or make a donation</a></p>
       <p class="hero__motto">${esc(site.motto)}</p>
     </div>
-    <figure class="hero__figure">
-      <div class="hero__frame">${img("river-crossing", { ctx: p, alt: "Mbanda Shyaka smiling in a selfie on a bridge, with a rocky riverbed and green hills behind him.", sizes: "(min-width: 1024px) 440px, 100vw", lazy: false, priority: true })}</div>
-      <p class="hero__badge"><span class="hero__badge-k">Last completed</span><span class="hero__badge-v">Faith in Motion · about 400 km</span><span class="hero__badge-s">Finished 2 August 2026</span></p>
-      <figcaption class="caption">A portrait from the road, above a rocky riverbed. Faith in Motion, 2026. Supplied via PCI.</figcaption>
+    <figure class="hero__mobile-art">
+      ${img('campaign-open-road', {ctx:p, alt:'Campaign artwork of Mbanda walking beside open East African grassland.', sizes:'100vw'})}
+      <figcaption>Campaign artwork created from supplied photographs.</figcaption>
     </figure>
   </div>
   <div class="container">
@@ -37,7 +36,7 @@ export function home() {
       <div><dt>Peace walk, 2024 to 2025</dt><dd><span class="hero__num">300 km</span><span class="hero__stat-note">Nakivale to Makerere, media-reported</span></dd></div>
       <div><dt>Walk for Education, 2026</dt><dd><span class="hero__num">About 1,100 km</span><span class="hero__stat-note">Planned route, now underway</span></dd></div>
     </dl>
-    <p class="hero__note">Each figure is for one walk. They are never added together.</p>
+    <div class="hero__footnote"><p class="hero__note">Each figure belongs to its own walk.</p><a href="${a('/gallery/?collection=artwork#gallery')}">Campaign artwork · view the collection${icons.arrow}</a></div>
   </div>
 </section>`;
 
@@ -195,9 +194,19 @@ ${notes
   const tickerRun = (hidden) => `<ul class="ticker__run"${hidden ? ' aria-hidden="true"' : ""}>${tickerItems.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`;
   const ticker = `<div class="ticker" role="group" aria-label="The three walks"><div class="ticker__track">${tickerRun(false)}${tickerRun(true)}</div></div>`;
 
+  const visualStories = `<section class="block visual-stories" aria-labelledby="visual-stories-h"><div class="container">
+    <div class="visual-stories__heading"><div><p class="eyebrow">A life in motion</p><h2 id="visual-stories-h">The road.<br>The people.<br>The purpose.</h2></div><p>A quiet moment, a shared conversation, another path ahead. Explore the stories that give the miles their meaning.</p></div>
+    <div class="visual-stories__grid">
+      <a class="visual-story visual-story--portrait" href="${a('/his-story/')}">${img('campaign-portrait',{ctx:p,alt:'Campaign portrait of Mbanda seated beside a path.',sizes:'(min-width: 800px) 40vw, 100vw'})}<span><small>Meet the walker</small><strong>The person behind the miles</strong>${icons.arrow}</span></a>
+      <a class="visual-story" href="${a('/live/')}">${img('campaign-riverside',{ctx:p,alt:'Campaign artwork of Mbanda reflecting beside a river.',sizes:'(min-width: 800px) 55vw, 100vw'})}<span><small>From the road</small><strong>Moments worth sharing</strong>${icons.arrow}</span></a>
+      <a class="visual-story" href="${a('/community/')}">${img('campaign-community',{ctx:p,alt:'Campaign artwork of Mbanda and illustrative adult walking companions.',sizes:'(min-width: 800px) 55vw, 100vw'})}<span><small>Walk with the purpose</small><strong>There is room for you</strong>${icons.arrow}</span></a>
+    </div><p class="visual-stories__credit">AI-generated campaign artwork, inspired by the supplied PCI and personal photographs. <a href="${a('/gallery/?collection=artwork#gallery')}">Explore all 12 new scenes</a>.</p>
+  </div></section>`;
+
   const body = `${hero}
 ${ticker}
 ${homepageJournal()}
+${visualStories}
 <div class="container thread" data-thread>
 ${meet}
 ${now}

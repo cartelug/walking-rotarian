@@ -91,5 +91,113 @@
    288,
    397
   ]
+ },
+ "campaign-hero": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-journal": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-community": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-portrait": {
+  "w": 1086,
+  "h": 1448,
+  "widths": [
+   480,
+   960,
+   1086
+  ]
+ },
+ "campaign-highlands": {
+  "w": 1913,
+  "h": 822,
+  "widths": [
+   480,
+   960,
+   1913
+  ]
+ },
+ "campaign-learning": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-riverside": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-evening": {
+  "w": 1913,
+  "h": 822,
+  "widths": [
+   480,
+   960,
+   1913
+  ]
+ },
+ "campaign-footsteps": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-essentials": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
+ },
+ "campaign-forest": {
+  "w": 1914,
+  "h": 822,
+  "widths": [
+   480,
+   960,
+   1914
+  ]
+ },
+ "campaign-open-road": {
+  "w": 1672,
+  "h": 941,
+  "widths": [
+   480,
+   960,
+   1672
+  ]
  }
 }

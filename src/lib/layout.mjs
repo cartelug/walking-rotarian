@@ -46,6 +46,8 @@ ${ogUrl ? `<meta property="og:image" content="${esc(ogUrl)}">\n<meta property="o
 <link rel="preload" href="${a("/assets/fonts/SkyText-Regular.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${a("/assets/main.css")}?v=${assetVersion.css}">
 <link rel="stylesheet" href="${a('/assets/platform/platform.css')}?v=${assetVersion.platformCSS}">
+<link rel="stylesheet" href="${a('/assets/visuals.css')}?v=${assetVersion.visualsCSS}">
+${isHome ? `<link rel="preload" as="image" href="${a('/assets/img/campaign-hero-1672.webp')}" media="(min-width: 64rem)">` : ''}
 <script>document.documentElement.className+=" js";</script>
 <script src="${a("/assets/main.js")}?v=${assetVersion.js}" defer></script>
 <script type="module" src="${a('/assets/platform/main.js')}?v=${assetVersion.platformJS}"></script>
@@ -116,7 +118,7 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
     </div>
   </div>
   <div class="container site-footer__base">
-    <p>This is an independent personal site. It is not an official website of Rotary International. Wellbeing statements are personal views, not medical advice. Background artwork: illustrations from PCI’s Walk for Education campaign.</p>
+    <p>This is an independent personal site. It is not an official website of Rotary International. Wellbeing statements are personal views, not medical advice. Campaign imagery includes AI-generated artwork created from supplied photographs. <a href="${a('/gallery/?collection=artwork#gallery')}">View the labelled artwork collection</a>.</p>
     <p>Facts on this site were last reviewed on ${esc(site.reviewed)}. ${esc(site.fontCredit.text)} ${ext(site.fontCredit.url, esc(site.fontCredit.linkText))} ${esc(site.fontCredit.tail)}.</p>
   </div>
 </footer>`;
@@ -143,7 +145,13 @@ ${footer}
 }
 
 /** Page title block used by every inner page. */
-const headArt = { "His story": "path", Journeys: "road", "Field notes": "paths", Gallery: "road", Media: "purpose", "Get involved": "path", Privacy: "paths" };
+const headArt = {
+  'His story':'open-road', Journeys:'highlands', 'Field notes':'journal', Gallery:'open-road', Media:'journal',
+  'Get involved':'community', Privacy:'forest', 'Live journal':'journal', 'Journey atlas':'highlands',
+  'Search & archive':'forest', 'Saved stories':'forest', 'Journey reports':'footsteps',
+  'Walk with the purpose':'community', 'Causes & partnerships':'learning', 'Your journey updates':'evening',
+  'Publishing studio':'journal',
+};
 export function pageHead({ eyebrow, title, intro, ctx, extra = "" }) {
   return `<header class="page-head page-head--art page-head--${headArt[title] || "road"}">
   <div class="container">
@@ -151,6 +159,7 @@ export function pageHead({ eyebrow, title, intro, ctx, extra = "" }) {
     <h1>${esc(title)}</h1>
     ${intro ? `<p class="intro intro--light">${intro}</p>` : ""}
     ${extra}
+    <p class="page-head__credit">Campaign artwork</p>
   </div>
 </header>`;
 }

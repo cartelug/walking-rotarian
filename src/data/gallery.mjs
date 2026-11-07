@@ -7,6 +7,8 @@
 // The "earlier work" filter stays hidden until a picture is added with that
 // filter. The press photographs from news reports are linked, not reproduced.
 
+import {campaignArtwork} from './campaign-artwork.mjs';
+
 export const items = [
   {
     id: "portrait",
@@ -169,6 +171,8 @@ export const items = [
     focal: "50% 50%",
   },
 ];
+
+items.push(...campaignArtwork);
 
 export const filterLabels = {
   all: "All photographs",
