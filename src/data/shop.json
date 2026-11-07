@@ -3,18 +3,6 @@
   "intro": "Choose what interests you and send your list to the team. We will confirm availability, prices and delivery before you order.",
   "products": [
     {
-      "id": "walking-t-shirt",
-      "title": "Walking T-shirt",
-      "category": "clothing",
-      "description": "Ask about a Walking Rotarian T-shirt for your next walk or community event.",
-      "illustration": "shirt",
-      "status": "enquiry",
-      "price": null,
-      "sizes": ["S", "M", "L", "XL", "2XL"],
-      "colours": [],
-      "image": ""
-    },
-    {
       "id": "walking-cap",
       "title": "Walking cap",
       "category": "accessories",
@@ -61,6 +49,26 @@
       "sizes": [],
       "colours": [],
       "image": ""
+    },
+    {
+      "id": "walking-t-shirt",
+      "title": "Walking T-shirt",
+      "category": "clothing",
+      "description": "Ask about a Walking Rotarian T-shirt for your next walk or community event.",
+      "status": "enquiry",
+      "price": null,
+      "currency": "UGX",
+      "image": "",
+      "illustration": "shirt",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "colours": [],
+      "sourceIssue": 1
     }
   ]
 }
