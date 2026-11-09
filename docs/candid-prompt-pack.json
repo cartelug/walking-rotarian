@@ -1,21 +1,39 @@
 {
  "created": "2026-11-09",
- "status": "PROPOSED. Nothing here has been generated or published. Needs Mbanda’s written approval of the likeness set first.",
- "referencePhotos": [
-  "src/img-original/walking-rotarian-photo.jpg",
-  "src/img-original/walking-rotarian-river-crossing.jpg",
-  "src/img-original/walking-rotarian-riverside-35km.jpg",
-  "src/img-original/walking-rotarian-sunset-video-frame.jpg"
+ "status": "PROPOSED. Nothing has been generated or published. Needs Mbanda’s written approval of the likeness approach first.",
+ "supersedes": "The first version of this file (commit f91b4a6), whose identity block contradicted the Drive identity standard.",
+ "authority": "Drive folder \"Shyaka Mbanda - Authoritative References - 2026-10-28\" (inside PCI > Walk for Education > Project Hub > 05 Photos and Videos). Its READ_FIRST rules and SHYAKA_FACE_IDENTITY_STANDARD.txt govern. Original photographs overrule every generated sheet.",
+ "inputRoles": {
+  "portrait": "Shyaka_Mbanda_Portrait_Reference.jpeg (also named 00_PRIMARY_Original_Face_Portrait.jpg and Joshua_Walker_Original_Portrait.jpeg; 152,850 bytes). PRIMARY authority for the face, glasses off. Always attached.",
+  "body-front": "22-23.jpg.jpeg. Front three-quarter full-body walking view. Glasses on. Attach for front and unestablished poses.",
+  "body-side": "22-24.jpg.jpeg. Side walking view and silhouette.",
+  "body-rear": "22-29.jpg.jpeg. Rear walking view: headwrap knot, hanging locs, backpack, lower legs. Attach when headwrap or backpack detail matters.",
+  "expression": "22-9.jpg.jpeg or 22-10.jpg.jpeg. Smiling and laughing views. Shyaka is second from the right (black headwrap, amber glasses). The stockier man beside him is NOT Shyaka. Attach only when a broad smile is requested.",
+  "never": "Never attach an earlier generated image or a generated reference sheet as the only identity input."
+ },
+ "identityBlock": "Use the attached original close portrait as the PRIMARY identity authority for Shyaka Mbanda. Preserve his recognisable facial outline, natural eye spacing and eyelid shape, brows, nose bridge/tip/nostrils, lips, actual smile and teeth, mature complexion, facial asymmetry, moustache and beard outline with naturally uneven grey. Use the attached authentic walking photo for his lean body, actual neck width, head-to-body scale, headwrap, locs and glasses. Follow the expression reference only for the requested expression; do not blend in another person's features. Keep the face recognisably the same individual before adding photographic styling. No beauty reshaping, de-ageing, wider jaw, enlarged eyes/head, thickened neck, invented pores or artificially perfect teeth. If a requested angle is not established by the supplied photos, keep the pose close to an observed view. Original photos overrule any generated guide.",
+ "styleBlock": "An unposed documentary moment in ordinary natural daylight (overcast or open shade), muted honest colour, real texture. The subject is off-centre and his attention is on the task or the road, not the camera. Any other people are adults, shown from behind, in profile or partly cropped, doing something of their own. The foreground may be partly blocked by a passing object or person. A believable Ugandan roadside or trading-centre setting. His clothing and kit follow the supplied walking photograph, with every Rotary, Rotarian, Rtn., Club of Akright City and wheel mark removed and the fabric reconstructed naturally.",
+ "styleBlockNoPerson": "An unposed documentary photograph in ordinary natural daylight (overcast or open shade), muted honest colour, real texture, slightly imperfect framing. A believable Ugandan roadside, trading-centre or lodging setting. No recognisable person.",
+ "negativeBlock": "No text, numbers, signs, banners, logos, Rotary or club emblems, licence plates, mileage or tracker overlays. No children's faces. No named place, stage, milestone or event. No golden-hour glow, mist, light shafts or lens flare. No staged laughing group, handshake pose or hero pose. No extra fingers, duplicated people, or melted hands and boots.",
+ "assemble": "person shots: identityBlock + \" Scene: \" + scene + \" \" + styleBlock + \" \" + negativeBlock + \" Aspect ratio \" + aspect.  other shots: styleBlockNoPerson + \" Scene: \" + scene + \" \" + negativeBlock + \" Aspect ratio \" + aspect.",
+ "process": [
+  "1. Run the six pilot shots (pilot: true) and compare each with the portrait at the same face size.",
+  "2. Mbanda or the owner approves or rejects the pilot set. Only then run wave 2, then wave 3 for gaps that real photographs did not fill.",
+  "3. Wave 1 (scenery and objects, no identity risk) can run at any time.",
+  "4. Unestablished poses (seated, crouched) are run last, with the closest observed view attached."
  ],
- "identity": "Use the attached original photographs as identity references for exactly the same man, Mbanda Shyaka: long narrow face, mature natural facial lines, warm dark skin, full salt-and-pepper beard, long dreadlocks held under a close black headwrap, lean athletic build with natural proportions, and the necklace shown in the reference photographs. Wardrobe: charcoal sleeveless walking vest, weathered compact dark backpack. Do not alter his face, age or build.",
- "style": "Unposed documentary photograph, 35mm lens, ordinary natural daylight (overcast or open shade preferred), muted honest colour, real texture on skin, cloth, dust and metal, slightly imperfect framing with the subject off-centre. His attention is on the task or the road, not the camera. Any other people are adults shown from behind, in profile or partly cropped, and are doing something of their own. The foreground may be partly blocked by a passing object or person. Believable Ugandan roadside and trading-centre settings. The look of a photojournalist's contact sheet, not an advertisement.",
- "negative": "No text, numbers, signs, banners, logos, Rotary or club emblems, licence plates, mileage or tracker overlays. No children's faces. No named place, stage, milestone or event. No golden-hour glow, mist, light shafts or lens flare. No looking into the lens. No staged laughing group, no handshake pose, no hero pose. No extra fingers, no duplicated people, no melted hands or boots.",
+ "reviewGate": [
+  "Face outline, eyes, lids and brows, nose, mouth and teeth, beard, complexion, ears where visible, headwrap and neck, compared with the portrait at similar size and angle.",
+  "Reviewed at full size and at the intended phone and desktop size.",
+  "Reject: a polished generic lookalike, a younger version, a widened face, an overgrown beard, a changed smile, or body inflation.",
+  "Site checks: no stray text or numbers, correct hands and boots, no Rotary or club marks, no children, nothing that reads as a real named place.",
+  "Record any limitation (soft or hidden face) instead of inventing detail."
+ ],
  "captionRule": {
   "person": "Mbanda Shyaka, AI-generated image",
   "nonPerson": "AI-generated illustration",
   "note": "Illustrates the walks. Not a record of a specific place, day, stage, person or project."
  },
- "assemble": "prompt = style + \" Scene: \" + scene + \" \" + (kind === \"person\" ? identity + \" \" : \"\") + negative + \" Aspect ratio \" + aspect + \".\"",
  "shots": [
   {
    "id": "road-phone-check",
@@ -24,6 +42,14 @@
    "aspect": "3:2",
    "slot": "Gallery; Journeys index card",
    "scene": "Mid-stride along a tarmac verge, looking down at his phone to check the route. A boda-boda rider passes close in the foreground, motion-blurred and cropped at the frame edge.",
+   "wave": 3,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-phone-check-{width}.webp"
   },
@@ -34,6 +60,15 @@
    "aspect": "3:2",
    "slot": "Gallery; Live page explainer",
    "scene": "Crouched at the road edge retying a boot lace, backpack on the ground beside him, eyes on the lace. A minibus taxi is stopped in the soft background.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-bootlace-{width}.webp"
   },
@@ -44,6 +79,14 @@
    "aspect": "3:2",
    "slot": "Gallery; Community page",
    "scene": "Filling a water bottle from a jerrycan at a roadside kiosk, head bowed to the task. A woman behind him, turned away, is arranging tomatoes.",
+   "wave": 3,
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-water-fill-{width}.webp"
   },
@@ -54,6 +97,14 @@
    "aspect": "3:2",
    "slot": "Gallery; Get involved page",
    "scene": "Walking past a roadside produce stall, head turned toward something off-frame left. A vendor’s arm enters the frame.",
+   "wave": 3,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-produce-stall-{width}.webp"
   },
@@ -64,6 +115,14 @@
    "aspect": "2:3",
    "slot": "Gallery; Journeys index",
    "scene": "Seen from behind on a plank footbridge over a small river, mid-stride. One pedestrian pushing a bicycle comes the other way.",
+   "wave": 3,
+   "poseBasis": "rear",
+   "driftRisk": "low",
+   "inputs": [
+    "portrait",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-footbridge-back-{width}.webp"
   },
@@ -74,6 +133,15 @@
    "aspect": "4:5",
    "slot": "His story page; Gallery",
    "scene": "Sitting on a concrete culvert in open shade, backpack open, eating a chapati from paper, looking down the road and not at the camera.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-rest-culvert-{width}.webp"
   },
@@ -84,6 +152,14 @@
    "aspect": "3:2",
    "slot": "Gallery; Live page",
    "scene": "Holding a phone map against the wind while a boda-boda rider, in profile, points the way. Both adults look down the road.",
+   "wave": 3,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-map-boda-{width}.webp"
   },
@@ -93,7 +169,8 @@
    "kind": "scenery",
    "aspect": "16:9",
    "slot": "Journeys index banner",
-   "scene": "Very wide view: a tiny figure far along a long red-earth road, a loaded truck passing in the foreground. Flat overcast light, large quiet sky for a headline.",
+   "scene": "Very wide view: a tiny, unidentifiable walker far along a long red-earth road, a loaded truck passing in the foreground. Flat overcast light, large quiet sky for a headline.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/road-long-truck-{width}.webp"
   },
@@ -104,6 +181,7 @@
    "aspect": "3:2",
    "slot": "Field notes page; Gallery",
    "scene": "Close detail: hands taping a heel with medical tape beside worn boots. No face.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/road-heel-tape-{width}.webp"
   },
@@ -114,6 +192,15 @@
    "aspect": "2:3",
    "slot": "Live page; Gallery",
    "scene": "Pre-dawn calf stretch against the wheel arch of a parked minibus at a taxi stage, dim blue light. A vendor lights a charcoal stove behind him.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/road-predawn-stretch-{width}.webp"
   },
@@ -124,6 +211,15 @@
    "aspect": "3:2",
    "slot": "Community page; Gallery",
    "scene": "On a veranda bench listening to two older men, seen in profile, leaning forward with hands clasped. The men are mid-conversation, not posing.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-veranda-elders-{width}.webp"
   },
@@ -134,6 +230,15 @@
    "aspect": "3:2",
    "slot": "Get involved page; Partners page",
    "scene": "At a trestle table in a small hall reviewing papers with two volunteers (side and back views). Plastic chairs, a ceiling fan, no readable text.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-trestle-table-{width}.webp"
   },
@@ -144,6 +249,14 @@
    "aspect": "3:2",
    "slot": "Community page; Gallery",
    "scene": "Walking alongside two adult companions who have joined him, one carrying a water jug. They are talking, shot from behind-left, none looking at the camera.",
+   "wave": 3,
+   "poseBasis": "rear",
+   "driftRisk": "low",
+   "inputs": [
+    "portrait",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-joined-walkers-{width}.webp"
   },
@@ -154,6 +267,14 @@
    "aspect": "3:2",
    "slot": "Gallery; Media page",
    "scene": "At a tea kiosk receiving a cup from a vendor. Hands and cup in sharp focus, his face partly in shadow.",
+   "wave": 3,
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-tea-kiosk-{width}.webp"
   },
@@ -164,6 +285,14 @@
    "aspect": "3:2",
    "slot": "Gallery; Reports page",
    "scene": "Reading a weathered notice board outside a trading centre (writing illegible and out of focus), arms folded, others walking past.",
+   "wave": 3,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-notice-board-{width}.webp"
   },
@@ -174,6 +303,15 @@
    "aspect": "4:5",
    "slot": "Live page; Gallery",
    "scene": "Sitting on a wooden bench writing in a notebook while a market bustles behind him, shallow depth of field.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-notebook-market-{width}.webp"
   },
@@ -184,6 +322,14 @@
    "aspect": "2:3",
    "slot": "Gallery; Contact blocks",
    "scene": "Roadside phone call, one hand shading his eyes, backpack straps on, a parked pickup behind him (no plate).",
+   "wave": 3,
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-phone-call-{width}.webp"
   },
@@ -194,6 +340,14 @@
    "aspect": "3:2",
    "slot": "Community page; Gallery",
    "scene": "Pausing to greet a woman carrying a basket on her head. Both smile at each other, turned three-quarters away from the camera.",
+   "wave": 3,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/met-greeting-{width}.webp"
   },
@@ -204,6 +358,15 @@
    "aspect": "3:2",
    "slot": "Live page; Gallery",
    "scene": "Evening, seated on a guesthouse step unlacing a boot, a plastic basin and towel beside him, eyes on the boot.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/rest-unlacing-{width}.webp"
   },
@@ -214,6 +377,7 @@
    "aspect": "3:2",
    "slot": "Field notes page; Gallery",
    "scene": "Both feet soaking in a basin on concrete, boots and socks drying on the wall. No face.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/rest-foot-soak-{width}.webp"
   },
@@ -224,6 +388,15 @@
    "aspect": "3:2",
    "slot": "Gallery; Shop page",
    "scene": "At a roadside eatery table charging a phone from a power bank, a plate of rice and beans in front of him. Fluorescent light, dusk at the window.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/rest-eatery-charging-{width}.webp"
   },
@@ -234,6 +407,7 @@
    "aspect": "3:2",
    "slot": "Journeys page; Gallery",
    "scene": "A bedroll and gear laid out on a narrow bed in a simple lodging room, window light. Backpack, boots and a folded headwrap. No face.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/rest-lodging-gear-{width}.webp"
   },
@@ -244,6 +418,15 @@
    "aspect": "4:5",
    "slot": "His story page; Gallery",
    "scene": "Reading a worn paperback under a single bulb in a lodging doorway at dusk, looking down.",
+   "wave": 3,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/rest-reading-bulb-{width}.webp"
   },
@@ -254,6 +437,7 @@
    "aspect": "3:2",
    "slot": "Journeys cards; Gallery",
    "scene": "A murram road curving between banana plantations in flat overcast light. A single cyclist far off.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-murram-bananas-{width}.webp"
   },
@@ -264,6 +448,7 @@
    "aspect": "3:2",
    "slot": "Journeys cards; Gallery",
    "scene": "A rough footbridge of poles and planks over a small brown stream, wet stones below.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-plank-bridge-{width}.webp"
   },
@@ -274,6 +459,7 @@
    "aspect": "16:9",
    "slot": "Journey page banners",
    "scene": "A causeway through a papyrus swamp under low cloud.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-papyrus-causeway-{width}.webp"
   },
@@ -284,6 +470,7 @@
    "aspect": "3:2",
    "slot": "Journeys cards; Gallery",
    "scene": "A eucalyptus-lined road with two cyclists carrying sacks, riding away from the camera. Tiny and unidentifiable.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-eucalyptus-cyclists-{width}.webp"
   },
@@ -294,6 +481,7 @@
    "aspect": "3:2",
    "slot": "Live page; Gallery",
    "scene": "A trading-centre street at dawn, shutters half open, charcoal smoke, motorbikes parked. No readable signs.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-dawn-trading-centre-{width}.webp"
   },
@@ -304,6 +492,7 @@
    "aspect": "3:2",
    "slot": "Journeys cards; Gallery",
    "scene": "A rain-dark road with puddles reflecting the headlight of a passing boda-boda.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-rain-road-{width}.webp"
   },
@@ -314,6 +503,7 @@
    "aspect": "16:9",
    "slot": "Page banners (Partners, Reports)",
    "scene": "Cultivated terraces on a hillside at sunrise, smoke rising from a farm kitchen. No figures.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/route-terraces-sunrise-{width}.webp"
   },
@@ -324,6 +514,7 @@
    "aspect": "3:2",
    "slot": "Field notes; Gallery",
    "scene": "Worn boots on a concrete doorstep, one lace undone, dust in the creases.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/gear-boots-doorstep-{width}.webp"
   },
@@ -334,6 +525,7 @@
    "aspect": "3:2",
    "slot": "Shop page; Gallery",
    "scene": "Backpack contents laid out on a cloth: notebook, power bank, water bottle, first-aid pouch, a cap. No readable labels.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/gear-pack-laid-out-{width}.webp"
   },
@@ -344,6 +536,7 @@
    "aspect": "3:2",
    "slot": "Live page; Media page",
    "scene": "A field notebook open with scribbled, illegible lines, a pen, and a phone with a dark screen on a wooden table.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/gear-notebook-desk-{width}.webp"
   },
@@ -354,6 +547,7 @@
    "aspect": "3:2",
    "slot": "Get involved; Gallery",
    "scene": "A walking staff and a cap leaning against a whitewashed wall in hard light.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/gear-staff-cap-{width}.webp"
   },
@@ -364,6 +558,7 @@
    "aspect": "3:2",
    "slot": "Journey atlas; Gallery",
    "scene": "A paper route sketch with a hand-drawn line and unreadable marks, held down by a stone.",
+   "wave": 1,
    "caption": "AI-generated illustration",
    "outputPattern": "src/img/gear-route-sketch-{width}.webp"
   },
@@ -374,6 +569,14 @@
    "aspect": "16:9",
    "slot": "Home hero (replaces campaign-hero)",
    "scene": "Walking along a tarmac verge on the right third, past a parked boda-boda, looking ahead and to the left. Ordinary morning light. Left half open for the headline.",
+   "wave": 2,
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/remake-home-hero-{width}.webp"
   },
@@ -384,6 +587,14 @@
    "aspect": "16:9",
    "slot": "Live and journal banner (replaces campaign-journal)",
    "scene": "At a roadside kiosk counter writing in a notebook while the vendor wraps an item. Looks down, three-quarter profile on the right third, left side open.",
+   "wave": 2,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/remake-live-banner-{width}.webp"
   },
@@ -394,6 +605,14 @@
    "aspect": "16:9",
    "slot": "Community banner (replaces campaign-community)",
    "scene": "Walking with two adult companions, mid-conversation, seen from slightly behind. One gestures. No one faces the camera. Left third open.",
+   "wave": 2,
+   "poseBasis": "rear",
+   "driftRisk": "low",
+   "inputs": [
+    "portrait",
+    "body-rear"
+   ],
+   "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/remake-community-banner-{width}.webp"
   },
@@ -404,6 +623,15 @@
    "aspect": "4:5",
    "slot": "Home and His story portrait (replaces campaign-portrait)",
    "scene": "Sitting on a culvert drinking from a bottle, looking off-frame across a field. Unposed.",
+   "wave": 2,
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/remake-portrait-{width}.webp"
   },
@@ -414,6 +642,14 @@
    "aspect": "3:2",
    "slot": "Home visual story (replaces campaign-riverside)",
    "scene": "Standing at a riverbank, hands on hips, assessing the crossing, in profile from a distance.",
+   "wave": 2,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/remake-riverbank-{width}.webp"
   },
@@ -424,6 +660,14 @@
    "aspect": "16:9",
    "slot": "Closing band (replaces campaign-open-road)",
    "scene": "Stepping aside on a narrow ridge path as an adult farmer with two goats passes. Both look forward. Slight telephoto, small figure.",
+   "wave": 2,
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
    "outputPattern": "src/img/remake-narrow-path-{width}.webp"
   }

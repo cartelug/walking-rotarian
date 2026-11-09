@@ -1,114 +1,222 @@
-# Walking Rotarian: image audit and 57-image candid plan
+# Walking Rotarian: final image plan
 
-Prepared 9 November 2026 from the live repository, a fresh build of the site, screenshots in Chromium at 1440 and 390 px, and the latest reports in the sister repository `cartelug/spear-line` (read-only). **Nothing in this document has been generated, added to the site or published.** It is a plan for the owner to approve.
+Prepared 9 November 2026. Built on the first audit (commit `f91b4a6`), a second pass through Google Drive (the PCI tree, the Walking Rotarian website folder and Mbanda's reference folder), the sister repository `cartelug/spear-line` and a fresh build of this site. **Nothing here has been generated, added to the site or published.** It is a plan for the owner to approve.
 
-## 1. The short answer
+## 1. What changed since the first version
 
-- The site is sound and honest, and it passes its own checks (34 pages, no broken links, 22 of 22 tests). Its weakness is **imagery**. It has 22 pictures in total: 10 real or archive items and 12 AI pieces. Only **8 of 34 pages** carry a picture in the page itself. 17 more get only one of eight recycled AI landscape banners painted in by CSS, and 9 have no picture at all.
-- **The real photographs cannot get you to 50+.** The 10 real items are what this site already uses from the PCI archive (`cartelug/pdm`). Of what I could check there, the only other real photographs are two items that need permission (section 9); the rest is AI artwork, tiny video stills (about 100 to 150 px) or a blurred YouTube thumbnail. More real candid photographs have to come from Mbanda's phone.
-- **What Spear Line did differently** (its 9 November commit: ten founder photographs): the person is caught doing something, attention mostly elsewhere, in ordinary light, among other people, with the setting left untidy. Every image carries the caption "Joh Ayom, AI-generated image", and a unit test enforces it. The Walking Rotarian AI set is composed and glossy: golden light, saturated greens, Mbanda on the right third, and half of it shows no face.
-- **Recommended target: 57 images** (10 real kept, 6 scenery kept, 41 new AI in the Spear Line manner), with a standing plan to swap AI for real photographs as Mbanda sends them. Full shot list in section 6; prompts in `docs/candid-prompt-pack.json`.
+1. **Drive holds an authoritative identity pack and a rule file.** My first prompt pack contradicted it in seven places (section 3). It is corrected, and the corrected pack is the one to use.
+2. **The real-photograph supply is bigger than I first thought, but every item is gated.** The 52-image archive in Drive holds 22 more candidates for this site (19 frames from Mbanda's own public video posts, one Instagram photo, two PCI photographs). Five full-size originals and three 2023 photographs sit in Drive beside them. None has been cleared for publication.
+3. **Source waterfall.** A slot takes a real photograph first, then a link to the source, then AI. This replaces "generate 41 images" with "generate only what real photographs cannot fill" (section 4).
+4. **A register links every image to its PCI source** by checksum, and records who approved it, what it claims and how it is labelled. A seed register, built from rows I verified, is in `docs/image-register.seed.json`.
+5. **Previously generated images** are reused only through a ladder with a decision for each set (section 4.5). Most should not be reused.
 
-## 2. What the site has today
+**I could not look at any of the Drive reference photographs.** The Drive connector returns text only for images. Everything in section 3 about what each photograph shows comes from the owner's own rule files, not from my eyes. Someone should lay the six reference files beside the first pilot images before anything is approved.
 
-| Measure | Result |
+## 2. What the Drive holds
+
+| Where in Drive | What | Use |
+|---|---|---|
+| PCI > Walk for Education > Project Hub > 05 Photos and Videos > **Shyaka Mbanda - Authoritative References - 2026-10-28** | Primary face portrait, five original photographs (22-23, 22-24, 22-29, 22-9, 22-10), three generated reference sheets (face, hair and headwrap, body), two rule files | The accurate reference pack (section 3). Keep in Drive; do not commit to the public repository. |
+| Walking Rotarian website > 05 Deep Research & Photo Archive > **02 Archived Public Photos & Video Previews** | 52 images recovered from a 26 Oct dossier, with `Research_and_Photo_Index.md` (source URL, size, type for each) | Real candidates: 22 new, 10 already on this site, 20 not usable (section 6) |
+| Walking Rotarian website > ... > **03 PCI Photos & Drive-wide Collection** | `01 Documentary Photos` (the originals behind this site, plus three 2023 photographs), `02 Campaign Artwork & Generated Scenes` (40+ generated masters and ~30 posters), `03 Original WR Logo & Identity References`, and the register files | The link layer: `Image_Collection_Register.csv` (path, class, bytes, sha256, source ZIP entry) and `Drive_Copied_Image_Register.csv` |
+| PCI > Walk for Education > Project Hub > 05 Photos and Videos > **Original Event Media** and **Generated and Enhanced Supporting Images** | One portrait copy; four generated images on the first page (students, library, campus, a Rotary cut-out) | Not usable (section 4.5) |
+| PCI root | `PCI_CLAUDE_PART_1_HANDOFF.zip` and `PART_2_ASSETS.zip` (28.9 MB each), the source of the `cartelug/pdm` archive | Already mirrored in `cartelug/pdm` |
+| Mbanda's own Drive (2018 to 2020 photographs, shared) | Small older photographs | Not opened. They show how he looked years ago, and the standard asks for current likeness. |
+
+I did not open files that look like account-ID screenshots, payment details or KYC material.
+
+**Proof that the link layer works:** four site originals (the portrait, the Kasese milestone, the poster and the logo) match rows in `Image_Collection_Register.csv` byte for byte on SHA-256, and ten of the twelve match a file in `01 Documentary Photos` by name and size. The primary face portrait appears under three names with one byte size (152,850), including an earlier "Joshua_Walker" name, so the register must match on checksum and never on filename.
+
+## 3. The accurate reference pack
+
+**Authority:** the owner's rule file says the original photographs overrule every generated sheet, and a generation must never use a generated image as its only identity input.
+
+| Role | Drive file | Authority for |
+|---|---|---|
+| portrait | `Shyaka_Mbanda_Portrait_Reference.jpeg` (also `00_PRIMARY_Original_Face_Portrait.jpg`) | Face, glasses off. Always attached. |
+| body-front | `22-23.jpg.jpeg` | Front three-quarter walking view, amber glasses on |
+| body-side | `22-24.jpg.jpeg` | Side view, silhouette |
+| body-rear | `22-29.jpg.jpeg` | Rear view: headwrap knot, locs, backpack, lower legs |
+| expression | `22-9.jpg.jpeg`, `22-10.jpg.jpeg` | Smiling and laughing. He is second from the right. The stockier man beside him is not him. |
+
+**Corrections to my first prompt pack**
+
+| First version said | The Drive standard says |
 |---|---|
-| Pages built | 34 (151 files, 6.5 MB) |
-| Images in the gallery | 22: 10 real or archive (including one designed poster) and 12 AI |
-| AI images that show Mbanda | 6 of 12 (hero, journal, community, portrait, riverside, open road) |
-| AI images with no face | 6 of 12 (highlands, forest, evening, footsteps, learning, essentials) |
-| Pages with a picture in the page body | 8 of 34 (home 8 distinct pictures, gallery 22, Faith in Motion 7, the other five 1 to 3) |
-| Pages with only a CSS banner | 17. In all, 22 pages use a banner, drawn from 8 AI backdrops. All five journey pages share the same "road" banner. Live, Media and Field notes share the "journal" banner. |
-| Pages with no picture at all | 9: 404, admin, studio, and the six older journal posts |
-| Live journal entries | 0 (`src/data/journal.json` is `[]`); progress has no checkpoints |
-| Shop products | 5, all enquiry-led, none with its own photograph; the shop page shows one concept image |
-| Image weight in `src/img` | 5.4 MB, 77 WebP files. Each AI set costs about 246 KB across 3 widths. |
+| "lean athletic build" | Lean observed frame, slim arms, natural shoulders. No muscular bulk, no athletic-model anatomy, and do not over-slim. |
+| Four repository photographs as references | Portrait always, plus at least one original full-body photograph, plus the rear one when headwrap or backpack matters, plus an expression photo for a broad smile |
+| "charcoal vest, dark backpack, black-and-ivory necklace" | Kit as in the originals. Amber-tinted glasses when the scene follows 22-23. Do not invent anything under the waist wrap. |
+| "35mm lens" in the style block | Avoid arbitrary camera specifications and adjectives that compete with likeness. Dropped. |
+| "No Rotary marks" | Remove Rotary, Rotarian, Rtn., Club of Akright City and wheel symbols from derivative images and reconstruct the fabric naturally. Now exact in the pack. |
+| Any pose | Stay close to an observed view. **10 of the 25 person shots are seated or crouched, which no original establishes.** They are marked high risk and run last. |
+| Straight to batches | Establish likeness before elaborate environments. A six-image pilot comes first. |
 
-## 3. Findings
+The six person images already on the site were generated on 7 November from four repository photographs, with an identity block that says "lean athletic torso". They were not made from this pack. Treat them as provisional until compared.
 
-1. **The real photographs are thin and awkward.** Four of the ten carry a tracker overlay or a poster layout, a fifth is a cropped video still, and none is wider than 1080 px. They cannot hold a full-bleed hero, which is likely why AI images fill the heroes.
-2. **The AI set reads as advertising.** Every Mbanda image puts him centred or on the right third in golden light with mist; the hero, community and riverside images have him facing or walking toward the lens, and the rest are composed profiles. The "community" image shows three invented, laughing companions beside him. There is no work, no rest, no meal, no roadside conversation, no one with their back turned.
-3. **Candid and genuine material is missing from the pages that need it.** Journeys, Live, Community, Get involved, Partners, Media, Reports and all six older journal posts have no photograph in the page. The "Latest from the road" cards are text only.
-4. **Banners repeat.** Eight AI backdrops serve 22 pages. They are CSS backgrounds, so they have no alt text and cannot be tuned per page.
-5. **Labelling is weaker than Spear Line's.** The gallery caption says "Created with AI for this website" and the footer says campaign imagery includes AI-generated artwork. But the **home hero's own caption reads "Campaign artwork created from supplied photographs"**, which does not say AI, and the other pages carry only a small "Campaign artwork" tag. Nothing enforces any label: `tools/browser_check.py` tests that the artwork filter works, not that labels exist.
-6. **Delivery can improve.** WebP only (no AVIF), widths up to 1913 px for banners, and the gallery loads every tile on one page. At 57 images the gallery needs paging or a "show more" control.
-7. **The authentic route already exists and is unused.** The GitHub journal form takes photograph attachments (`journal.yml`, `docs/PUBLISHING.md`). With no entries yet, the real candid supply has not started.
+## 4. The logic
 
-## 4. The Spear Line recipe, and how this site compares
+### 4.1 Source waterfall (for every slot on every page)
 
-| | Spear Line, 9 Nov founder set | Walking Rotarian, 7 Nov campaign set |
+1. **Real, approved:** a documentary, own-post or PCI photograph whose register entry is approved and whose claim is allowed.
+2. **Link to the source:** for news photographs (Nile Post, URN) show a "Photographs at the source" link and never copy them, as the README already requires.
+3. **Previously generated, re-qualified:** only through the ladder in 4.5.
+4. **New AI:** scenery and objects first. A person shot only if nothing above fills the slot.
+5. **Banner or nothing.**
+
+A slot is never filled by an image that fails a gate in 4.3.
+
+### 4.2 The register (`src/data/image-register.json`)
+
+One row per image, seeded from `docs/image-register.seed.json`.
+
+| Field | Meaning |
+|---|---|
+| `id`, `file`, `bytes`, `sha256`, `width`, `height` | Identity of the bytes |
+| `class` | documentary, own-post, pci-photo, news-linkonly, designed-poster, generated-scenery, generated-person, excluded |
+| `origin` | archive number, public source URL (a pamodzici.com page or the post), Drive folder and original file name |
+| `capture` | date, place, journey, and the **claim** the picture makes (for example "Walk for Education stage: Longonot to Naivasha") |
+| `rights` | holder, permission (approved, pending, link-only, excluded), approved by, approved on |
+| `people` | adults only, children false, consent noted |
+| `label` | kind and the exact caption shown |
+| `generation` | tool, date, prompt id, input roles used, review gate result, `supersedes` |
+| `status` | live, candidate, retired |
+
+### 4.3 Gates (checked at build time)
+
+- **Permission:** `rights.permission` must be approved, or the class must be link-only.
+- **Claim:** a picture that shows a stage of an underway or proposed walk is hidden until the owner approves that claim. This ties to the site's existing "last verified update" rule, so Walk for Education frames (archive 44 to 51) stay hidden until a stage is confirmed.
+- **Children:** any row flagged `children: true` fails.
+- **Branding:** a generated image must record that Rotary and club marks were removed.
+- **Label:** every AI image shows its caption, on every page it appears.
+- **Place on page:** AI pictures of Mbanda never appear on an individual journey page.
+- **Size:** the file must meet the slot's minimum width, or the slot falls to the next source.
+- **Checksum:** the register's SHA-256 must match the file in `src/img-original`.
+
+`tools/check_site.mjs` fails the build on any breach. The check that every AI image has its label is the one Spear Line already has and this site lacks.
+
+### 4.4 Linking to the PCI Drive
+
+- **Build-time, not run-time.** The site is static on GitHub Pages and the Drive is private, so pages never load from Drive.
+- **Ingest, hash-verified.** A new tool, `tools/ingest-drive.mjs`, takes a folder or ZIP the owner downloads from Drive. It hashes each file, matches rows by SHA-256, copies the file unchanged into `src/img-original/`, runs the existing derivative step and updates the manifest. An optional mode downloads by Drive file ID when a token is supplied. That mode is designed here and has not been built or tested.
+- **Public captions cite the public source** (the PCI page or the post), never a Drive link.
+- **Do not commit Drive file IDs or the reference photographs.** The repository is public and the Drive tree also holds payment and identity material. The seed file stores file names, sizes and checksums only.
+- **Admin form:** add "Approve this image" and "Approve this claim" fields to the existing GitHub publishing forms, so the owner approves in the tool he already uses.
+
+### 4.5 Previously generated images
+
+| Set | Count | Decision |
 |---|---|---|
-| Moment | Mid-task: on a call, reading, choosing tomatoes, inspecting timber | Walking toward the camera, smiling to camera, seated and posed |
-| Attention | Looks away from the lens in 7 of 10 (the portrait looks at it; two are unclear at thumbnail size) | Hero, community and riverside face or walk toward the lens; the rest are composed profiles |
-| Other people | Present, cropped, turned away, in the way | Absent, or invented companions who pose |
-| Setting | Untidy and real: rust, puddles, market clutter | Clean, lit, scenic |
-| Light | Ordinary, overcast, muted | Golden hour, mist, saturated green |
-| Framing | Off-centre, found obstructions in the foreground | Centred or right third, clear foreground |
-| Wardrobe | Several outfits across the set | One vest throughout (good for recognition) |
-| Label | "Joh Ayom, AI-generated image" on every picture, plus a note, enforced by a unit test (commit message) | Gallery caption and footer note; the home hero caption does not say AI; no test |
-| Source rule | Real approved photography first, AI fills gaps (`docs/V12-IMAGE-PRODUCTION.md`); Joh to approve the set before launch (`ASSETS.md`) | Same intent, not written down as a rule for this site |
+| This site, campaign scenery (highlands, forest, evening, footsteps, learning, essentials) | 6 | Keep. Label "AI-generated illustration". |
+| This site, campaign with Mbanda | 6 | Provisional. Retire once the remakes pass the review gate. |
+| PCI `GENERATED__` masters in Drive (scenes 01 to 20, hero, community, journey-walker, bag, backdrops) | 40+ on the first page | Do not reuse. They carry PCI's campaign identity, scenes 16 and 17 are imagined arrival and welcome, and PCI's permission is needed. |
+| PCI `wfe-2026` campus, story, refresh in `cartelug/pdm` | ~270 | Exclude. Children and students. |
+| Posters and flyers | ~30 | Exclude. Text, payment details and logos. |
+| Generated and Enhanced Supporting Images | 4+ on the first page | Exclude students and the Rotary cut-out. Prefer the original campus photograph (archive 52) to the enhanced copy. |
+| The 28 October ten-image test made with the Drive pack | 10 | **Not found.** The rule file says it got positive feedback. Ask the owner where it is. If found it is the first choice for reuse, after the review gate. |
 
-## 5. Rules the new images must keep
+A generated image is reused only if it was made from the Drive pack, passes the review gate, carries its label, contains no Rotary or club marks and has no children.
 
-From this site's README and Spear Line's `docs/V12-IMAGE-PRODUCTION.md`:
+### 4.6 Page map
 
-1. **Approval first.** Mbanda approves the likeness set in writing before anything is published. These are invented moments of a real person.
-2. **Label every AI image** with its caption, on every page it appears, and add a test that fails without it.
-3. **No claims.** No distances, stages, places, events, dates or milestones in any scene. The Dar es Salaam walk stays a proposal. Walk for Education stays "planned route, not distance walked". For that reason **AI pictures of Mbanda stay off the individual journey pages**: a generated image of him on the road, placed on the Walk for Education page, would read as progress that has not been confirmed. Journey pages keep real photographs (Faith in Motion already does) plus, at most, a scenery banner. AI scenes of him appear on the home, hub and gallery pages, labelled.
-4. **No children's faces and no beneficiaries.** The README already flags the real Kiburara photographs. Do not generate pupils, classrooms with pupils, refugees, or people with disabilities. Walk for Education and the Ishekye and Nakivale walks raise money, and invented beneficiaries would read as evidence. Those six older journal posts get real photographs, or none.
-5. **No Rotary or PCI marks** in generated images. The footer says this is not an official Rotary International website. A real photograph that shows a club badge is a different matter.
-6. **Nothing in Mbanda's voice.** Captions describe the picture. They never quote or speak for him.
-7. **Check every image** for stray text, hands, boots, duplicate people, likeness against the reference photographs, and anything that reads as a real place.
+| Page | Source order |
+|---|---|
+| Home hero | A real original at 1600 px or wider if approved (22-23, 22-24 or 22-29), else AI `remake-home-hero` |
+| Home essay and stories | Real Kiburara photographs (live), route-record frames, AI remakes |
+| Journeys index (7 cards) | Scenery only. Never a person. |
+| Journey pages | **Real only**, plus a scenery banner. Faith in Motion: live items plus its own-post frames. Walk for Education: its eight frames, hidden until a stage is approved. |
+| Nakivale, Makerere and Ishekye journey pages | "Photographs at the source" links to the Nile Post and URN pieces (archive 17 to 20, 22 to 25). No copies. |
+| Live | Real own-post frames. One labelled AI candid image on the explainer. |
+| Community | Real Kiburara photographs, AI `remake-community-banner` |
+| Get involved, Partners, Reports, Media | Scenery and object banners. The church-appeal photograph (42) on Get involved if PCI approves. |
+| His story | Real portrait, the Instagram portrait (02), 2023 photographs if approved |
+| Gallery | Everything, filtered by class: Photographs, Own posts, AI scenes, Scenery |
+| Shop | Gear objects, labelled concept |
+| Journal posts | Attachments from the form only |
 
-## 6. The plan: 57 images
+## 5. The numbers
 
-| Tier | Count | What |
-|---|---|---|
-| Real, kept | 10 | portrait, river-crossing, evening-road, arrival-celebration, kiburara-procession, kiburara-crowd, three route records, poster-345 |
-| AI scenery, kept | 6 | highlands, forest, evening, footsteps, learning, essentials |
-| AI scenery and objects, new | 16 | route scenery and gear, no person |
-| AI with Mbanda, new | 25 | candid scenes; includes 6 remakes of the glossy images, which are then retired |
-| **Total on the site** | **57** | |
+| Scenario | Real | Kept AI scenery | New AI scenery and objects | New AI with Mbanda | Total |
+|---|---|---|---|---|---|
+| Nothing new approved | 10 | 6 | 16 | 25 | **57** |
+| The 22 archive candidates approved | 32 | 6 | 16 | 6 (remakes only) | **60** |
+| Those plus the eight Drive-only photographs | 40 | 6 | 16 | 0 to 6 | **62** and up |
 
-Real photographs replace AI ones one for one as they arrive. The total stays above 50.
+Every scenario clears 50. The more real photographs the owner approves, the fewer AI portraits of Mbanda are needed. **Recommended order:** ask for approvals now, run the 16 scenery and object images straight away (no identity risk), run the six-image pilot, and only then decide how many person images to generate.
+
+## 6. Real candidates (all gated, none approved)
+
+The 52-image archive: 10 are already on this site (archive 01, 26 to 28, 34, 37, 39 to 41, 43), 22 are candidates, 8 are news photographs (link only: 17 to 20, 22 to 25), 9 show children or learners (03, 07 to 14) and 3 are promotional posters (04, 05, 15).
+
+| # | Image | Size | Class | Gate |
+|---|---|---|---|---|
+| 02 | Personal walking portrait (Instagram) | 640x640 | own-post | Mbanda written OK |
+| 42 | Supporters carrying the church appeal | 1079x608 | pci-photo | PCI OK and consent of the women pictured |
+| 52 | UCU-Kagando University College campus | 750x499 | pci-photo | PCI OK; caption must say it is not the nursery school |
+| 29 | Akright City to Mpigi, day 1 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 30 | Roadside record, day 2 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 31 | A reflection from day 4 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 32 | Maddu to Kyayi trading centre | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 33 | A day 6 journey record | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 35 | Mabaale to Rwimi, day 10 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 36 | Rwimi to Kasese, posted as 31 km | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 38 | A public record at the Equator | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 06 | Walk4Code: Nyabihoko to Kisizi | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 16 | Public reflection on long-distance walking | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 21 | Masaka to Lukaya, posted as day 5 (Peace Walk 2025) | 640x1138 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
+| 44 | Announcing the education journey | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 45 | Rift Valley descent: Limuru to Longonot | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 46 | A post titled On top of Mt Longonot | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 47 | Longonot to Naivasha, day 4 | 540x960 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 48 | Kamara to Timboroa, posted as 30 km | 540x960 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 49 | Another Kamara-Timboroa record, 29 km | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 50 | Timboroa to Burnt Forest, 26 km post | 640x360 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 51 | A nature reflection during the trek | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+
+**Drive-only originals** (not in the archive): `22-23`, `22-24`, `22-29` (full-size walking photographs, 0.6 to 0.9 MB) have no recorded date, place, walk or photographer, so any claim is blocked until that is known. `22-9` and `22-10` show a Walk for Education send-off with banners, a crowd and payment details, so they need cropping and consent or should be skipped. Three `20230308_*.jpg` photographs (1.3 to 1.5 MB each, 8 March 2023) are the only large real photographs of the earlier work. I have not seen them.
+
+**Twelve photographs to ask Mbanda for** (through the journal form, with the approval box ticked; no recognisable person without consent; no child's face): his boots at the start of a day; the road ahead; a bottle being filled; his notebook; a roadside meal; a bridge or river he crossed; a phone route screenshot with the overlay cropped; a companion's shoes beside his; a sunrise start; a market he passed; his pack the night before; a tea stop, with the server's permission.
+
+## 7. The AI shot list (41)
+
+Wave 1 (16, scenery and objects) can run at any time. Wave 2 (6, the remakes) follows the pilot. Wave 3 (19) runs only for gaps real photographs leave. ★ marks the six pilot shots; two of them (`road-phone-check`, `met-phone-call`) belong to wave 3 and are run only as likeness tests unless real photographs leave a gap. Full prompts are in `docs/candid-prompt-pack.json`.
 
 ### Set A: On the road (10)
 
-| # | Image | Shape | Scene | Where it goes |
-|---|---|---|---|---|
-| A01 | `road-phone-check` | 3:2 | Mid-stride along a tarmac verge, looking down at his phone to check the route. A boda-boda rider passes close in the foreground, motion-blurred and cropped at the frame edge. | Gallery; Journeys index card |
-| A02 | `road-bootlace` | 3:2 | Crouched at the road edge retying a boot lace, backpack on the ground beside him, eyes on the lace. A minibus taxi is stopped in the soft background. | Gallery; Live page explainer |
-| A03 | `road-water-fill` | 3:2 | Filling a water bottle from a jerrycan at a roadside kiosk, head bowed to the task. A woman behind him, turned away, is arranging tomatoes. | Gallery; Community page |
-| A04 | `road-produce-stall` | 3:2 | Walking past a roadside produce stall, head turned toward something off-frame left. A vendor’s arm enters the frame. | Gallery; Get involved page |
-| A05 | `road-footbridge-back` | 2:3 | Seen from behind on a plank footbridge over a small river, mid-stride. One pedestrian pushing a bicycle comes the other way. | Gallery; Journeys index |
-| A06 | `road-rest-culvert` | 4:5 | Sitting on a concrete culvert in open shade, backpack open, eating a chapati from paper, looking down the road and not at the camera. | His story page; Gallery |
-| A07 | `road-map-boda` | 3:2 | Holding a phone map against the wind while a boda-boda rider, in profile, points the way. Both adults look down the road. | Gallery; Live page |
-| A08 | `road-long-truck` | 16:9 | Very wide view: a tiny figure far along a long red-earth road, a loaded truck passing in the foreground. Flat overcast light, large quiet sky for a headline. | Journeys index banner |
-| A09 | `road-heel-tape` | 3:2 | Close detail: hands taping a heel with medical tape beside worn boots. No face. | Field notes page; Gallery |
-| A10 | `road-predawn-stretch` | 2:3 | Pre-dawn calf stretch against the wheel arch of a parked minibus at a taxi stage, dim blue light. A vendor lights a charcoal stove behind him. | Live page; Gallery |
+| # | Image | Shape | Scene | Pose basis (risk) | Where it goes |
+|---|---|---|---|---|---|
+| A01 ★ | `road-phone-check` | 3:2 | Mid-stride along a tarmac verge, looking down at his phone to check the route. A boda-boda rider passes close in the foreground, motion-blurred and cropped at the frame edge. | side (medium) | Gallery; Journeys index card |
+| A02 | `road-bootlace` | 3:2 | Crouched at the road edge retying a boot lace, backpack on the ground beside him, eyes on the lace. A minibus taxi is stopped in the soft background. | unestablished (high) | Gallery; Live page explainer |
+| A03 | `road-water-fill` | 3:2 | Filling a water bottle from a jerrycan at a roadside kiosk, head bowed to the task. A woman behind him, turned away, is arranging tomatoes. | front34 (medium) | Gallery; Community page |
+| A04 | `road-produce-stall` | 3:2 | Walking past a roadside produce stall, head turned toward something off-frame left. A vendor’s arm enters the frame. | side (medium) | Gallery; Get involved page |
+| A05 | `road-footbridge-back` | 2:3 | Seen from behind on a plank footbridge over a small river, mid-stride. One pedestrian pushing a bicycle comes the other way. | rear (low) | Gallery; Journeys index |
+| A06 | `road-rest-culvert` | 4:5 | Sitting on a concrete culvert in open shade, backpack open, eating a chapati from paper, looking down the road and not at the camera. | unestablished (high) | His story page; Gallery |
+| A07 | `road-map-boda` | 3:2 | Holding a phone map against the wind while a boda-boda rider, in profile, points the way. Both adults look down the road. | side (medium) | Gallery; Live page |
+| A08 | `road-long-truck` | 16:9 | Very wide view: a tiny, unidentifiable walker far along a long red-earth road, a loaded truck passing in the foreground. Flat overcast light, large quiet sky for a headline. | - | Journeys index banner |
+| A09 | `road-heel-tape` | 3:2 | Close detail: hands taping a heel with medical tape beside worn boots. No face. | - | Field notes page; Gallery |
+| A10 | `road-predawn-stretch` | 2:3 | Pre-dawn calf stretch against the wheel arch of a parked minibus at a taxi stage, dim blue light. A vendor lights a charcoal stove behind him. | unestablished (high) | Live page; Gallery |
 
 ### Set B: People met along the way (adults only) (8)
 
-| # | Image | Shape | Scene | Where it goes |
-|---|---|---|---|---|
-| B01 | `met-veranda-elders` | 3:2 | On a veranda bench listening to two older men, seen in profile, leaning forward with hands clasped. The men are mid-conversation, not posing. | Community page; Gallery |
-| B02 | `met-trestle-table` | 3:2 | At a trestle table in a small hall reviewing papers with two volunteers (side and back views). Plastic chairs, a ceiling fan, no readable text. | Get involved page; Partners page |
-| B03 | `met-joined-walkers` | 3:2 | Walking alongside two adult companions who have joined him, one carrying a water jug. They are talking, shot from behind-left, none looking at the camera. | Community page; Gallery |
-| B04 | `met-tea-kiosk` | 3:2 | At a tea kiosk receiving a cup from a vendor. Hands and cup in sharp focus, his face partly in shadow. | Gallery; Media page |
-| B05 | `met-notice-board` | 3:2 | Reading a weathered notice board outside a trading centre (writing illegible and out of focus), arms folded, others walking past. | Gallery; Reports page |
-| B06 | `met-notebook-market` | 4:5 | Sitting on a wooden bench writing in a notebook while a market bustles behind him, shallow depth of field. | Live page; Gallery |
-| B07 | `met-phone-call` | 2:3 | Roadside phone call, one hand shading his eyes, backpack straps on, a parked pickup behind him (no plate). | Gallery; Contact blocks |
-| B08 | `met-greeting` | 3:2 | Pausing to greet a woman carrying a basket on her head. Both smile at each other, turned three-quarters away from the camera. | Community page; Gallery |
+| # | Image | Shape | Scene | Pose basis (risk) | Where it goes |
+|---|---|---|---|---|---|
+| B01 | `met-veranda-elders` | 3:2 | On a veranda bench listening to two older men, seen in profile, leaning forward with hands clasped. The men are mid-conversation, not posing. | unestablished (high) | Community page; Gallery |
+| B02 | `met-trestle-table` | 3:2 | At a trestle table in a small hall reviewing papers with two volunteers (side and back views). Plastic chairs, a ceiling fan, no readable text. | unestablished (high) | Get involved page; Partners page |
+| B03 | `met-joined-walkers` | 3:2 | Walking alongside two adult companions who have joined him, one carrying a water jug. They are talking, shot from behind-left, none looking at the camera. | rear (low) | Community page; Gallery |
+| B04 | `met-tea-kiosk` | 3:2 | At a tea kiosk receiving a cup from a vendor. Hands and cup in sharp focus, his face partly in shadow. | front34 (medium) | Gallery; Media page |
+| B05 | `met-notice-board` | 3:2 | Reading a weathered notice board outside a trading centre (writing illegible and out of focus), arms folded, others walking past. | side (medium) | Gallery; Reports page |
+| B06 | `met-notebook-market` | 4:5 | Sitting on a wooden bench writing in a notebook while a market bustles behind him, shallow depth of field. | unestablished (high) | Live page; Gallery |
+| B07 ★ | `met-phone-call` | 2:3 | Roadside phone call, one hand shading his eyes, backpack straps on, a parked pickup behind him (no plate). | front34 (medium) | Gallery; Contact blocks |
+| B08 | `met-greeting` | 3:2 | Pausing to greet a woman carrying a basket on her head. Both smile at each other, turned three-quarters away from the camera. | side (medium) | Community page; Gallery |
 
 ### Set C: Rest and recovery (5)
 
-| # | Image | Shape | Scene | Where it goes |
-|---|---|---|---|---|
-| C01 | `rest-unlacing` | 3:2 | Evening, seated on a guesthouse step unlacing a boot, a plastic basin and towel beside him, eyes on the boot. | Live page; Gallery |
-| C02 | `rest-foot-soak` | 3:2 | Both feet soaking in a basin on concrete, boots and socks drying on the wall. No face. | Field notes page; Gallery |
-| C03 | `rest-eatery-charging` | 3:2 | At a roadside eatery table charging a phone from a power bank, a plate of rice and beans in front of him. Fluorescent light, dusk at the window. | Gallery; Shop page |
-| C04 | `rest-lodging-gear` | 3:2 | A bedroll and gear laid out on a narrow bed in a simple lodging room, window light. Backpack, boots and a folded headwrap. No face. | Journeys page; Gallery |
-| C05 | `rest-reading-bulb` | 4:5 | Reading a worn paperback under a single bulb in a lodging doorway at dusk, looking down. | His story page; Gallery |
+| # | Image | Shape | Scene | Pose basis (risk) | Where it goes |
+|---|---|---|---|---|---|
+| C01 | `rest-unlacing` | 3:2 | Evening, seated on a guesthouse step unlacing a boot, a plastic basin and towel beside him, eyes on the boot. | unestablished (high) | Live page; Gallery |
+| C02 | `rest-foot-soak` | 3:2 | Both feet soaking in a basin on concrete, boots and socks drying on the wall. No face. | - | Field notes page; Gallery |
+| C03 | `rest-eatery-charging` | 3:2 | At a roadside eatery table charging a phone from a power bank, a plate of rice and beans in front of him. Fluorescent light, dusk at the window. | unestablished (high) | Gallery; Shop page |
+| C04 | `rest-lodging-gear` | 3:2 | A bedroll and gear laid out on a narrow bed in a simple lodging room, window light. Backpack, boots and a folded headwrap. No face. | - | Journeys page; Gallery |
+| C05 | `rest-reading-bulb` | 4:5 | Reading a worn paperback under a single bulb in a lodging doorway at dusk, looking down. | unestablished (high) | His story page; Gallery |
 
 ### Set D: Route scenery (no person) (7)
 
@@ -134,67 +242,51 @@ Real photographs replace AI ones one for one as they arrive. The total stays abo
 
 ### Set R: Candid remakes of the six glossy images (6)
 
-| # | Image | Shape | Scene | Where it goes |
-|---|---|---|---|---|
-| R01 | `remake-home-hero` | 16:9 | Walking along a tarmac verge on the right third, past a parked boda-boda, looking ahead and to the left. Ordinary morning light. Left half open for the headline. | Home hero (replaces campaign-hero) |
-| R02 | `remake-live-banner` | 16:9 | At a roadside kiosk counter writing in a notebook while the vendor wraps an item. Looks down, three-quarter profile on the right third, left side open. | Live and journal banner (replaces campaign-journal) |
-| R03 | `remake-community-banner` | 16:9 | Walking with two adult companions, mid-conversation, seen from slightly behind. One gestures. No one faces the camera. Left third open. | Community banner (replaces campaign-community) |
-| R04 | `remake-portrait` | 4:5 | Sitting on a culvert drinking from a bottle, looking off-frame across a field. Unposed. | Home and His story portrait (replaces campaign-portrait) |
-| R05 | `remake-riverbank` | 3:2 | Standing at a riverbank, hands on hips, assessing the crossing, in profile from a distance. | Home visual story (replaces campaign-riverside) |
-| R06 | `remake-narrow-path` | 16:9 | Stepping aside on a narrow ridge path as an adult farmer with two goats passes. Both look forward. Slight telephoto, small figure. | Closing band (replaces campaign-open-road) |
+| # | Image | Shape | Scene | Pose basis (risk) | Where it goes |
+|---|---|---|---|---|---|
+| R01 ★ | `remake-home-hero` | 16:9 | Walking along a tarmac verge on the right third, past a parked boda-boda, looking ahead and to the left. Ordinary morning light. Left half open for the headline. | front34 (medium) | Home hero (replaces campaign-hero) |
+| R02 ★ | `remake-live-banner` | 16:9 | At a roadside kiosk counter writing in a notebook while the vendor wraps an item. Looks down, three-quarter profile on the right third, left side open. | side (medium) | Live and journal banner (replaces campaign-journal) |
+| R03 ★ | `remake-community-banner` | 16:9 | Walking with two adult companions, mid-conversation, seen from slightly behind. One gestures. No one faces the camera. Left third open. | rear (low) | Community banner (replaces campaign-community) |
+| R04 | `remake-portrait` | 4:5 | Sitting on a culvert drinking from a bottle, looking off-frame across a field. Unposed. | unestablished (high) | Home and His story portrait (replaces campaign-portrait) |
+| R05 ★ | `remake-riverbank` | 3:2 | Standing at a riverbank, hands on hips, assessing the crossing, in profile from a distance. | side (medium) | Home visual story (replaces campaign-riverside) |
+| R06 | `remake-narrow-path` | 16:9 | Stepping aside on a narrow ridge path as an adult farmer with two goats passes. Both look forward. Slight telephoto, small figure. | side (medium) | Closing band (replaces campaign-open-road) |
 
-### Real photographs to ask Mbanda for (the 12 that beat any AI image)
+## 8. How to generate
 
-Send through the journal form, ticking the approval box. Anyone who is recognisable must have agreed, and no child's face.
+1. Attach the inputs the pack names for each shot: the portrait always, then the body original for its pose basis.
+2. Use the identity block first, then the scene, then the style and negative blocks. For scenery and objects use the no-person style block.
+3. Run the **pilot** (six shots). Compare each face with the portrait at the same size. Mbanda or the owner approves.
+4. Apply the review gate to every image (face features list, phone and desktop size, no stray text, hands, no Rotary marks, no children, no place claims). Record any limitation.
+5. Never refine a chain of generated faces. Go back to the original for every identity-sensitive revision.
 
-1. His boots at the start of a day.
-2. The road ahead from where he stands.
-3. A bottle being filled.
-4. His notebook open.
-5. A meal at a roadside eatery.
-6. A bridge or river he crossed.
-7. A phone map or route screenshot with the overlay cropped.
-8. A companion's shoes beside his.
-9. A sunrise start.
-10. A market he passed (no faces without consent).
-11. His pack laid out the night before.
-12. A tea stop with the person who served it, with their permission.
+## 9. What changes in the repository
 
-## 7. Prompts
+1. `src/data/image-register.json`: grown from the seed.
+2. `tools/ingest-drive.mjs`: ingest by checksum (section 4.4).
+3. `tools/make_scenes.py`: derivatives at 480, 960 and 1400 (1672 for heroes) with AVIF first. Estimate, not measured: 41 sets at today's 246 KB each is about 10 MB.
+4. `build.mjs` and `src/lib/util.mjs`: the resolver for the waterfall and the gates, with the page map in `src/data/image-slots.mjs`.
+5. `src/data/gallery.mjs` and `src/data/campaign-artwork.mjs`: classes, filters, "show more" after 24 tiles, caption from the register.
+6. `src/assets/visuals.css`: per-page banners replace the six shared ones.
+7. `tools/check_site.mjs` and `tests/`: the gates in 4.3, including the AI-label check.
+8. Journey pages: "Photographs at the source" rows for the news photographs.
+9. Admin forms: approve-image and approve-claim fields.
+10. Run `node build.mjs`, `node tools/check_site.mjs`, `node --test tests/*.test.mjs` and `python3 -I tools/browser_check.py`.
 
-The full pack is `docs/candid-prompt-pack.json` (41 shots, one shared style block, one identity block, one negative block). Each prompt is assembled as: style, the scene, the identity block (people shots only), the negative block, the aspect ratio.
+## 10. Decisions needed
 
-**Style block**
+1. **Mbanda's approval** of (a) the candidates in section 6, and (b) a labelled AI set of invented candid moments of him.
+2. **PCI's approval** for the church-appeal photograph (42), the campus photograph (52) and any use of the PCI archive.
+3. **Provenance of `22-23`, `22-24` and `22-29`:** date, place, which walk, who took them.
+4. **Where the 28 October ten-image test is.**
+5. **Who generates.** This session has no image tool. Whoever does must attach the reference pack, which sends Mbanda's photographs to an outside service and spends credits.
+6. **Whether to start with scenery and objects now** (16 images, no identity risk), as recommended.
 
-> Unposed documentary photograph, 35mm lens, ordinary natural daylight (overcast or open shade preferred), muted honest colour, real texture on skin, cloth, dust and metal, slightly imperfect framing with the subject off-centre. His attention is on the task or the road, not the camera. Any other people are adults shown from behind, in profile or partly cropped, and are doing something of their own. The foreground may be partly blocked by a passing object or person. Believable Ugandan roadside and trading-centre settings. The look of a photojournalist's contact sheet, not an advertisement.
+## 11. What I did not verify
 
-**Negative block**
-
-> No text, numbers, signs, banners, logos, Rotary or club emblems, licence plates, mileage or tracker overlays. No children's faces. No named place, stage, milestone or event. No golden-hour glow, mist, light shafts or lens flare. No looking into the lens. No staged laughing group, no handshake pose, no hero pose. No extra fingers, no duplicated people, no melted hands or boots.
-
-Captions: people shots read "Mbanda Shyaka, AI-generated image"; scenery and object shots read "AI-generated illustration". Both are followed by: "Illustrates the walks. Not a record of a specific place, day, stage, person or project."
-
-## 8. What changes in the repository once images exist
-
-1. `tools/make_scenes.py`: ingest masters, write WebP at 480, 960 and 1400 (1672 for heroes only) and AVIF beside them, update `src/img/manifest.json`. Suggested budget: 40 KB at 480, 90 KB at 960, 170 KB at 1400. Estimate, not measured: 41 sets at today's 246 KB is about 10 MB of extra files, and about 8 MB if non-hero images stop at 1400 px. Serving AVIF first with WebP as fallback cuts what a visitor downloads, at the cost of more files in the repository.
-2. `src/data/campaign-artwork.mjs`: add a `subject` field (`mbanda` or `none`) and generate the caption from it.
-3. `src/data/gallery.mjs`: add filters "Photographs", "AI scenes" and "Scenery"; show 24 tiles then "Show more".
-4. `src/assets/visuals.css`: replace the six shared `page-head--*` banners with per-page banners from the new set.
-5. Pages: journey cards (scenery only), Live, Community, Get involved, Partners, Media, Reports and His story gain pictures with real alt text. Individual journey pages keep real photographs only.
-6. `tests/`: a test that every AI image shown on any page has its visible caption (the Spear Line approach), and that no page references an image missing from the manifest.
-7. Run `node build.mjs`, `node tools/check_site.mjs`, `node --test tests/*.test.mjs` and `python3 -I tools/browser_check.py`.
-
-## 9. Decisions needed from the owner
-
-1. **Approval of the likeness approach.** Is Mbanda happy to have an AI-generated set of invented candid moments published, labelled, on his site?
-2. **Who generates.** This session has no image-generation tool. The Walking Rotarian set was made with a built-in image tool (`campaign-prompts.json`). Spear Line's 26 October set used Zapier's ChatGPT image action on the owner's OpenAI account (`ASSETS.md`); how its founder set was made is not recorded. Either route can run the prompt pack, but that sends Mbanda's reference photographs to an outside service and spends credits.
-3. **Count and mix.** 57 is a recommendation. A smaller first batch (the 6 remakes plus Sets A and D, 23 images) would fix the homepage and gallery first.
-4. **Archive permissions.** Two further real photographs exist in `cartelug/pdm` and are not on this site: `friends-of-st-joseph-rwembyo-poster.jpg` (1079 x 608) and `kagando-campus.webp` (750 x 499, from a proposal). Both need permission before use.
-
-## 10. What I did not verify
-
-- I opened the Faith in Motion and Walk for Education folders of `cartelug/pdm` and read its provenance note for the rest. I did not open all of its roughly 1,080 files.
-- I looked at the Spear Line images at 480 px only, and did not judge how well they resemble Joh Ayom.
-- I did not test the Walking Rotarian AI images against the real photographs for likeness.
-- I have not seen Mbanda's own wishes, or PCI's, on any of this.
-- Screenshots were taken locally with reduced motion; I did not run the Chromium check suite, Lighthouse, or any test on a phone.
+- I could not see any Drive photograph. Descriptions of the reference photographs come from the owner's rule files.
+- I read the start of `Image_Collection_Register.csv` (seven rows) and its description, not all 69 KB.
+- I did not open the three 2023 photographs, the three generated reference sheets, the Creative Website Blueprint PDF or the later pages of the PCI generated folder.
+- I did not check the rights of any post or photograph. "Rights are not established by inclusion" is the Drive archive's own note.
+- Whether the 22-series photographs show the Walk for Education in progress is unknown.
+- The ingest tool and the resolver are designs. Nothing has been built or tested.
+- The Spear Line comparisons from the first version still rest on 480 px views.
