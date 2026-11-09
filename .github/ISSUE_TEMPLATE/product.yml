@@ -18,7 +18,9 @@ body:
     id: category
     attributes:
       label: Category
+      description: Choose a category for a new product. Keep current category applies only to an existing item.
       options:
+        - Keep current category
         - Clothing
         - Books & publications
         - Accessories
@@ -44,6 +46,7 @@ body:
       label: Availability
       default: 0
       options:
+        - Keep current availability
         - Enquiry - confirm with team
         - Available - confirmed price and stock
         - Sold out
@@ -54,7 +57,7 @@ body:
     id: photograph
     attributes:
       label: Product photograph
-      description: Optional. Attach one photograph or paste its complete HTTPS image address.
+      description: Optional. Attach one photograph or paste its complete HTTPS image address. Blank keeps an existing photograph. Type REMOVE to clear it.
   - type: input
     id: sizes
     attributes:

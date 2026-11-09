@@ -1,6 +1,8 @@
 # The Walking Rotarian: website
 
-A fast website for Mbanda Shyaka, the Walking Rotarian, with a live journal, journey tools and a WhatsApp enquiry shop. The current GitHub Pages website publishes journal stories and shop changes through approved forms linked from `/studio/`. Submit a form, then the workflow saves the content, builds and deploys the website.
+A fast website for Mbanda Shyaka, the Walking Rotarian, with a live journal, journey tools and a WhatsApp enquiry shop. The current GitHub Pages website publishes journal stories and shop changes through approved forms linked from `/admin/` (also available at `/studio/`). Submit a form, then the workflow saves the content, builds and deploys the website.
+
+**Admin link:** https://cartelug.github.io/walking-rotarian/admin/
 
 **Start here for the new platform:** [Publishing and deployment](docs/PUBLISHING.md) · [All 48 capabilities and their connection requirements](docs/FEATURES.md).
 

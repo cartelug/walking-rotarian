@@ -2,21 +2,21 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {validateRecord, cleanText, slugify, webURL} from '../src/assets/platform/model.js';
 import {validateProduct, SHOP_CATEGORIES} from '../src/assets/platform/shop-model.js';
+import {JOURNEY_NAMES, SOCIAL_HOSTS, validateSiteSettings} from '../src/assets/platform/github-model.js';
 
 const repositoryPattern = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
-const journeyNames = {
-  'Walk for Education': 'walk-for-education',
-  'Faith in Motion': 'faith-in-motion',
-  'Nakivale to Makerere peace walk': 'peace-walk-nakivale-makerere',
-  'General update': '',
-};
+const journeyNames = JOURNEY_NAMES;
 
 export function formSections(body) {
   const sections = {};
-  const parts = String(body || '').replace(/\r\n/g, '\n').split(/^### (.+)\s*$/m);
-  for (let index = 1; index < parts.length; index += 2) {
-    const value = parts[index + 1].trim();
-    sections[parts[index].trim()] = value === '_No response_' ? '' : value;
+  const labels = new Set(['Story','Journey','Place','Author','Facebook post URL','Publication','Publishing confirmation','Product identifier','Category','Description','Price in UGX','Availability','Product photograph','Sizes','Colours','Product confirmation','Contact email','WhatsApp number','Facebook account','Instagram account','Tiktok account','Linkedin account','Youtube account','X account','Default journal journey','Connection confirmation','Walking date','Town or place','Daily kilometres','Latitude','Longitude','Verification source','Progress confirmation']);
+  const text = String(body || '').replace(/\r\n/g, '\n');
+  const headings = [...text.matchAll(/^### ([^\n]+)$/gm)].filter(match => labels.has(match[1].trim()));
+  for (let index = 0; index < headings.length; index++) {
+    const heading = headings[index], label = heading[1].trim();
+    if (Object.hasOwn(sections, label)) throw new Error('A form field heading was repeated. Use ## rather than ### for headings inside your story.');
+    const value = text.slice(heading.index + heading[0].length, headings[index + 1]?.index ?? text.length).trim();
+    sections[label] = value === '_No response_' ? '' : value;
   }
   return sections;
 }
@@ -64,6 +64,7 @@ export function journalFromIssue(issue, existing = null) {
     journey: journeyNames[sections.Journey],
     place: sections.Place,
     author: sections.Author || 'Walking Rotarian team',
+    facebookUrl: sections['Facebook post URL'] || '',
     status,
     publishedAt,
     sources: [{label: 'Published by the Walking Rotarian team', url: issue.html_url}],
@@ -80,7 +81,7 @@ export function productFromIssue(issue, existing = null, currency = 'UGX') {
     'Sold out': 'sold-out',
     Hidden: 'hidden',
   };
-  const status = statuses[sections.Availability];
+  const status = sections.Availability === 'Keep current availability' ? existing?.status || 'enquiry' : statuses[sections.Availability];
   if (!status) throw new Error('Choose a shop availability from the form.');
   const id = slugify(sections['Product identifier']);
   if (!id) throw new Error('Enter the permanent product identifier.');
@@ -89,8 +90,8 @@ export function productFromIssue(issue, existing = null, currency = 'UGX') {
   }
   const picture = sections['Product photograph'] || '';
   const photos = extractPhotographs(picture);
-  const image = photos.media[0]?.url || (picture.trim() ? attachmentURL(picture.trim()) : '');
-  const category = Object.entries(SHOP_CATEGORIES).find(([, label]) => label === sections.Category)?.[0];
+  const image = picture.trim() === 'REMOVE' ? '' : photos.media[0]?.url || (picture.trim() && picture.trim() !== existing?.image ? attachmentURL(picture.trim()) : existing?.image || '');
+  const category = sections.Category === 'Keep current category' ? existing?.category : Object.entries(SHOP_CATEGORIES).find(([, label]) => label === sections.Category)?.[0];
   const product = validateProduct({
     id, title: issue.title.replace(/^\[Product\]\s*/i, ''), category,
     description: sections.Description,
@@ -99,6 +100,61 @@ export function productFromIssue(issue, existing = null, currency = 'UGX') {
     sizes: (sections.Sizes || '').split(','), colours: (sections.Colours || '').split(','),
   }, currency);
   return {...product, sourceIssue: issue.number};
+}
+
+export function settingsFromIssue(issue, existing) {
+  const sections = formSections(issue.body);
+  confirm(sections['Connection confirmation'], 'I checked these public contact details and official account links.');
+  const next = {...existing, socials: {...existing.socials}};
+  if (sections['Contact email']) next.email = sections['Contact email'];
+  if (sections['WhatsApp number']) next.whatsapp = sections['WhatsApp number'];
+  for (const name of Object.keys(SOCIAL_HOSTS)) {
+    const value = sections[name === 'x' ? 'X account' : name[0].toUpperCase() + name.slice(1) + ' account'];
+    if (value) next.socials[name] = value === 'REMOVE' ? '' : value;
+  }
+  if (sections['Default journal journey'] && sections['Default journal journey'] !== 'Keep current journey') {
+    if (!Object.hasOwn(journeyNames, sections['Default journal journey'])) throw new Error('Choose a valid default journal journey.');
+    next.currentJourney = journeyNames[sections['Default journal journey']];
+  }
+  return validateSiteSettings(next);
+}
+
+export function progressFromIssue(issue, existing = {checkpoints: [], distances: []}, now = new Date()) {
+  const sections = formSections(issue.body);
+  confirm(sections['Progress confirmation'], 'I verified this date, location, distance and source for public reporting.');
+  const journey = journeyNames[sections.Journey];
+  if (!journey) throw new Error('Choose the walk this progress record belongs to.');
+  const next = {
+    checkpoints: existing.checkpoints.filter(record => record.sourceIssue !== issue.number),
+    distances: existing.distances.filter(record => record.sourceIssue !== issue.number),
+  };
+  if (sections.Publication === 'Withdraw this progress record') return next;
+  if (sections.Publication !== 'Publish verified progress') throw new Error('Choose whether to publish or withdraw this record.');
+  const date = sections['Walking date'];
+  const parsed = new Date(date + 'T00:00:00Z');
+  const today = new Intl.DateTimeFormat('en-CA', {timeZone: 'Africa/Kampala', year: 'numeric', month: '2-digit', day: '2-digit'}).format(now);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '') || !Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== date || date > today) throw new Error('Use a real walking date, today or earlier, in YYYY-MM-DD format.');
+  const source = attachmentURL(sections['Verification source']);
+  const place = cleanText(sections['Town or place'], 180);
+  if (!place) throw new Error('Add the confirmed town or place.');
+  const base = {journey, date, title: place, place, source, status: 'published', verified: true};
+  const km = sections['Daily kilometres'];
+  const lat = sections.Latitude;
+  const lon = sections.Longitude;
+  if (!km && !lat && !lon) throw new Error('Add a verified daily distance, map coordinates, or both.');
+  if (km) {
+    const record = {...validateRecord('distances', {...base, km: km.replace(/,/g, '')}), sourceIssue: issue.number};
+    next.distances = next.distances.filter(item => item.id !== record.id);
+    next.distances.push(record);
+  }
+  if (lat || lon) {
+    if (!lat || !lon) throw new Error('A map stop needs both latitude and longitude.');
+    const record = {...validateRecord('checkpoints', {...base, id: 'checkpoint-' + issue.number, lat, lon}), sourceIssue: issue.number};
+    next.checkpoints.push(record);
+  }
+  next.checkpoints.sort((a, b) => a.date.localeCompare(b.date));
+  next.distances.sort((a, b) => a.date.localeCompare(b.date));
+  return next;
 }
 
 export async function publishIssue({event, repository, token, publishers, fetcher = fetch}) {
@@ -128,22 +184,29 @@ export async function publishIssue({event, repository, token, publishers, fetche
   if (issue.pull_request || !permitted(issue.user?.login)) return {changed: false, skipped: true};
   const journal = /^\[Journal\]/i.test(issue.title);
   const product = /^\[Product\]/i.test(issue.title);
-  if (!journal && !product) return {changed: false, skipped: true};
+  const progress = /^\[Progress\]/i.test(issue.title);
+  const settings = /^\[Connections\]/i.test(issue.title);
+  if (!journal && !product && !progress && !settings) return {changed: false, skipped: true};
   if (issue.html_url !== `https://github.com/${repository}/issues/${number}`) throw new Error('Unexpected publishing form address.');
-  const filename = journal ? 'src/data/journal.json' : 'src/data/shop.json';
+  const filename = journal ? 'src/data/journal.json' : product ? 'src/data/shop.json' : progress ? 'src/data/progress.json' : 'src/data/settings.json';
   const branch = event.repository?.default_branch || 'main';
 
   for (let attempt = 0; attempt < 3; attempt++) {
     const file = await request('/contents/' + filename + '?ref=' + encodeURIComponent(branch));
     const content = JSON.parse(Buffer.from(file.content, 'base64').toString('utf8'));
-    const records = journal ? content : content.products;
-    const id = product ? slugify(formSections(issue.body)['Product identifier']) : 'post-' + number;
-    const existing = records.find(record => record.sourceIssue === number) || records.find(record => record.id === id);
-    const record = journal ? journalFromIssue(issue, existing) : productFromIssue(issue, existing, content.currency);
-    const next = records.filter(item => item.id !== record.id);
-    next.push(record);
-    if (journal) next.sort((a, b) => a.sourceIssue - b.sourceIssue);
-    const result = journal ? next : {...content, products: next};
+    let result;
+    if (settings) result = settingsFromIssue(issue, content);
+    else if (progress) result = progressFromIssue(issue, content);
+    else {
+      const records = journal ? content : content.products;
+      const id = product ? slugify(formSections(issue.body)['Product identifier']) : 'post-' + number;
+      const existing = records.find(record => record.sourceIssue === number) || records.find(record => record.id === id);
+      const record = journal ? journalFromIssue(issue, existing) : productFromIssue(issue, existing, content.currency);
+      const next = records.filter(item => item.id !== record.id);
+      next.push(record);
+      if (journal) next.sort((a, b) => a.sourceIssue - b.sourceIssue);
+      result = journal ? next : {...content, products: next};
+    }
     const text = JSON.stringify(result, null, 2) + '\n';
     const previous = JSON.stringify(content, null, 2) + '\n';
     if (text === previous) return {changed: false, skipped: false};
@@ -151,7 +214,7 @@ export async function publishIssue({event, repository, token, publishers, fetche
       const saved = await request('/contents/' + filename, {
         method: 'PUT',
         body: JSON.stringify({
-          message: `Update ${journal ? 'journal' : 'shop'} from publishing form #${number}`,
+          message: `Update ${journal ? 'journal' : product ? 'shop' : progress ? 'walking progress' : 'official links'} from publishing form #${number}`,
           content: Buffer.from(text).toString('base64'), sha: file.sha, branch,
         }),
       });

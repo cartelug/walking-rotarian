@@ -39,4 +39,4 @@ start();
 let installEvent;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvent=e;document.querySelectorAll('[data-install]').forEach(b=>b.hidden=false);});
 document.querySelectorAll('[data-install]').forEach(b=>b.onclick=async()=>{if(installEvent){await installEvent.prompt();installEvent=null;b.hidden=true;}else toast('Use your browser’s Add to Home Screen command.');});
-if('serviceWorker'in navigator&&location.protocol!=='file:'&&!location.pathname.includes('/studio/'))navigator.serviceWorker.register(ctx.href('/sw.js'),{scope:ctx.base+'/'}).catch(()=>{});
+if('serviceWorker'in navigator&&location.protocol!=='file:'&&!['/studio/','/admin/'].some(route=>location.pathname.includes(route)))navigator.serviceWorker.register(ctx.href('/sw.js'),{scope:ctx.base+'/'}).catch(()=>{});

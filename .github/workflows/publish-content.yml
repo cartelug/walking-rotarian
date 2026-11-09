@@ -1,4 +1,4 @@
-name: Publish approved journal and shop forms
+name: Publish approved website updates
 on:
   issues:
     types: [opened, edited, reopened]
@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   save:
-    if: startsWith(github.event.issue.title, '[Journal]') || startsWith(github.event.issue.title, '[Product]')
+    if: startsWith(github.event.issue.title, '[Journal]') || startsWith(github.event.issue.title, '[Product]') || startsWith(github.event.issue.title, '[Progress]') || startsWith(github.event.issue.title, '[Connections]')
     runs-on: ubuntu-latest
     permissions:
       contents: write

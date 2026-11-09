@@ -2,7 +2,9 @@
 
 `Browser` means implemented on the static-compatible website. `Server` means implemented in the included persistent Node/SQLite service and Studio; production activation needs its hosting connection. `Service` adds the stated external account requirements. The site does not claim that an unconnected service is operational.
 
-The current GitHub Pages website also supports approved form publishing through `/studio/`. Journal text, photographs, corrections, draft exclusion, withdrawal, permanent story pages and RSS update after the automatic website build. The existing owner account is enabled. Independent server logins and the remaining server features still use the optional backend. See [the publishing guide](PUBLISHING.md).
+The current GitHub Pages website also supports approved form publishing through `/admin/` (or `/studio/`). Journal text, photographs, corrections, draft exclusion, withdrawal, permanent story pages and RSS update after the automatic website build. The existing owner account is enabled. Independent server logins and the remaining server features still use the optional backend. See [the publishing guide](PUBLISHING.md).
+
+The GitHub admin also manages verified checkpoints and daily distance records, official social links, contact email and the shop WhatsApp number. These updates are saved by approved forms and deployed automatically.
 
 The added `/shop/` supports merchandise, books, accessories, search, filters, size/colour selections, quantities, a saved enquiry list and a prepared WhatsApp quote request. Approved product forms manage photographs, prices, availability and visibility. Starter collection ideas have illustrative artwork and require confirmation of price and stock.
 

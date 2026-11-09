@@ -1,0 +1,68 @@
+name: Update walking progress
+description: Publish a verified daily distance, map stop, or both.
+title: "[Progress] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add the town and date in the title above. Enter only confirmed progress. Daily kilometres are the distance for this one date, not a running total. Edit this same submission to correct or withdraw it. This form and its source are public.
+  - type: dropdown
+    id: journey
+    attributes:
+      label: Journey
+      options:
+        - Walk for Education
+        - Faith in Motion
+        - Nakivale to Makerere peace walk
+    validations:
+      required: true
+  - type: input
+    id: walking-date
+    attributes:
+      label: Walking date
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: input
+    id: place
+    attributes:
+      label: Town or place
+    validations:
+      required: true
+  - type: input
+    id: kilometres
+    attributes:
+      label: Daily kilometres
+      description: Optional if you are adding a map stop. Enter this day's verified distance, from 0 to 250 km.
+  - type: input
+    id: latitude
+    attributes:
+      label: Latitude
+      description: Optional map coordinates. Both latitude and longitude are needed for a map stop.
+  - type: input
+    id: longitude
+    attributes:
+      label: Longitude
+  - type: input
+    id: source
+    attributes:
+      label: Verification source
+      description: Complete HTTPS link to the public route log or approved update.
+    validations:
+      required: true
+  - type: dropdown
+    id: publication
+    attributes:
+      label: Publication
+      options:
+        - Publish verified progress
+        - Withdraw this progress record
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Progress confirmation
+      options:
+        - label: I verified this date, location, distance and source for public reporting.
+          required: true

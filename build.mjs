@@ -40,6 +40,16 @@ fs.mkdirSync(path.join(OUT, "assets", "press"), { recursive: true });
 fs.copyFileSync(path.join(SRC, "img-original", "walking-rotarian-logo.jpeg"), path.join(OUT, "assets", "press", "walking-rotarian-logo.jpg"));
 fs.copyFileSync(path.join(SRC, "img-original", "walking-rotarian-logo-transparent.png"), path.join(OUT, "assets", "press", "walking-rotarian-logo-transparent.png"));
 
+// Version every module import together so a returning editor receives a coherent
+// admin build even when an older service worker has cached the previous module.
+const moduleDir = path.join(OUT, 'assets/platform');
+const moduleFiles = fs.readdirSync(moduleDir).filter(name => name.endsWith('.js')).sort();
+const moduleVersion = crypto.createHash('sha1').update(moduleFiles.map(name => fs.readFileSync(path.join(moduleDir,name),'utf8')).join('\n')).digest('hex').slice(0,12);
+for (const name of moduleFiles) {
+  const file = path.join(moduleDir,name);
+  const source = fs.readFileSync(file,'utf8');
+  fs.writeFileSync(file,source.replace(/((?:from\s*|import\(\s*)['"])(\.[^'"]+\.js)(['"])/g, '$1$2?v=' + moduleVersion + '$3'));
+}
 const hash = (file) => crypto.createHash("sha1").update(fs.readFileSync(file)).digest("hex").slice(0, 8);
 const assetVersion = { css: hash(path.join(OUT, "assets", "main.css")), js: hash(path.join(OUT, "assets", "main.js")), visualsCSS:hash(path.join(OUT,'assets/visuals.css')), platformCSS:hash(path.join(OUT,'assets/platform/platform.css')),platformJS:hash(path.join(OUT,'assets/platform/main.js')) };
 
@@ -121,6 +131,7 @@ writeFile(path.join(OUT, ".nojekyll"), "");
 const platform = platformData();
 writeFile(path.join(OUT,'data/platform.json'),JSON.stringify(platform));
 writeFile(path.join(OUT,'data/shop.json'), JSON.stringify(shopData()));
+writeFile(path.join(OUT,'data/admin-shop.json'), JSON.stringify(shopData({includeHidden:true})));
 const xml = value => String(value||'').replace(/[<>&"']/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[c]));
 const absolute = p => site.url ? site.url+p : BASE+p;
 writeFile(path.join(OUT,'rss.xml'),`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Walking Rotarian</title><link>${xml(absolute('/'))}</link><description>Stories from the road, with dates and sources.</description>${platform.entries.map(e=>`<item><title>${xml(e.title)}</title><link>${xml(absolute('/journal/'+e.id+'/'))}</link><guid>${xml(absolute('/journal/'+e.id+'/'))}</guid><description>${xml(e.body)}</description><pubDate>${new Date(e.publishedAt).toUTCString()}</pubDate></item>`).join('')}</channel></rss>`);
@@ -132,7 +143,7 @@ const precache=['/','/live/','/archive/','/saved/','/shop/','/offline/','/data/p
 writeFile(path.join(OUT,'sw.js'),`const CACHE='wr-${cacheVersion}';const BASE=${JSON.stringify(BASE)};const FILES=${JSON.stringify(precache)};
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('wr-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==location.origin||/\\/(api|studio|subscribe|uploads)\\//.test(u.pathname))return;if(e.request.mode==='navigate'||u.pathname.includes('/data/')){e.respondWith(fetch(e.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(e.request,r.clone()));return r;}).catch(async()=>await caches.match(e.request)||await caches.match(BASE+'/offline/')));return;}if(u.pathname.includes('/assets/'))e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(response=>{if(response.ok)caches.open(CACHE).then(c=>c.put(e.request,response.clone()));return response;})));});`);
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==location.origin||/\\/(api|studio|admin|subscribe|uploads)\\//.test(u.pathname))return;if(e.request.mode==='navigate'||u.pathname.includes('/data/')){e.respondWith(fetch(e.request).then(r=>{if(r.ok)caches.open(CACHE).then(c=>c.put(e.request,r.clone()));return r;}).catch(async()=>await caches.match(e.request)||await caches.match(BASE+'/offline/')));return;}if(u.pathname.includes('/assets/'))e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(response=>{if(response.ok)caches.open(CACHE).then(c=>c.put(e.request,response.clone()));return response;})));});`);
 
 // ---- report ---------------------------------------------------------------
 const count = (dir) => fs.readdirSync(dir, { withFileTypes: true }).reduce((n, e) => n + (e.isDirectory() ? count(path.join(dir, e.name)) : 1), 0);

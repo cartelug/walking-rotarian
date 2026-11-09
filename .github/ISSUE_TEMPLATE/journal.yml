@@ -14,16 +14,12 @@ body:
       placeholder: What happened on the walk today?
     validations:
       required: true
-  - type: dropdown
+  - type: input
     id: journey
     attributes:
       label: Journey
-      default: 0
-      options:
-        - Walk for Education
-        - Faith in Motion
-        - Nakivale to Makerere peace walk
-        - General update
+      value: Walk for Education
+      description: Use Walk for Education, Faith in Motion, Nakivale to Makerere peace walk, or General update. The admin link fills your selection automatically.
     validations:
       required: true
   - type: input
@@ -37,6 +33,11 @@ body:
       label: Author
       value: Walking Rotarian team
       description: Use Mbanda Shyaka when publishing his own words.
+  - type: input
+    id: facebook-url
+    attributes:
+      label: Facebook post URL
+      description: Optional. Paste the public Facebook post link to show it alongside this story.
   - type: dropdown
     id: publication
     attributes:

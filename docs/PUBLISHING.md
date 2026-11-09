@@ -1,14 +1,24 @@
 # Publishing and operating the Walking Rotarian
 
-## Simple publishing on the current website
+## One admin link, with GitHub publishing
 
-Open `/studio/`, choose **Write a live update**, sign in to an approved GitHub account, write the headline and story, attach photographs, and choose **Publish now**. Submitting the form starts the publishing workflow, then builds and deploys the website. Check the workflow result if a submitted update has not appeared. Publishing takes the time of a Pages build rather than appearing immediately.
+Give Mbanda `https://cartelug.github.io/walking-rotarian/admin/`. The older `/studio/` address opens the same publishing desk. Website hosting, content storage, permission checks and deployment stay on GitHub. No repository credential or shared password is requested by the admin page.
 
-Edit the same submission to correct a story. Choose **Draft - keep off website** or **Withdraw from website** to remove it from the next build. GitHub form submissions and attachments are public even when marked Draft. Keep private drafts on your own device.
+The admin offers:
 
-The existing `cartelug` account is approved. Add Mbanda's exact GitHub username to `src/data/publishing.json` to let him publish with his own account. The workflow checks both the submitter and actor against this list. Approved publishers need a GitHub login but do not need repository write access. Do not share an account or place a token in the website.
+- **Write an update:** phone-friendly writing, a device-local draft and reading preview. **Review on GitHub** carries the text, journey, place, author and optional Facebook source to the publishing form. Attach photographs there, choose **Publish now**, confirm and select **Create**. Long stories have a copy-and-paste fallback instead of being truncated.
+- **Shop:** add products or open a prefilled update for a current item. Existing category and availability stay unchanged unless the editor explicitly changes them.
+- **Walking progress:** publish a verified daily distance, map stop, or both. Corrections replace a journey/date total rather than adding it twice. Only confirmed records enter the public atlas.
+- **Official links:** update public Facebook and other social URLs, contact email and shop WhatsApp number. Blank fields keep their current value; REMOVE clears a social link. Secrets never belong in a public form.
+- **Publishing status:** check the latest Pages build or open the full GitHub workflow history.
 
-The workflow writes only `src/data/journal.json` or `src/data/shop.json`. It uses the temporary Actions token, checks the current form, retries content conflicts against fresh data, and invokes the Pages workflow directly after saving. Earlier content versions remain in Git history.
+The final sign-in and submission happen on GitHub. Submitting a form starts the publishing workflow, then builds and deploys the website. Updates take a Pages build rather than appearing immediately. This is not an independent email/password CMS.
+
+The existing `cartelug` account is approved. Add Mbanda's exact GitHub username to `src/data/publishing.json` once to let him publish with his own account. Both the actor and original submitter must be approved. Approved publishers need a GitHub login but do not need repository write access. The admin link by itself grants no editing permission.
+
+Edit the original submission to correct it. Choose **Withdraw from website**, **Withdraw this progress record**, or product **Hidden** to remove content in the next build. Forms and attachments, including GitHub drafts, are public. Keep private drafts on your device.
+
+The workflow writes only the fixed journal, shop, progress or public settings JSON file for its form type. It uses the temporary Actions token, retrieves the latest submission, retries data conflicts and invokes the existing Pages deployment after saving. Earlier versions remain in Git history. Automatic Facebook delivery, subscriber emails and online payment processing are separate service integrations; the GitHub admin does not imply those are active.
 
 ## Shop on the current website
 

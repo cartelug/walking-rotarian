@@ -1,3 +1,8 @@
+import fs from 'node:fs';
+import {validateSiteSettings} from '../assets/platform/github-model.js';
+
+export const websiteSettings = validateSiteSettings(JSON.parse(fs.readFileSync(new URL('./settings.json', import.meta.url), 'utf8')));
+
 // Site-wide settings. Change things here, then run:  node build.mjs
 // Text between [square brackets](/like-this/) becomes a link. Paths that start
 // with "/" are inside this site; paths that start with https:// go elsewhere.
@@ -32,16 +37,18 @@ export const site = {
   formEndpoint: process.env.FORM_ENDPOINT || "",
   // Public server address only. Credentials stay in the backend environment.
   apiUrl: (process.env.API_URL || "").replace(/\/+$/, ""),
-  email: "pci.uganda@gmail.com",
+  email: websiteSettings.email,
 
   // Donations open WhatsApp with a message ready, addressed to Mbanda Shyaka.
   // Digits only, with the country code and no plus sign. No money is handled by this site.
-  whatsapp: "256757112376",
+  whatsapp: websiteSettings.whatsapp,
 
   publishing: {
     repository: 'https://github.com/cartelug/walking-rotarian',
     journalForm: 'https://github.com/cartelug/walking-rotarian/issues/new?template=journal.yml',
     productForm: 'https://github.com/cartelug/walking-rotarian/issues/new?template=product.yml',
+    progressForm: 'https://github.com/cartelug/walking-rotarian/issues/new?template=progress.yml',
+    connectionsForm: 'https://github.com/cartelug/walking-rotarian/issues/new?template=connections.yml',
   },
 
   nav: [

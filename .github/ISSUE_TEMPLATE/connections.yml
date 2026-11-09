@@ -1,0 +1,60 @@
+name: Update official links and contacts
+description: Maintain Facebook, other social accounts and public team contact details.
+title: "[Connections] Official accounts and contacts"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Only public contact details belong here. Never enter passwords, access tokens or private keys. Blank fields keep the current saved value. Type REMOVE into a social account field to remove that link. Each link must belong to Mbanda or the intended official campaign.
+  - type: input
+    id: email
+    attributes:
+      label: Contact email
+      description: Public email for enquiries. Leave blank to keep the current address.
+  - type: input
+    id: whatsapp
+    attributes:
+      label: WhatsApp number
+      description: Include the country code, such as 256757112376. Leave blank to keep the current number.
+  - type: input
+    id: facebook
+    attributes:
+      label: Facebook account
+      description: Complete HTTPS profile or Page link.
+  - type: input
+    id: instagram
+    attributes:
+      label: Instagram account
+  - type: input
+    id: tiktok
+    attributes:
+      label: Tiktok account
+  - type: input
+    id: linkedin
+    attributes:
+      label: Linkedin account
+  - type: input
+    id: youtube
+    attributes:
+      label: Youtube account
+  - type: input
+    id: x
+    attributes:
+      label: X account
+  - type: dropdown
+    id: journey
+    attributes:
+      label: Default journal journey
+      options:
+        - Keep current journey
+        - Walk for Education
+        - Faith in Motion
+        - Nakivale to Makerere peace walk
+        - General update
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Connection confirmation
+      options:
+        - label: I checked these public contact details and official account links.
+          required: true

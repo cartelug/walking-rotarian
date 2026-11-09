@@ -3,11 +3,11 @@ import {site} from '../data/site.mjs';
 import {validateProduct, SHOP_CATEGORIES, money} from '../assets/platform/shop-model.js';
 import {esc, rel} from './util.mjs';
 
-export function shopData() {
+export function shopData({includeHidden = false} = {}) {
   const data = JSON.parse(fs.readFileSync(new URL('../data/shop.json', import.meta.url), 'utf8'));
-  const products = data.products.map(p => validateProduct(p, data.currency));
+  const products = data.products.map(p => ({...validateProduct(p, data.currency), ...(Number.isSafeInteger(p.sourceIssue) && p.sourceIssue > 0 ? {sourceIssue:p.sourceIssue} : {})}));
   if (new Set(products.map(p => p.id)).size !== products.length) throw new Error('Shop product identifiers must be unique.');
-  return {...data, products: products.filter(p => p.status !== 'hidden'), whatsapp: site.whatsapp};
+  return {...data, products: products.filter(p => includeHidden || p.status !== 'hidden'), whatsapp: site.whatsapp};
 }
 
 export function productArt(product, logo) {

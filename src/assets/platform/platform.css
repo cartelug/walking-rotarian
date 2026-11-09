@@ -110,3 +110,68 @@
   .wr-product__visual { aspect-ratio: 1.35; }
   .wr-shop-cart .wr-actions { flex-direction: column; }
 }
+
+/* The GitHub-backed publishing desk */
+.wr-admin-pagehead { background:#e9e5da; border-bottom:1px solid #d0c8b8; padding:2rem 0; }
+.wr-admin-pagehead>.container { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+.wr-admin-pagehead h1 { font-size:clamp(2rem,4vw,3.2rem); margin:.2rem 0 .45rem; }
+.wr-admin-pagehead p { margin-bottom:0; }
+.wr-admin-section { padding:2.2rem 0 4rem; }
+.wr-admin-welcome { display:flex; align-items:center; justify-content:space-between; gap:2rem; margin-bottom:1.7rem; }
+.wr-admin-welcome h2 { font-size:clamp(1.7rem,3vw,2.5rem); margin:.2rem 0 .4rem; }
+.wr-admin-github { text-align:right; max-width:17rem; flex-shrink:0; }
+.wr-admin-github p { font-size:.85rem; margin:.5rem 0; color:#595b5a; }
+.wr-admin-nav { display:flex; gap:.4rem; flex-wrap:wrap; padding-bottom:1.2rem; margin-bottom:1.8rem; border-bottom:1px solid #cec6b9; }
+.wr-admin-nav .wr-tab[aria-pressed=true] { background:#152a34; border-color:#152a34; color:#fff; }
+.wr-admin-layout { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); gap:1.4rem; align-items:start; }
+.wr-admin-feature { position:relative; padding:2rem; border:1px solid #ccbea4; border-radius:.5rem; background:linear-gradient(120deg,#e8dcc6,#f5efdf); overflow:hidden; }
+.wr-admin-feature h3 { max-width:16ch; font-size:clamp(1.7rem,2.8vw,2.45rem); line-height:1.15; margin:.5rem 0 1rem; }
+.wr-admin-feature p { max-width:48ch; }
+.wr-admin-feature .wr-muted { margin:1rem 0 0; }
+.wr-admin h3 { margin-top:0; }
+.wr-admin .wr-field { margin-bottom:1rem; }
+.wr-admin .wr-form-grid .wr-field { margin-bottom:0; }
+.wr-admin h4 { font-size:1.4rem; margin:.2rem 0; }
+.wr-admin-counts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.8rem; border-top:1px solid #ddd4c6; padding-top:1.2rem; margin:1.2rem 0; }
+.wr-admin-counts>div { display:flex; flex-direction:column-reverse; gap:.4rem; }
+.wr-admin-counts dt { font-size:.8rem; color:#595b5a; }
+.wr-admin-counts dd { margin:0; font-size:2rem; font-family:var(--font-heading); font-weight:bold; }
+.wr-admin-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; margin:1.4rem 0; }
+.wr-admin-cards>button { text-align:left; padding:1.5rem; background:#fffdf8; color:#182b33; border:1px solid #d0c8b8; border-radius:.45rem; }
+.wr-admin-cards>button:hover { border-color:#8b452c; background:#f5efdf; }
+.wr-admin-cards h3 { font-size:1.35rem; margin:.6rem 0; }
+.wr-admin-cards p { font-size:.95rem; }
+.wr-admin-cards>button>span:last-child { font-weight:bold; font-size:.9rem; }
+.wr-admin-number { display:inline-flex; background:#eee3ce; border-radius:50%; width:2.5rem; height:2.5rem; align-items:center; justify-content:center; font-size:.8rem; }
+.wr-admin-build { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; justify-content:space-between; align-items:center; }
+.wr-admin-build h3 { font-size:1.2rem; margin:0 0 .4rem; }
+.wr-admin-build p { font-size:.9rem; margin:0; }
+.wr-admin-build [data-build-result] { width:100%; margin-top:.6rem; }
+.wr-admin-side { display:grid; gap:1.3rem; }
+.wr-admin-product-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.2rem; }
+.wr-admin-product-list .wr-section-heading { margin-bottom:.5rem; }
+.wr-admin-record-section { margin-top:1.4rem; }
+.wr-admin-records { list-style:none; padding:0; margin:1.2rem 0 0; }
+.wr-admin-records li { padding:.8rem 0; border-top:1px solid #ddd4c6; overflow-wrap:anywhere; }
+.wr-admin-records li>span { display:block; font-size:.9rem; margin:.3rem 0; }
+.wr-admin-records .wr-action { text-align:left; justify-content:flex-start; }
+.wr-admin-contacts { display:grid; grid-template-columns:1fr 1.5fr; gap:.7rem; font-size:.95rem; }
+.wr-admin-contacts dt { font-weight:bold; }
+.wr-admin-contacts dd { margin:0; overflow-wrap:anywhere; }
+.wr-admin-help { max-width:58rem; }
+.wr-admin-help li { padding:.6rem 0; line-height:1.65; }
+.wr-admin-help details { border-top:1px solid #ddd4c6; padding:1rem 0; }
+.wr-admin-help summary { cursor:pointer; font-weight:bold; }
+.wr-admin-help details p { margin-top:.7rem; }
+.wr-admin-footnote { font-size:.82rem; line-height:1.65; color:#595b5a; border-top:1px solid #d0c8b8; padding-top:1.3rem; margin-top:2rem; max-width:85ch; }
+[data-writing-preview] { overflow-wrap:anywhere; }
+@media(max-width:860px) { .wr-admin-layout { grid-template-columns:1fr; } .wr-admin-cards { gap:.7rem; } .wr-admin-cards>button { padding:1rem; } }
+@media(max-width:580px) { .wr-admin-welcome { display:block; } .wr-admin-github { text-align:left; margin-top:1rem; } .wr-admin-pagehead>.container { align-items:flex-start; } .wr-admin-pagehead .wr-action { font-size:.8rem; padding:.5rem; } .wr-admin-pagehead { padding:1.4rem 0; } .wr-admin-cards,.wr-admin-product-list { grid-template-columns:1fr; } .wr-admin-feature { padding:1.4rem; } .wr-admin-counts { gap:.5rem; } .wr-admin-counts dd { font-size:1.7rem; } .wr-admin-contacts { grid-template-columns:1fr; gap:.3rem; } .wr-admin-contacts dd { margin-bottom:.7rem; } .wr-admin-nav .wr-tab { flex:1 1 auto; font-size:.85rem; } }
+.wr-admin-pagehead { padding:1.2rem 0; }
+.wr-admin-pagehead h1 { font-size:clamp(1.8rem,3vw,2.5rem); }
+.wr-admin-section { padding-top:1.6rem; }
+.wr-admin-welcome { margin-bottom:1.1rem; }
+.wr-admin-welcome>div>p:last-child { margin-bottom:0; }
+.wr-admin-nav { padding-bottom:.8rem; margin-bottom:1.3rem; }
+.wr-admin .wr-panel>h3 { font-size:1.45rem; line-height:1.25; }
+.wr-admin svg { display:inline-block; width:1.05rem; height:1.05rem; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; vertical-align:middle; flex-shrink:0; }

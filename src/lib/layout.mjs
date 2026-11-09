@@ -110,7 +110,7 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
         <ul>
           <li><a href="${a("/privacy/")}">Privacy</a></li>
           <li><a href="${a("/get-involved/#enquiry")}">Send a correction</a></li>
-          <li><a href="${a('/studio/')}">Team publishing</a></li>
+          <li><a href="${a('/admin/')}">Team publishing</a></li>
           <li><a href="${esc(feed)}">Journal RSS feed</a></li>
         </ul>
       </nav>
