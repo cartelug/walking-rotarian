@@ -1,0 +1,431 @@
+{
+ "created": "2026-11-09",
+ "status": "PROPOSED. Nothing here has been generated or published. Needs Mbanda’s written approval of the likeness set first.",
+ "referencePhotos": [
+  "src/img-original/walking-rotarian-photo.jpg",
+  "src/img-original/walking-rotarian-river-crossing.jpg",
+  "src/img-original/walking-rotarian-riverside-35km.jpg",
+  "src/img-original/walking-rotarian-sunset-video-frame.jpg"
+ ],
+ "identity": "Use the attached original photographs as identity references for exactly the same man, Mbanda Shyaka: long narrow face, mature natural facial lines, warm dark skin, full salt-and-pepper beard, long dreadlocks held under a close black headwrap, lean athletic build with natural proportions, and the necklace shown in the reference photographs. Wardrobe: charcoal sleeveless walking vest, weathered compact dark backpack. Do not alter his face, age or build.",
+ "style": "Unposed documentary photograph, 35mm lens, ordinary natural daylight (overcast or open shade preferred), muted honest colour, real texture on skin, cloth, dust and metal, slightly imperfect framing with the subject off-centre. His attention is on the task or the road, not the camera. Any other people are adults shown from behind, in profile or partly cropped, and are doing something of their own. The foreground may be partly blocked by a passing object or person. Believable Ugandan roadside and trading-centre settings. The look of a photojournalist's contact sheet, not an advertisement.",
+ "negative": "No text, numbers, signs, banners, logos, Rotary or club emblems, licence plates, mileage or tracker overlays. No children's faces. No named place, stage, milestone or event. No golden-hour glow, mist, light shafts or lens flare. No looking into the lens. No staged laughing group, no handshake pose, no hero pose. No extra fingers, no duplicated people, no melted hands or boots.",
+ "captionRule": {
+  "person": "Mbanda Shyaka, AI-generated image",
+  "nonPerson": "AI-generated illustration",
+  "note": "Illustrates the walks. Not a record of a specific place, day, stage, person or project."
+ },
+ "assemble": "prompt = style + \" Scene: \" + scene + \" \" + (kind === \"person\" ? identity + \" \" : \"\") + negative + \" Aspect ratio \" + aspect + \".\"",
+ "shots": [
+  {
+   "id": "road-phone-check",
+   "set": "A",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Journeys index card",
+   "scene": "Mid-stride along a tarmac verge, looking down at his phone to check the route. A boda-boda rider passes close in the foreground, motion-blurred and cropped at the frame edge.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-phone-check-{width}.webp"
+  },
+  {
+   "id": "road-bootlace",
+   "set": "A",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Live page explainer",
+   "scene": "Crouched at the road edge retying a boot lace, backpack on the ground beside him, eyes on the lace. A minibus taxi is stopped in the soft background.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-bootlace-{width}.webp"
+  },
+  {
+   "id": "road-water-fill",
+   "set": "A",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Community page",
+   "scene": "Filling a water bottle from a jerrycan at a roadside kiosk, head bowed to the task. A woman behind him, turned away, is arranging tomatoes.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-water-fill-{width}.webp"
+  },
+  {
+   "id": "road-produce-stall",
+   "set": "A",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Get involved page",
+   "scene": "Walking past a roadside produce stall, head turned toward something off-frame left. A vendor’s arm enters the frame.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-produce-stall-{width}.webp"
+  },
+  {
+   "id": "road-footbridge-back",
+   "set": "A",
+   "kind": "person",
+   "aspect": "2:3",
+   "slot": "Gallery; Journeys index",
+   "scene": "Seen from behind on a plank footbridge over a small river, mid-stride. One pedestrian pushing a bicycle comes the other way.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-footbridge-back-{width}.webp"
+  },
+  {
+   "id": "road-rest-culvert",
+   "set": "A",
+   "kind": "person",
+   "aspect": "4:5",
+   "slot": "His story page; Gallery",
+   "scene": "Sitting on a concrete culvert in open shade, backpack open, eating a chapati from paper, looking down the road and not at the camera.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-rest-culvert-{width}.webp"
+  },
+  {
+   "id": "road-map-boda",
+   "set": "A",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Live page",
+   "scene": "Holding a phone map against the wind while a boda-boda rider, in profile, points the way. Both adults look down the road.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-map-boda-{width}.webp"
+  },
+  {
+   "id": "road-long-truck",
+   "set": "A",
+   "kind": "scenery",
+   "aspect": "16:9",
+   "slot": "Journeys index banner",
+   "scene": "Very wide view: a tiny figure far along a long red-earth road, a loaded truck passing in the foreground. Flat overcast light, large quiet sky for a headline.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/road-long-truck-{width}.webp"
+  },
+  {
+   "id": "road-heel-tape",
+   "set": "A",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Field notes page; Gallery",
+   "scene": "Close detail: hands taping a heel with medical tape beside worn boots. No face.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/road-heel-tape-{width}.webp"
+  },
+  {
+   "id": "road-predawn-stretch",
+   "set": "A",
+   "kind": "person",
+   "aspect": "2:3",
+   "slot": "Live page; Gallery",
+   "scene": "Pre-dawn calf stretch against the wheel arch of a parked minibus at a taxi stage, dim blue light. A vendor lights a charcoal stove behind him.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/road-predawn-stretch-{width}.webp"
+  },
+  {
+   "id": "met-veranda-elders",
+   "set": "B",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Community page; Gallery",
+   "scene": "On a veranda bench listening to two older men, seen in profile, leaning forward with hands clasped. The men are mid-conversation, not posing.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-veranda-elders-{width}.webp"
+  },
+  {
+   "id": "met-trestle-table",
+   "set": "B",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Get involved page; Partners page",
+   "scene": "At a trestle table in a small hall reviewing papers with two volunteers (side and back views). Plastic chairs, a ceiling fan, no readable text.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-trestle-table-{width}.webp"
+  },
+  {
+   "id": "met-joined-walkers",
+   "set": "B",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Community page; Gallery",
+   "scene": "Walking alongside two adult companions who have joined him, one carrying a water jug. They are talking, shot from behind-left, none looking at the camera.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-joined-walkers-{width}.webp"
+  },
+  {
+   "id": "met-tea-kiosk",
+   "set": "B",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Media page",
+   "scene": "At a tea kiosk receiving a cup from a vendor. Hands and cup in sharp focus, his face partly in shadow.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-tea-kiosk-{width}.webp"
+  },
+  {
+   "id": "met-notice-board",
+   "set": "B",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Reports page",
+   "scene": "Reading a weathered notice board outside a trading centre (writing illegible and out of focus), arms folded, others walking past.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-notice-board-{width}.webp"
+  },
+  {
+   "id": "met-notebook-market",
+   "set": "B",
+   "kind": "person",
+   "aspect": "4:5",
+   "slot": "Live page; Gallery",
+   "scene": "Sitting on a wooden bench writing in a notebook while a market bustles behind him, shallow depth of field.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-notebook-market-{width}.webp"
+  },
+  {
+   "id": "met-phone-call",
+   "set": "B",
+   "kind": "person",
+   "aspect": "2:3",
+   "slot": "Gallery; Contact blocks",
+   "scene": "Roadside phone call, one hand shading his eyes, backpack straps on, a parked pickup behind him (no plate).",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-phone-call-{width}.webp"
+  },
+  {
+   "id": "met-greeting",
+   "set": "B",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Community page; Gallery",
+   "scene": "Pausing to greet a woman carrying a basket on her head. Both smile at each other, turned three-quarters away from the camera.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/met-greeting-{width}.webp"
+  },
+  {
+   "id": "rest-unlacing",
+   "set": "C",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Live page; Gallery",
+   "scene": "Evening, seated on a guesthouse step unlacing a boot, a plastic basin and towel beside him, eyes on the boot.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/rest-unlacing-{width}.webp"
+  },
+  {
+   "id": "rest-foot-soak",
+   "set": "C",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Field notes page; Gallery",
+   "scene": "Both feet soaking in a basin on concrete, boots and socks drying on the wall. No face.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/rest-foot-soak-{width}.webp"
+  },
+  {
+   "id": "rest-eatery-charging",
+   "set": "C",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Gallery; Shop page",
+   "scene": "At a roadside eatery table charging a phone from a power bank, a plate of rice and beans in front of him. Fluorescent light, dusk at the window.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/rest-eatery-charging-{width}.webp"
+  },
+  {
+   "id": "rest-lodging-gear",
+   "set": "C",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Journeys page; Gallery",
+   "scene": "A bedroll and gear laid out on a narrow bed in a simple lodging room, window light. Backpack, boots and a folded headwrap. No face.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/rest-lodging-gear-{width}.webp"
+  },
+  {
+   "id": "rest-reading-bulb",
+   "set": "C",
+   "kind": "person",
+   "aspect": "4:5",
+   "slot": "His story page; Gallery",
+   "scene": "Reading a worn paperback under a single bulb in a lodging doorway at dusk, looking down.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/rest-reading-bulb-{width}.webp"
+  },
+  {
+   "id": "route-murram-bananas",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Journeys cards; Gallery",
+   "scene": "A murram road curving between banana plantations in flat overcast light. A single cyclist far off.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-murram-bananas-{width}.webp"
+  },
+  {
+   "id": "route-plank-bridge",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Journeys cards; Gallery",
+   "scene": "A rough footbridge of poles and planks over a small brown stream, wet stones below.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-plank-bridge-{width}.webp"
+  },
+  {
+   "id": "route-papyrus-causeway",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "16:9",
+   "slot": "Journey page banners",
+   "scene": "A causeway through a papyrus swamp under low cloud.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-papyrus-causeway-{width}.webp"
+  },
+  {
+   "id": "route-eucalyptus-cyclists",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Journeys cards; Gallery",
+   "scene": "A eucalyptus-lined road with two cyclists carrying sacks, riding away from the camera. Tiny and unidentifiable.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-eucalyptus-cyclists-{width}.webp"
+  },
+  {
+   "id": "route-dawn-trading-centre",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Live page; Gallery",
+   "scene": "A trading-centre street at dawn, shutters half open, charcoal smoke, motorbikes parked. No readable signs.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-dawn-trading-centre-{width}.webp"
+  },
+  {
+   "id": "route-rain-road",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Journeys cards; Gallery",
+   "scene": "A rain-dark road with puddles reflecting the headlight of a passing boda-boda.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-rain-road-{width}.webp"
+  },
+  {
+   "id": "route-terraces-sunrise",
+   "set": "D",
+   "kind": "scenery",
+   "aspect": "16:9",
+   "slot": "Page banners (Partners, Reports)",
+   "scene": "Cultivated terraces on a hillside at sunrise, smoke rising from a farm kitchen. No figures.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/route-terraces-sunrise-{width}.webp"
+  },
+  {
+   "id": "gear-boots-doorstep",
+   "set": "E",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Field notes; Gallery",
+   "scene": "Worn boots on a concrete doorstep, one lace undone, dust in the creases.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/gear-boots-doorstep-{width}.webp"
+  },
+  {
+   "id": "gear-pack-laid-out",
+   "set": "E",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Shop page; Gallery",
+   "scene": "Backpack contents laid out on a cloth: notebook, power bank, water bottle, first-aid pouch, a cap. No readable labels.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/gear-pack-laid-out-{width}.webp"
+  },
+  {
+   "id": "gear-notebook-desk",
+   "set": "E",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Live page; Media page",
+   "scene": "A field notebook open with scribbled, illegible lines, a pen, and a phone with a dark screen on a wooden table.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/gear-notebook-desk-{width}.webp"
+  },
+  {
+   "id": "gear-staff-cap",
+   "set": "E",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Get involved; Gallery",
+   "scene": "A walking staff and a cap leaning against a whitewashed wall in hard light.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/gear-staff-cap-{width}.webp"
+  },
+  {
+   "id": "gear-route-sketch",
+   "set": "E",
+   "kind": "object",
+   "aspect": "3:2",
+   "slot": "Journey atlas; Gallery",
+   "scene": "A paper route sketch with a hand-drawn line and unreadable marks, held down by a stone.",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/gear-route-sketch-{width}.webp"
+  },
+  {
+   "id": "remake-home-hero",
+   "set": "R",
+   "kind": "person",
+   "aspect": "16:9",
+   "slot": "Home hero (replaces campaign-hero)",
+   "scene": "Walking along a tarmac verge on the right third, past a parked boda-boda, looking ahead and to the left. Ordinary morning light. Left half open for the headline.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/remake-home-hero-{width}.webp"
+  },
+  {
+   "id": "remake-live-banner",
+   "set": "R",
+   "kind": "person",
+   "aspect": "16:9",
+   "slot": "Live and journal banner (replaces campaign-journal)",
+   "scene": "At a roadside kiosk counter writing in a notebook while the vendor wraps an item. Looks down, three-quarter profile on the right third, left side open.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/remake-live-banner-{width}.webp"
+  },
+  {
+   "id": "remake-community-banner",
+   "set": "R",
+   "kind": "person",
+   "aspect": "16:9",
+   "slot": "Community banner (replaces campaign-community)",
+   "scene": "Walking with two adult companions, mid-conversation, seen from slightly behind. One gestures. No one faces the camera. Left third open.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/remake-community-banner-{width}.webp"
+  },
+  {
+   "id": "remake-portrait",
+   "set": "R",
+   "kind": "person",
+   "aspect": "4:5",
+   "slot": "Home and His story portrait (replaces campaign-portrait)",
+   "scene": "Sitting on a culvert drinking from a bottle, looking off-frame across a field. Unposed.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/remake-portrait-{width}.webp"
+  },
+  {
+   "id": "remake-riverbank",
+   "set": "R",
+   "kind": "person",
+   "aspect": "3:2",
+   "slot": "Home visual story (replaces campaign-riverside)",
+   "scene": "Standing at a riverbank, hands on hips, assessing the crossing, in profile from a distance.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/remake-riverbank-{width}.webp"
+  },
+  {
+   "id": "remake-narrow-path",
+   "set": "R",
+   "kind": "person",
+   "aspect": "16:9",
+   "slot": "Closing band (replaces campaign-open-road)",
+   "scene": "Stepping aside on a narrow ridge path as an adult farmer with two goats passes. Both look forward. Slight telephoto, small figure.",
+   "caption": "Mbanda Shyaka, AI-generated image",
+   "outputPattern": "src/img/remake-narrow-path-{width}.webp"
+  }
+ ]
+}
