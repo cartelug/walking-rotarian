@@ -27,7 +27,7 @@ export function home() {
     </div>
     <figure class="hero__mobile-art">
       ${img('campaign-open-road', {ctx:p, alt:'Campaign artwork of Mbanda walking beside open East African grassland.', sizes:'100vw'})}
-      <figcaption>Campaign artwork created from supplied photographs.</figcaption>
+      <figcaption>AI-generated campaign artwork, created from supplied photographs.</figcaption>
     </figure>
   </div>
   <div class="container">

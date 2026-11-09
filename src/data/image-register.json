@@ -1,0 +1,2644 @@
+{
+ "schema": 1,
+ "purpose": "One row per image: where it came from, who approved it, what it claims, how it is labelled and where it is in the pipeline. Checked by tools/check_images.mjs and by node --test.",
+ "states": {
+  "planned": "AI shot not yet generated",
+  "candidate": "real photograph approved but the file is not in the repository",
+  "ingested": "original is in src/img-original; no web copies yet",
+  "ready": "web copies built and listed in the manifest; not yet placed",
+  "live": "placed on a page",
+  "retired": "removed",
+  "excluded": "not for this site"
+ },
+ "classes": {
+  "documentary": "real photograph",
+  "own-post": "frame or photo from Mbanda’s own public post",
+  "pci-photo": "PCI-published photograph",
+  "news-linkonly": "news photograph: link, never copy",
+  "designed-poster": "designed campaign artwork",
+  "generated-scenery": "AI, no person",
+  "generated-person": "AI, Mbanda",
+  "excluded": "not for this site"
+ },
+ "approvals": {
+  "mbanda": {
+   "by": "Mbanda Shyaka, through his son and the site owner (spoken, not yet written)",
+   "on": "2026-11-09",
+   "covers": [
+    "own-post",
+    "documentary",
+    "generated-person"
+   ]
+  },
+  "pci": {
+   "by": "Pamodzi Community Initiative (PCI), as told by the site owner (not yet written)",
+   "on": "2026-11-09",
+   "covers": [
+    "pci-photo"
+   ]
+  }
+ },
+ "decisions": [
+  {
+   "on": "2026-11-09",
+   "text": "Mbanda Shyaka approves the 22 archive candidates and a labelled AI set of invented candid moments of him. His son, the site owner, gave this in conversation. A short written message from Mbanda should be filed here."
+  },
+  {
+   "on": "2026-11-09",
+   "text": "PCI approves use of its photographs from the archive (church appeal 42, campus 52, and the PCI items already on the site)."
+  },
+  {
+   "on": "2026-11-09",
+   "text": "The three full-size walking photographs (22-23, 22-24, 22-29) have no recorded date. Publish them with no date, place or walk named."
+  },
+  {
+   "on": "2026-11-09",
+   "text": "The 28 October ten-image test is not used."
+  },
+  {
+   "on": "2026-11-09",
+   "text": "Generator: ChatGPT Images, run in the ChatGPT app so several reference photographs can be attached. The Zapier ChatGPT action offers only GPT Image 1 and 1.5 and one source image, so it is used only for scenery and objects, if at all."
+  }
+ ],
+ "excludedArchive": {
+  "newsLinkOnly": [
+   "17",
+   "18",
+   "19",
+   "20",
+   "22",
+   "23",
+   "24",
+   "25"
+  ],
+  "childrenOrLearners": [
+   "03",
+   "07",
+   "08",
+   "09",
+   "10",
+   "11",
+   "12",
+   "13",
+   "14"
+  ],
+  "promoOrPoster": [
+   "04",
+   "05",
+   "15"
+  ]
+ },
+ "images": [
+  {
+   "id": "portrait",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walking-rotarian-photo.jpg",
+   "bytes": 91491,
+   "sha256": "0170aefebc4208c1d4814a628f185d1badc7e1cfde9da2cf5e2892437b5f57b5",
+   "archiveNo": "01",
+   "drive": {
+    "name": "walking-rotarian-photo.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "sha256 (register row) and size"
+   }
+  },
+  {
+   "id": "river-crossing",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walking-rotarian-river-crossing.jpg",
+   "bytes": 65348,
+   "sha256": "f7355df592591c9785b3078ce1c5914fb7e36a258617fde5fdc50c8bc06fb421",
+   "archiveNo": "40",
+   "drive": {
+    "name": "walking-rotarian-river-crossing.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "evening-road",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walking-rotarian-sunset-video-frame.jpg",
+   "bytes": 17919,
+   "sha256": "0800def7e800493d8a4a4642f4762cfd2151a83ae2044362c1afbdf55a47a3ba",
+   "archiveNo": "41",
+   "drive": {
+    "name": "walking-rotarian-sunset-video-frame.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "arrival-celebration",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walk-day-arrival-celebration.jpg",
+   "bytes": 152381,
+   "sha256": "d47c7b2226725e7ec69910809efb4fdfed7cf714a5dcb04997c09528a31532d7",
+   "archiveNo": "26",
+   "drive": {
+    "name": "walk-day-arrival-celebration.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "kiburara-procession",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walk-day-procession-kiburara.jpg",
+   "bytes": 136034,
+   "sha256": "c87cded64e6098d2bf50372b7f9f9b4c63a63b688922c8c0cfcb0d411b7061b3",
+   "archiveNo": "27",
+   "drive": {
+    "name": "walk-day-procession-kiburara.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "kiburara-crowd",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walk-day-crowd-welcome.jpg",
+   "bytes": 119829,
+   "sha256": "1c130d481153f81f7d5eb208f59e1b69dcbc63a58b357a1058cfc0b279628854",
+   "archiveNo": "28",
+   "drive": {
+    "name": "walk-day-crowd-welcome.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "route-mpara-biguli",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/mpara-biguli-day-8.jpg",
+   "bytes": 51658,
+   "sha256": "6a705527e0b092a40b3ad56063d39370b1ba29b05341f7d169dcc2e81f992faf",
+   "archiveNo": "34",
+   "drive": {
+    "name": "mpara-biguli-day-8.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "route-riverside",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/walking-rotarian-riverside-35km.jpg",
+   "bytes": 52431,
+   "sha256": "9aeefa777dd191fbe4df8d72de7aad3e595ad7bf2708a5a10f16d8fb9424b8b2",
+   "archiveNo": "39",
+   "drive": {
+    "name": "walking-rotarian-riverside-35km.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "name and size"
+   }
+  },
+  {
+   "id": "route-kasese",
+   "class": "documentary",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/kasese-milestone-345km.jpg",
+   "bytes": 47061,
+   "sha256": "7d80c25d08c24755e077314cceecf5f2871ef93429b83f339e475a619396d765",
+   "archiveNo": "37",
+   "drive": {
+    "name": "kasese-milestone-345km.jpg",
+    "folder": "01 — Documentary Photos",
+    "match": "sha256 (register row) and size"
+   }
+  },
+  {
+   "id": "poster-345",
+   "class": "designed-poster",
+   "status": "live",
+   "permission": "approved",
+   "approval": "existing site content",
+   "file": "src/img-original/faith-in-motion-345km-poster.jpg",
+   "bytes": 83243,
+   "sha256": "52c12ef70cbcad63cf21f7a533bb4e4852f544a8fdd8199c0c72cd15a23dfec2",
+   "archiveNo": "43",
+   "drive": {
+    "name": "faith-in-motion-345km-poster.jpg",
+    "folder": null,
+    "match": "sha256 (register row)"
+   }
+  },
+  {
+   "id": "campaign-highlands",
+   "class": "generated-scenery",
+   "status": "live",
+   "permission": "approved",
+   "approval": "site owner",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "passed"
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-forest",
+   "class": "generated-scenery",
+   "status": "live",
+   "permission": "approved",
+   "approval": "site owner",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "passed"
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-evening",
+   "class": "generated-scenery",
+   "status": "live",
+   "permission": "approved",
+   "approval": "site owner",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "passed"
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-footsteps",
+   "class": "generated-scenery",
+   "status": "live",
+   "permission": "approved",
+   "approval": "site owner",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "passed"
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-learning",
+   "class": "generated-scenery",
+   "status": "live",
+   "permission": "approved",
+   "approval": "site owner",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "passed"
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-essentials",
+   "class": "generated-scenery",
+   "status": "live",
+   "permission": "approved",
+   "approval": "site owner",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "passed"
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-hero",
+   "class": "generated-person",
+   "status": "live",
+   "permission": "approved",
+   "approval": "mbanda",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "provisional",
+    "provisional": true,
+    "note": "Made from four repository photographs, not the Drive reference pack. Retire once the remakes pass the review gate."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-journal",
+   "class": "generated-person",
+   "status": "live",
+   "permission": "approved",
+   "approval": "mbanda",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "provisional",
+    "provisional": true,
+    "note": "Made from four repository photographs, not the Drive reference pack. Retire once the remakes pass the review gate."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-community",
+   "class": "generated-person",
+   "status": "live",
+   "permission": "approved",
+   "approval": "mbanda",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "provisional",
+    "provisional": true,
+    "note": "Made from four repository photographs, not the Drive reference pack. Retire once the remakes pass the review gate."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-portrait",
+   "class": "generated-person",
+   "status": "live",
+   "permission": "approved",
+   "approval": "mbanda",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "provisional",
+    "provisional": true,
+    "note": "Made from four repository photographs, not the Drive reference pack. Retire once the remakes pass the review gate."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-riverside",
+   "class": "generated-person",
+   "status": "live",
+   "permission": "approved",
+   "approval": "mbanda",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "provisional",
+    "provisional": true,
+    "note": "Made from four repository photographs, not the Drive reference pack. Retire once the remakes pass the review gate."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "campaign-open-road",
+   "class": "generated-person",
+   "status": "live",
+   "permission": "approved",
+   "approval": "mbanda",
+   "derivativesOnly": true,
+   "label": {
+    "text": "AI-generated campaign artwork"
+   },
+   "generation": {
+    "tool": "built-in image generation",
+    "date": "2026-11-07",
+    "promptRef": "src/data/campaign-prompts.json",
+    "gate": "provisional",
+    "provisional": true,
+    "note": "Made from four repository photographs, not the Drive reference pack. Retire once the remakes pass the review gate."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-02-personal-walking-portrait-instagram",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "02",
+   "title": "Personal walking portrait (Instagram)",
+   "match": {
+    "archiveNo": "02"
+   },
+   "origin": {
+    "sourceUrl": "https://www.instagram.com/walkingrotarian/p/DcIyQ_hoIuw/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-42-supporters-carrying-the-church-appeal",
+   "class": "pci-photo",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "pci",
+   "archiveNo": "42",
+   "title": "Supporters carrying the church appeal",
+   "match": {
+    "archiveNo": "42"
+   },
+   "origin": {
+    "sourceUrl": "https://pamodzici.com/faith-in-motion/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "people": {
+    "children": false,
+    "consent": "PCI-published; consent of the women pictured to be confirmed by PCI"
+   }
+  },
+  {
+   "id": "archive-52-ucu-kagando-university-college-campus",
+   "class": "pci-photo",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "pci",
+   "archiveNo": "52",
+   "title": "UCU-Kagando University College campus",
+   "match": {
+    "archiveNo": "52"
+   },
+   "origin": {
+    "sourceUrl": "https://pamodzici.com/walk-for-education/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "note": "Caption must say this is the UCU-Kagando campus and not the nursery school.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-29-akright-city-to-mpigi-day-1",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "29",
+   "title": "Akright City to Mpigi, day 1",
+   "match": {
+    "archiveNo": "29"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-1-of-faith-in-motion-trek-akright-city-mpigi-town-join-the-fundraising-whats/1375841301140361/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-30-roadside-record-day-2",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "30",
+   "title": "Roadside record, day 2",
+   "match": {
+    "archiveNo": "30"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/posts/day-2-of-faithinmotiontrek-345km-from-akright-kampala-to-rwembyo-kasese-saw-me-p/10240453432771069/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-31-a-reflection-from-day-4",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "31",
+   "title": "A reflection from day 4",
+   "match": {
+    "archiveNo": "31"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/then-one-day-courage-woke-up-and-your-feet-chose-the-path-day-4-of-faithinmotion/1051680460576666/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-32-maddu-to-kyayi-trading-centre",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "32",
+   "title": "Maddu to Kyayi trading centre",
+   "match": {
+    "archiveNo": "32"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/maddu-kyayi-trading-centre-in-the-faithinmotiontrek345km-walkingrotarian-breatha/1467883191715019/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-33-a-day-6-journey-record",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "33",
+   "title": "A day 6 journey record",
+   "match": {
+    "archiveNo": "33"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-6-lezzzgo-walkingrotarian-breatharianlifestyle-qigongeveryday-dailyfasting-f/1698807174738891/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-35-mabaale-to-rwimi-day-10",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "35",
+   "title": "Mabaale to Rwimi, day 10",
+   "match": {
+    "archiveNo": "35"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-10-mabaale-rwimi-48km-that-will-see-me-pass-through-the-kibaale-forest-reser/1568576864923017/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-36-rwimi-to-kasese-posted-as-31-km",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "36",
+   "title": "Rwimi to Kasese, posted as 31 km",
+   "match": {
+    "archiveNo": "36"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-10-rwimi-kasese-31km-lezzzgo-walkingrotarian-breatharianlifestyle-qigongever/1037872791943151/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-38-a-public-record-at-the-equator",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "38",
+   "title": "A public record at the Equator",
+   "match": {
+    "archiveNo": "38"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/walking-rotarian-at-the-equator-i-love-uganda-walkingrotarian-breatharianlifesty/924623954004458/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "faith-in-motion",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-06-walk4code-nyabihoko-to-kisizi",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "06",
+   "title": "Walk4Code: Nyabihoko to Kisizi",
+   "match": {
+    "archiveNo": "06"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-3-of-walk4code-l-nyabihoko-ntungamo-kisizi-register-your-child-for-the-hour-/1131627151911774/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "earlier-walks",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-16-public-reflection-on-long-distance-walki",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "16",
+   "title": "Public reflection on long-distance walking",
+   "match": {
+    "archiveNo": "16"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/long-distance-walking-is-such-a-power-house-walkingrotarian-breatharianlifestyle/2936762679851617/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "earlier-walks",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-21-masaka-to-lukaya-posted-as-day-5-peace-w",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "21",
+   "title": "Masaka to Lukaya, posted as day 5 (Peace Walk 2025)",
+   "match": {
+    "archiveNo": "21"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-5-masaka-to-lukaya-30kmpeacewalk2025-breatharianlifestyle-rotaryinternationa/1063553652127161/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "earlier-walks",
+    "journeyStatus": "completed"
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-44-announcing-the-education-journey",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "44",
+   "title": "Announcing the education journey",
+   "match": {
+    "archiveNo": "44"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/nairobi-to-kasese-trek-1300km-loadingwalkforqualityeducationwalkingrotarian-brea/1813970946428441/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-45-rift-valley-descent-limuru-to-longonot",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "45",
+   "title": "Rift Valley descent: Limuru to Longonot",
+   "match": {
+    "archiveNo": "45"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/lovely-walk-that-saw-me-slope-down-the-chilly-rift-valley-from-kiambu-county-int/1733563924861068/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-46-a-post-titled-on-top-of-mt-longonot",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "46",
+   "title": "A post titled On top of Mt Longonot",
+   "match": {
+    "archiveNo": "46"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/on-top-of-mt-longonot-a-spiritual-experience-walkforeducationtrek-walkingrotaria/3536626383165370/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-47-longonot-to-naivasha-day-4",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "47",
+   "title": "Longonot to Naivasha, day 4",
+   "match": {
+    "archiveNo": "47"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/day-4-longonot-to-naivasha-21kmtoday-god-sent-me-angels-a-sign-that-he-is-in-agr/1733652724600057/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-48-kamara-to-timboroa-posted-as-30-km",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "48",
+   "title": "Kamara to Timboroa, posted as 30 km",
+   "match": {
+    "archiveNo": "48"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/total-immersion-into-nature-on-todays-30km-trek-from-kamara-to-timboroa-timboroa/1440812308261475/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-49-another-kamara-timboroa-record-29-km",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "49",
+   "title": "Another Kamara-Timboroa record, 29 km",
+   "match": {
+    "archiveNo": "49"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/2185633895356378/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-50-timboroa-to-burnt-forest-26-km-post",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "50",
+   "title": "Timboroa to Burnt Forest, 26 km post",
+   "match": {
+    "archiveNo": "50"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/timboroa-to-burnt-forest-26kmwalkforeducationtrek-walkingrotarian-qigongeveryday/2153351045617564/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "archive-51-a-nature-reflection-during-the-trek",
+   "class": "own-post",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "archiveNo": "51",
+   "title": "A nature reflection during the trek",
+   "match": {
+    "archiveNo": "51"
+   },
+   "origin": {
+    "sourceUrl": "https://www.facebook.com/mbanda.shyaka/videos/enjoying-nature-walkforeducationtrek-walkingrotarian-breatharianlifestyle-qigong/2165666080805601/",
+    "note": "Archive copy recovered from a dossier; not a source master."
+   },
+   "claim": {
+    "journey": "walk-for-education",
+    "journeyStatus": "underway",
+    "stageApproved": false
+   },
+   "derive": {
+    "crop": {
+     "top": 0.07,
+     "bottom": 0.1
+    },
+    "needsCropReview": true
+   },
+   "note": "Video preview: crop the status bar and player bar by eye, then set needsCropReview to false. Any distance shown is self-reported.",
+   "people": {
+    "children": false
+   }
+  },
+  {
+   "id": "walking-front",
+   "class": "documentary",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "title": "Mbanda walking (front three-quarter, walking)",
+   "match": {
+    "name": "22-23.jpg.jpeg"
+   },
+   "bytes": 760612,
+   "caption": {
+    "rule": "No date, place or walk named. Date and photographer not recorded."
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "hero": true
+   },
+   "note": "Date not recorded. Do not place on a journey page. Possible home or His story hero if the width is 1600 px or more."
+  },
+  {
+   "id": "walking-side",
+   "class": "documentary",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "title": "Mbanda walking (side, walking)",
+   "match": {
+    "name": "22-24.jpg.jpeg"
+   },
+   "bytes": 920386,
+   "caption": {
+    "rule": "No date, place or walk named. Date and photographer not recorded."
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "hero": true
+   },
+   "note": "Date not recorded. Do not place on a journey page. Possible home or His story hero if the width is 1600 px or more."
+  },
+  {
+   "id": "walking-rear",
+   "class": "documentary",
+   "status": "candidate",
+   "permission": "approved",
+   "approval": "mbanda",
+   "title": "Mbanda walking (rear, walking)",
+   "match": {
+    "name": "22-29.jpg.jpeg"
+   },
+   "bytes": 642980,
+   "caption": {
+    "rule": "No date, place or walk named. Date and photographer not recorded."
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "hero": true
+   },
+   "note": "Date not recorded. Do not place on a journey page. Possible home or His story hero if the width is 1600 px or more."
+  },
+  {
+   "id": "launch-group-9",
+   "class": "documentary",
+   "status": "excluded",
+   "permission": "excluded",
+   "match": {
+    "name": "22-9.jpg.jpeg"
+   },
+   "bytes": 693701,
+   "note": "Crowd, banners and payment details in frame. Not for the site unless cropped and consent is given."
+  },
+  {
+   "id": "launch-group-10",
+   "class": "documentary",
+   "status": "excluded",
+   "permission": "excluded",
+   "match": {
+    "name": "22-10.jpg.jpeg"
+   },
+   "bytes": 723396,
+   "note": "Crowd, banners and payment details in frame. Not for the site unless cropped and consent is given."
+  },
+  {
+   "id": "earlier-20230308-132430",
+   "class": "documentary",
+   "status": "candidate",
+   "permission": "pending",
+   "approval": null,
+   "match": {
+    "name": "20230308_132430.jpg"
+   },
+   "bytes": 1450526,
+   "note": "Not yet viewed (8 March 2023). Check the content and consent before ingesting."
+  },
+  {
+   "id": "earlier-20230308-132432",
+   "class": "documentary",
+   "status": "candidate",
+   "permission": "pending",
+   "approval": null,
+   "match": {
+    "name": "20230308_132432.jpg"
+   },
+   "bytes": 1319063,
+   "note": "Not yet viewed (8 March 2023). Check the content and consent before ingesting."
+  },
+  {
+   "id": "earlier-20230308-132434",
+   "class": "documentary",
+   "status": "candidate",
+   "permission": "pending",
+   "approval": null,
+   "match": {
+    "name": "20230308_132434.jpg"
+   },
+   "bytes": 1472646,
+   "note": "Not yet viewed (8 March 2023). Check the content and consent before ingesting."
+  },
+  {
+   "id": "road-phone-check",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-phone-check"
+   },
+   "wave": 3,
+   "pilot": true,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-phone-check",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "road-bootlace",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-bootlace"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-bootlace",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "road-water-fill",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-water-fill"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-water-fill",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "road-produce-stall",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-produce-stall"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-produce-stall",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "road-footbridge-back",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-footbridge-back"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "rear",
+   "driftRisk": "low",
+   "inputs": [
+    "portrait",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-footbridge-back",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "2:3"
+   }
+  },
+  {
+   "id": "road-rest-culvert",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-rest-culvert"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-rest-culvert",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "4:5"
+   }
+  },
+  {
+   "id": "road-map-boda",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-map-boda"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-map-boda",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "road-long-truck",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "road-long-truck"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-long-truck",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  },
+  {
+   "id": "road-heel-tape",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "road-heel-tape"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-heel-tape",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "road-predawn-stretch",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "road-predawn-stretch"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#road-predawn-stretch",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "2:3"
+   }
+  },
+  {
+   "id": "met-veranda-elders",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-veranda-elders"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-veranda-elders",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "met-trestle-table",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-trestle-table"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-trestle-table",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "met-joined-walkers",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-joined-walkers"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "rear",
+   "driftRisk": "low",
+   "inputs": [
+    "portrait",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-joined-walkers",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "met-tea-kiosk",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-tea-kiosk"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-tea-kiosk",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "met-notice-board",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-notice-board"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-notice-board",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "met-notebook-market",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-notebook-market"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-notebook-market",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "4:5"
+   }
+  },
+  {
+   "id": "met-phone-call",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-phone-call"
+   },
+   "wave": 3,
+   "pilot": true,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-phone-call",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "2:3"
+   }
+  },
+  {
+   "id": "met-greeting",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "met-greeting"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#met-greeting",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "rest-unlacing",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "rest-unlacing"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#rest-unlacing",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "rest-foot-soak",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "rest-foot-soak"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#rest-foot-soak",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "rest-eatery-charging",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "rest-eatery-charging"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#rest-eatery-charging",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "rest-lodging-gear",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "rest-lodging-gear"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#rest-lodging-gear",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "rest-reading-bulb",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "rest-reading-bulb"
+   },
+   "wave": 3,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#rest-reading-bulb",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "4:5"
+   }
+  },
+  {
+   "id": "route-murram-bananas",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-murram-bananas"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-murram-bananas",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "route-plank-bridge",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-plank-bridge"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-plank-bridge",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "route-papyrus-causeway",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-papyrus-causeway"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-papyrus-causeway",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  },
+  {
+   "id": "route-eucalyptus-cyclists",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-eucalyptus-cyclists"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-eucalyptus-cyclists",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "route-dawn-trading-centre",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-dawn-trading-centre"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-dawn-trading-centre",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "route-rain-road",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-rain-road"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-rain-road",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "route-terraces-sunrise",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "route-terraces-sunrise"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#route-terraces-sunrise",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  },
+  {
+   "id": "gear-boots-doorstep",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "gear-boots-doorstep"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#gear-boots-doorstep",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "gear-pack-laid-out",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "gear-pack-laid-out"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#gear-pack-laid-out",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "gear-notebook-desk",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "gear-notebook-desk"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#gear-notebook-desk",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "gear-staff-cap",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "gear-staff-cap"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#gear-staff-cap",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "gear-route-sketch",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "gear-route-sketch"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "none",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#gear-route-sketch",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "remake-home-hero",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "remake-home-hero"
+   },
+   "wave": 2,
+   "pilot": true,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "front34",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-front"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#remake-home-hero",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  },
+  {
+   "id": "remake-live-banner",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "remake-live-banner"
+   },
+   "wave": 2,
+   "pilot": true,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#remake-live-banner",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  },
+  {
+   "id": "remake-community-banner",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "remake-community-banner"
+   },
+   "wave": 2,
+   "pilot": true,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "rear",
+   "driftRisk": "low",
+   "inputs": [
+    "portrait",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#remake-community-banner",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  },
+  {
+   "id": "remake-portrait",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "remake-portrait"
+   },
+   "wave": 2,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "unestablished",
+   "driftRisk": "high",
+   "inputs": [
+    "portrait",
+    "body-front",
+    "body-rear"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#remake-portrait",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "4:5"
+   }
+  },
+  {
+   "id": "remake-riverbank",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "remake-riverbank"
+   },
+   "wave": 2,
+   "pilot": true,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#remake-riverbank",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "3:2"
+   }
+  },
+  {
+   "id": "remake-narrow-path",
+   "class": "generated-person",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "mbanda",
+   "match": {
+    "stem": "remake-narrow-path"
+   },
+   "wave": 2,
+   "label": {
+    "text": "Mbanda Shyaka, AI-generated image"
+   },
+   "subject": "mbanda",
+   "poseBasis": "side",
+   "driftRisk": "medium",
+   "inputs": [
+    "portrait",
+    "body-side"
+   ],
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#remake-narrow-path",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": null
+   },
+   "people": {
+    "children": false
+   },
+   "derive": {
+    "aspect": "16:9"
+   }
+  }
+ ]
+}

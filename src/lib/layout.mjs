@@ -159,7 +159,7 @@ export function pageHead({ eyebrow, title, intro, ctx, extra = "" }) {
     <h1>${esc(title)}</h1>
     ${intro ? `<p class="intro intro--light">${intro}</p>` : ""}
     ${extra}
-    <p class="page-head__credit">Campaign artwork</p>
+    <p class="page-head__credit">AI-generated campaign artwork</p>
   </div>
 </header>`;
 }

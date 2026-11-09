@@ -3,6 +3,7 @@
 //       node tools/check_site.mjs --list-links   (also prints every outside link, to click through before launch)
 import fs from "node:fs";
 import path from "node:path";
+import { loadRegister, validateRegister, auditBuiltPages } from "../src/lib/image-register.mjs";
 
 const root = path.resolve(process.argv.slice(2).find((a) => !a.startsWith("--")) || "dist");
 const base = (process.env.BASE_PATH || "").replace(/\/+$/, ""); // site lives under a sub-folder, e.g. GitHub Pages
@@ -95,6 +96,15 @@ notes.push(`${pages.length} pages, ${files.length} files, ${(total / 1024 / 1024
 notes.push(`${externals.size} distinct external links (not fetched by this check)`);
 const bigPages = pages.map((f) => [path.relative(root, f), fs.statSync(f).size]).filter(([, s]) => s > 90 * 1024);
 if (bigPages.length) notes.push("large html: " + bigPages.map(([n, s]) => `${n} ${(s / 1024).toFixed(0)}KB`).join(", "));
+
+// The image register: permissions, claims, labels, and AI artwork named as AI on every page that shows it.
+{
+  const imgRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+  const reg = loadRegister();
+  const manifest = JSON.parse(fs.readFileSync(path.join(imgRoot, "src", "img", "manifest.json"), "utf8"));
+  for (const p of validateRegister(reg, { root: imgRoot, manifest })) bad("image register", p);
+  for (const p of auditBuiltPages(root, reg)) bad("AI label", p);
+}
 
 console.log(notes.join("\n"));
 if (problems.length) {

@@ -2,12 +2,24 @@
 
 Prepared 9 November 2026. Built on the first audit (commit `f91b4a6`), a second pass through Google Drive (the PCI tree, the Walking Rotarian website folder and Mbanda's reference folder), the sister repository `cartelug/spear-line` and a fresh build of this site. **Nothing here has been generated, added to the site or published.** It is a plan for the owner to approve.
 
+## Decisions recorded 9 November 2026
+
+1. **Mbanda approves** the 22 archive candidates and a labelled AI set of invented candid moments of him. His son, the site owner, gave this in conversation. It is spoken, not yet written.
+2. **PCI approves** its photographs from the archive (church appeal 42, campus 52 and the PCI items already on the site).
+3. **The three walking photographs (22-23, 22-24, 22-29) are published with no date, place or walk named,** and stay off the journey pages. The two group photographs (22-9, 22-10) stay out: crowd, banners and payment details.
+4. **The 28 October ten-image test is skipped.**
+5. **Generator: ChatGPT Images, run in the ChatGPT app,** where several reference photographs can be attached. The Zapier ChatGPT action on this account offers only GPT Image 1 and 1.5 and a single source image, so it cannot carry the reference pack. It could make the scenery and objects (no person), at a lower model level, if asked.
+
+All five are recorded in `src/data/image-register.json`.
+
+**Built and tested** (with dummy images; no real photograph has been ingested yet): the register and its rules, the label audit in `tools/check_site.mjs`, `tools/ingest-drive.mjs`, `tools/make_scenes.py`, and `tools/assemble-prompts.mjs` with its output `docs/prompts-ready.md`, and the generation protocol `docs/GENERATION-PROTOCOL.md` with its empty log `docs/generation-log.csv`. The AI label on the home hero and the page banners now says "AI-generated". **Not built yet:** the render-time resolver and page wiring, AVIF output, gallery filters and "show more", the journey-page "Photographs at the source" rows, and the admin-form approval fields.
+
 ## 1. What changed since the first version
 
 1. **Drive holds an authoritative identity pack and a rule file.** My first prompt pack contradicted it in seven places (section 3). It is corrected, and the corrected pack is the one to use.
 2. **The real-photograph supply is bigger than I first thought, but every item is gated.** The 52-image archive in Drive holds 22 more candidates for this site (19 frames from Mbanda's own public video posts, one Instagram photo, two PCI photographs). Five full-size originals and three 2023 photographs sit in Drive beside them. None has been cleared for publication.
 3. **Source waterfall.** A slot takes a real photograph first, then a link to the source, then AI. This replaces "generate 41 images" with "generate only what real photographs cannot fill" (section 4).
-4. **A register links every image to its PCI source** by checksum, and records who approved it, what it claims and how it is labelled. A seed register, built from rows I verified, is in `docs/image-register.seed.json`.
+4. **A register links every image to its PCI source** by checksum, and records who approved it, what it claims and how it is labelled. The register is built: `src/data/image-register.json` (93 rows).
 5. **Previously generated images** are reused only through a ladder with a decision for each set (section 4.5). Most should not be reused.
 
 **I could not look at any of the Drive reference photographs.** The Drive connector returns text only for images. Everything in section 3 about what each photograph shows comes from the owner's own rule files, not from my eyes. Someone should lay the six reference files beside the first pilot images before anything is approved.
@@ -67,7 +79,7 @@ A slot is never filled by an image that fails a gate in 4.3.
 
 ### 4.2 The register (`src/data/image-register.json`)
 
-One row per image, seeded from `docs/image-register.seed.json`.
+One row per image. Built from rows I verified against the repository and the Drive listing, and checked by `tools/check_images.mjs`.
 
 | Field | Meaning |
 |---|---|
@@ -97,9 +109,9 @@ One row per image, seeded from `docs/image-register.seed.json`.
 ### 4.4 Linking to the PCI Drive
 
 - **Build-time, not run-time.** The site is static on GitHub Pages and the Drive is private, so pages never load from Drive.
-- **Ingest, hash-verified.** A new tool, `tools/ingest-drive.mjs`, takes a folder or ZIP the owner downloads from Drive. It hashes each file, matches rows by SHA-256, copies the file unchanged into `src/img-original/`, runs the existing derivative step and updates the manifest. An optional mode downloads by Drive file ID when a token is supplied. That mode is designed here and has not been built or tested.
+- **Ingest, hash-verified.** `tools/ingest-drive.mjs` takes a folder the owner downloads from Drive (or images saved from ChatGPT). It hashes each file, matches rows by SHA-256, copies the file unchanged into `src/img-original/`, runs the existing derivative step and updates the manifest. An optional mode downloads by Drive file ID when a token is supplied. That mode is a design only and has not been built.
 - **Public captions cite the public source** (the PCI page or the post), never a Drive link.
-- **Do not commit Drive file IDs or the reference photographs.** The repository is public and the Drive tree also holds payment and identity material. The seed file stores file names, sizes and checksums only.
+- **Do not commit Drive file IDs or the reference photographs.** The repository is public and the Drive tree also holds payment and identity material. The register stores file names, sizes and checksums only.
 - **Admin form:** add "Approve this image" and "Approve this claim" fields to the existing GitHub publishing forms, so the owner approves in the tool he already uses.
 
 ### 4.5 Previously generated images
@@ -253,33 +265,38 @@ Wave 1 (16, scenery and objects) can run at any time. Wave 2 (6, the remakes) fo
 
 ## 8. How to generate
 
-1. Attach the inputs the pack names for each shot: the portrait always, then the body original for its pose basis.
-2. Use the identity block first, then the scene, then the style and negative blocks. For scenery and objects use the no-person style block.
-3. Run the **pilot** (six shots). Compare each face with the portrait at the same size. Mbanda or the owner approves.
-4. Apply the review gate to every image (face features list, phone and desktop size, no stray text, hands, no Rotary marks, no children, no place claims). Record any limitation.
-5. Never refine a chain of generated faces. Go back to the original for every identity-sensitive revision.
+Follow `docs/GENERATION-PROTOCOL.md` for the rules (checks before a run, the pilot decision, the review gate, the three-attempt limit and the log) and `docs/prompts-ready.md` for the prompts. The prompts file holds the final prompt, the reference photographs to attach, the size to ask for and the file name for all 41 pictures, in running order.
+
+1. Run the **pilot** (six shots) in the ChatGPT app, one new chat each, with the reference photographs attached. Compare each face with the portrait at the same size.
+2. Wave 1 (scenery and objects) can run at any time.
+3. Apply the review gate to every image. Never refine a chain of generated faces: go back to the original photographs for every identity-sensitive revision.
+4. Save each result as `<id>.png` in one folder, then run `node tools/ingest-drive.mjs <folder> --write`, `python3 -I tools/make_scenes.py` and `node tools/check_images.mjs`.
+5. A person picture stays blocked until its register row has `generation.gate` set to `passed` and `branding.removed` set to `true`.
 
 ## 9. What changes in the repository
 
-1. `src/data/image-register.json`: grown from the seed.
-2. `tools/ingest-drive.mjs`: ingest by checksum (section 4.4).
-3. `tools/make_scenes.py`: derivatives at 480, 960 and 1400 (1672 for heroes) with AVIF first. Estimate, not measured: 41 sets at today's 246 KB each is about 10 MB.
-4. `build.mjs` and `src/lib/util.mjs`: the resolver for the waterfall and the gates, with the page map in `src/data/image-slots.mjs`.
-5. `src/data/gallery.mjs` and `src/data/campaign-artwork.mjs`: classes, filters, "show more" after 24 tiles, caption from the register.
-6. `src/assets/visuals.css`: per-page banners replace the six shared ones.
-7. `tools/check_site.mjs` and `tests/`: the gates in 4.3, including the AI-label check.
-8. Journey pages: "Photographs at the source" rows for the news photographs.
-9. Admin forms: approve-image and approve-claim fields.
-10. Run `node build.mjs`, `node tools/check_site.mjs`, `node --test tests/*.test.mjs` and `python3 -I tools/browser_check.py`.
+| # | Change | State |
+|---|---|---|
+| 1 | `src/data/image-register.json` | **Built** |
+| 2 | `tools/ingest-drive.mjs`: ingest by checksum, archive number, name or picture id | **Built, tested with dummy images** |
+| 3 | `tools/make_scenes.py`: web copies at 480, 960 and 1400 (1672 for heroes), crops and aspect | **Built, tested with dummy images.** AVIF not yet. Estimate, not measured: 41 sets at today's 246 KB each is about 10 MB. |
+| 4 | `tools/check_images.mjs`, the register rules in `src/lib/image-register.mjs`, and the AI-label audit in `tools/check_site.mjs` | **Built** (29 of 29 tests pass) |
+| 5 | AI labels on the home hero caption and the page banners | **Done** |
+| 6 | `tools/assemble-prompts.mjs` and `docs/prompts-ready.md` | **Built** |
+| 7 | Render-time resolver for the waterfall, with the page map in `src/data/image-slots.mjs` | Not built |
+| 8 | `src/data/gallery.mjs` and `src/data/campaign-artwork.mjs`: classes, filters, "show more" after 24 tiles, captions from the register | Not built |
+| 9 | `src/assets/visuals.css`: per-page banners replace the six shared ones | Not built |
+| 10 | Journey pages: "Photographs at the source" rows for the news photographs | Not built |
+| 11 | Admin forms: approve-image and approve-claim fields | Not built |
 
-## 10. Decisions needed
+## 10. Still open
 
-1. **Mbanda's approval** of (a) the candidates in section 6, and (b) a labelled AI set of invented candid moments of him.
-2. **PCI's approval** for the church-appeal photograph (42), the campus photograph (52) and any use of the PCI archive.
-3. **Provenance of `22-23`, `22-24` and `22-29`:** date, place, which walk, who took them.
-4. **Where the 28 October ten-image test is.**
-5. **Who generates.** This session has no image tool. Whoever does must attach the reference pack, which sends Mbanda's photographs to an outside service and spends credits.
-6. **Whether to start with scenery and objects now** (16 images, no identity risk), as recommended.
+1. **Put the approvals in writing.** One line from Mbanda and one from PCI, pasted into `approvals` in the register.
+2. **Get the approved files into one folder.** The Drive connector cannot move image files, so download the 22 archive items (Drive folder "02 Archived Public Photos & Video Previews") and the three walking originals, then run the ingest tool. Leave out the three 2023 photographs until someone has looked at them.
+3. **Run the pilot** in ChatGPT and check it against the portrait.
+4. **Look at the 2023 photographs** (`20230308_*.jpg`) and decide.
+5. **Check the crop of each video preview.** The register carries a default crop for the status and player bars, flagged `needsCropReview` until someone has looked.
+6. The Zapier route is **not authorised** (protocol section 11). Nothing is generated until the Owner starts a run.
 
 ## 11. What I did not verify
 
@@ -288,5 +305,5 @@ Wave 1 (16, scenery and objects) can run at any time. Wave 2 (6, the remakes) fo
 - I did not open the three 2023 photographs, the three generated reference sheets, the Creative Website Blueprint PDF or the later pages of the PCI generated folder.
 - I did not check the rights of any post or photograph. "Rights are not established by inclusion" is the Drive archive's own note.
 - Whether the 22-series photographs show the Walk for Education in progress is unknown.
-- The ingest tool and the resolver are designs. Nothing has been built or tested.
+- The ingest tool, web-copy script and checks were tested with dummy images, not real photographs. The default crop for video previews is a guess. The resolver and the page wiring are not built.
 - The Spear Line comparisons from the first version still rest on 480 px views.
