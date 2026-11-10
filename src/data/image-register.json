@@ -16,7 +16,7 @@
   "pci-photo": "PCI-published photograph",
   "news-linkonly": "news photograph: link, never copy",
   "designed-poster": "designed campaign artwork",
-  "generated-scenery": "AI, no person",
+  "generated-scenery": "AI, no Mbanda (scenery, objects or other adults)",
   "generated-person": "AI, Mbanda",
   "excluded": "not for this site"
  },
@@ -1319,7 +1319,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 5
   },
   {
    "id": "road-bootlace",
@@ -1355,7 +1357,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "road-water-fill",
@@ -1390,7 +1393,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "road-produce-stall",
@@ -1425,7 +1429,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 9
   },
   {
    "id": "road-footbridge-back",
@@ -1460,7 +1466,9 @@
    },
    "derive": {
     "aspect": "2:3"
-   }
+   },
+   "batch": "final30",
+   "order": 7
   },
   {
    "id": "road-rest-culvert",
@@ -1496,7 +1504,8 @@
    },
    "derive": {
     "aspect": "4:5"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "road-map-boda",
@@ -1531,7 +1540,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 10
   },
   {
    "id": "road-long-truck",
@@ -1560,7 +1571,9 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 13
   },
   {
    "id": "road-heel-tape",
@@ -1589,7 +1602,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "road-predawn-stretch",
@@ -1625,7 +1639,8 @@
    },
    "derive": {
     "aspect": "2:3"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "met-veranda-elders",
@@ -1661,7 +1676,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "met-trestle-table",
@@ -1697,7 +1713,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "met-joined-walkers",
@@ -1732,7 +1749,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 8
   },
   {
    "id": "met-tea-kiosk",
@@ -1767,7 +1786,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 11
   },
   {
    "id": "met-notice-board",
@@ -1802,7 +1823,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "met-notebook-market",
@@ -1838,7 +1860,8 @@
    },
    "derive": {
     "aspect": "4:5"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "met-phone-call",
@@ -1874,7 +1897,9 @@
    },
    "derive": {
     "aspect": "2:3"
-   }
+   },
+   "batch": "final30",
+   "order": 6
   },
   {
    "id": "met-greeting",
@@ -1909,7 +1934,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "rest-unlacing",
@@ -1945,7 +1971,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "rest-foot-soak",
@@ -1974,7 +2001,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "rest-eatery-charging",
@@ -2010,7 +2038,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "rest-lodging-gear",
@@ -2039,7 +2068,8 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "rest-reading-bulb",
@@ -2075,7 +2105,8 @@
    },
    "derive": {
     "aspect": "4:5"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "route-murram-bananas",
@@ -2104,7 +2135,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 14
   },
   {
    "id": "route-plank-bridge",
@@ -2133,7 +2166,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 15
   },
   {
    "id": "route-papyrus-causeway",
@@ -2162,7 +2197,9 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 16
   },
   {
    "id": "route-eucalyptus-cyclists",
@@ -2191,7 +2228,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 17
   },
   {
    "id": "route-dawn-trading-centre",
@@ -2220,7 +2259,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 18
   },
   {
    "id": "route-rain-road",
@@ -2249,7 +2290,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 19
   },
   {
    "id": "route-terraces-sunrise",
@@ -2278,7 +2321,9 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 20
   },
   {
    "id": "gear-boots-doorstep",
@@ -2307,7 +2352,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 21
   },
   {
    "id": "gear-pack-laid-out",
@@ -2336,7 +2383,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 22
   },
   {
    "id": "gear-notebook-desk",
@@ -2365,7 +2414,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 23
   },
   {
    "id": "gear-staff-cap",
@@ -2394,7 +2445,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 24
   },
   {
    "id": "gear-route-sketch",
@@ -2423,7 +2476,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 25
   },
   {
    "id": "remake-home-hero",
@@ -2459,7 +2514,9 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 1
   },
   {
    "id": "remake-live-banner",
@@ -2495,7 +2552,9 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 3
   },
   {
    "id": "remake-community-banner",
@@ -2531,7 +2590,9 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 2
   },
   {
    "id": "remake-portrait",
@@ -2567,7 +2628,8 @@
    },
    "derive": {
     "aspect": "4:5"
-   }
+   },
+   "batch": "reserve"
   },
   {
    "id": "remake-riverbank",
@@ -2603,7 +2665,9 @@
    },
    "derive": {
     "aspect": "3:2"
-   }
+   },
+   "batch": "final30",
+   "order": 4
   },
   {
    "id": "remake-narrow-path",
@@ -2638,7 +2702,169 @@
    },
    "derive": {
     "aspect": "16:9"
-   }
+   },
+   "batch": "final30",
+   "order": 12
+  },
+  {
+   "id": "life-tea-vendor",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "life-tea-vendor"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "others",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#life-tea-vendor",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false,
+    "adultsOnly": true
+   },
+   "derive": {
+    "aspect": "3:2"
+   },
+   "batch": "final30",
+   "order": 26
+  },
+  {
+   "id": "life-market-tomatoes",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "life-market-tomatoes"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "others",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#life-market-tomatoes",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false,
+    "adultsOnly": true
+   },
+   "derive": {
+    "aspect": "3:2"
+   },
+   "batch": "final30",
+   "order": 27
+  },
+  {
+   "id": "life-boda-waiting",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "life-boda-waiting"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "others",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#life-boda-waiting",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false,
+    "adultsOnly": true
+   },
+   "derive": {
+    "aspect": "3:2"
+   },
+   "batch": "final30",
+   "order": 28
+  },
+  {
+   "id": "life-farmer-path",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "life-farmer-path"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "others",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#life-farmer-path",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false,
+    "adultsOnly": true
+   },
+   "derive": {
+    "aspect": "3:2"
+   },
+   "batch": "final30",
+   "order": 29
+  },
+  {
+   "id": "life-cyclist-sacks",
+   "class": "generated-scenery",
+   "status": "planned",
+   "permission": "approved",
+   "approval": "site owner",
+   "match": {
+    "stem": "life-cyclist-sacks"
+   },
+   "wave": 1,
+   "label": {
+    "text": "AI-generated illustration"
+   },
+   "subject": "others",
+   "generation": {
+    "tool": "ChatGPT Images (app)",
+    "packRef": "docs/candid-prompt-pack.json#life-cyclist-sacks",
+    "gate": "pending"
+   },
+   "branding": {
+    "removed": true
+   },
+   "people": {
+    "children": false,
+    "adultsOnly": true
+   },
+   "derive": {
+    "aspect": "2:3"
+   },
+   "batch": "final30",
+   "order": 30
   }
  ]
 }

@@ -15,7 +15,7 @@
  "styleBlock": "An unposed documentary moment in ordinary natural daylight (overcast or open shade), muted honest colour, real texture. The subject is off-centre and his attention is on the task or the road, not the camera. Any other people are adults, shown from behind, in profile or partly cropped, doing something of their own. The foreground may be partly blocked by a passing object or person. A believable Ugandan roadside or trading-centre setting. His clothing and kit follow the supplied walking photograph, with every Rotary, Rotarian, Rtn., Club of Akright City and wheel mark removed and the fabric reconstructed naturally.",
  "styleBlockNoPerson": "An unposed documentary photograph in ordinary natural daylight (overcast or open shade), muted honest colour, real texture, slightly imperfect framing. A believable Ugandan roadside, trading-centre or lodging setting. No recognisable person.",
  "negativeBlock": "No text, numbers, signs, banners, logos, Rotary or club emblems, licence plates, mileage or tracker overlays. No children's faces. No named place, stage, milestone or event. No golden-hour glow, mist, light shafts or lens flare. No staged laughing group, handshake pose or hero pose. No extra fingers, duplicated people, or melted hands and boots.",
- "assemble": "person shots: identityBlock + \" Scene: \" + scene + \" \" + styleBlock + \" \" + negativeBlock + \" Aspect ratio \" + aspect.  other shots: styleBlockNoPerson + \" Scene: \" + scene + \" \" + negativeBlock + \" Aspect ratio \" + aspect.",
+ "assemble": "person shots: identityBlock + \" Scene: \" + scene + \" \" + styleBlock + \" \" + negativeBlock + \" Aspect ratio \" + aspect.  scenery and objects: styleBlockNoPerson + scene + negativeBlock.  other adults without Mbanda: styleBlockOthers + scene + negativeBlock.  The one-prompt file (docs/ONE-PROMPT.md) combines all of them.",
  "process": [
   "1. Run the six pilot shots (pilot: true) and compare each with the portrait at the same face size.",
   "2. The Reviewer (someone who knows his face) passes or rejects the pilot set. Only then run wave 2, then wave 3 for gaps that real photographs did not fill.",
@@ -51,7 +51,9 @@
    ],
    "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-phone-check-{width}.webp"
+   "outputPattern": "src/img/road-phone-check-{width}.webp",
+   "batch": "final30",
+   "order": 5
   },
   {
    "id": "road-bootlace",
@@ -70,7 +72,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-bootlace-{width}.webp"
+   "outputPattern": "src/img/road-bootlace-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "road-water-fill",
@@ -88,7 +91,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-water-fill-{width}.webp"
+   "outputPattern": "src/img/road-water-fill-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "road-produce-stall",
@@ -106,7 +110,9 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-produce-stall-{width}.webp"
+   "outputPattern": "src/img/road-produce-stall-{width}.webp",
+   "batch": "final30",
+   "order": 9
   },
   {
    "id": "road-footbridge-back",
@@ -124,7 +130,9 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-footbridge-back-{width}.webp"
+   "outputPattern": "src/img/road-footbridge-back-{width}.webp",
+   "batch": "final30",
+   "order": 7
   },
   {
    "id": "road-rest-culvert",
@@ -143,7 +151,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-rest-culvert-{width}.webp"
+   "outputPattern": "src/img/road-rest-culvert-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "road-map-boda",
@@ -161,7 +170,9 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-map-boda-{width}.webp"
+   "outputPattern": "src/img/road-map-boda-{width}.webp",
+   "batch": "final30",
+   "order": 10
   },
   {
    "id": "road-long-truck",
@@ -172,7 +183,9 @@
    "scene": "Very wide view: a tiny, unidentifiable walker far along a long red-earth road, a loaded truck passing in the foreground. Flat overcast light, large quiet sky for a headline.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/road-long-truck-{width}.webp"
+   "outputPattern": "src/img/road-long-truck-{width}.webp",
+   "batch": "final30",
+   "order": 13
   },
   {
    "id": "road-heel-tape",
@@ -183,7 +196,8 @@
    "scene": "Close detail: hands taping a heel with medical tape beside worn boots. No face.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/road-heel-tape-{width}.webp"
+   "outputPattern": "src/img/road-heel-tape-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "road-predawn-stretch",
@@ -202,7 +216,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/road-predawn-stretch-{width}.webp"
+   "outputPattern": "src/img/road-predawn-stretch-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "met-veranda-elders",
@@ -221,7 +236,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-veranda-elders-{width}.webp"
+   "outputPattern": "src/img/met-veranda-elders-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "met-trestle-table",
@@ -240,7 +256,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-trestle-table-{width}.webp"
+   "outputPattern": "src/img/met-trestle-table-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "met-joined-walkers",
@@ -258,7 +275,9 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-joined-walkers-{width}.webp"
+   "outputPattern": "src/img/met-joined-walkers-{width}.webp",
+   "batch": "final30",
+   "order": 8
   },
   {
    "id": "met-tea-kiosk",
@@ -276,7 +295,9 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-tea-kiosk-{width}.webp"
+   "outputPattern": "src/img/met-tea-kiosk-{width}.webp",
+   "batch": "final30",
+   "order": 11
   },
   {
    "id": "met-notice-board",
@@ -294,7 +315,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-notice-board-{width}.webp"
+   "outputPattern": "src/img/met-notice-board-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "met-notebook-market",
@@ -313,7 +335,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-notebook-market-{width}.webp"
+   "outputPattern": "src/img/met-notebook-market-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "met-phone-call",
@@ -331,7 +354,9 @@
    ],
    "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-phone-call-{width}.webp"
+   "outputPattern": "src/img/met-phone-call-{width}.webp",
+   "batch": "final30",
+   "order": 6
   },
   {
    "id": "met-greeting",
@@ -349,7 +374,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/met-greeting-{width}.webp"
+   "outputPattern": "src/img/met-greeting-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "rest-unlacing",
@@ -368,7 +394,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/rest-unlacing-{width}.webp"
+   "outputPattern": "src/img/rest-unlacing-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "rest-foot-soak",
@@ -379,7 +406,8 @@
    "scene": "Both feet soaking in a basin on concrete, boots and socks drying on the wall. No face.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/rest-foot-soak-{width}.webp"
+   "outputPattern": "src/img/rest-foot-soak-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "rest-eatery-charging",
@@ -398,7 +426,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/rest-eatery-charging-{width}.webp"
+   "outputPattern": "src/img/rest-eatery-charging-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "rest-lodging-gear",
@@ -409,7 +438,8 @@
    "scene": "A bedroll and gear laid out on a narrow bed in a simple lodging room, window light. Backpack, boots and a folded headwrap. No face.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/rest-lodging-gear-{width}.webp"
+   "outputPattern": "src/img/rest-lodging-gear-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "rest-reading-bulb",
@@ -428,7 +458,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/rest-reading-bulb-{width}.webp"
+   "outputPattern": "src/img/rest-reading-bulb-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "route-murram-bananas",
@@ -439,7 +470,9 @@
    "scene": "A murram road curving between banana plantations in flat overcast light. A single cyclist far off.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-murram-bananas-{width}.webp"
+   "outputPattern": "src/img/route-murram-bananas-{width}.webp",
+   "batch": "final30",
+   "order": 14
   },
   {
    "id": "route-plank-bridge",
@@ -450,7 +483,9 @@
    "scene": "A rough footbridge of poles and planks over a small brown stream, wet stones below.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-plank-bridge-{width}.webp"
+   "outputPattern": "src/img/route-plank-bridge-{width}.webp",
+   "batch": "final30",
+   "order": 15
   },
   {
    "id": "route-papyrus-causeway",
@@ -461,7 +496,9 @@
    "scene": "A causeway through a papyrus swamp under low cloud.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-papyrus-causeway-{width}.webp"
+   "outputPattern": "src/img/route-papyrus-causeway-{width}.webp",
+   "batch": "final30",
+   "order": 16
   },
   {
    "id": "route-eucalyptus-cyclists",
@@ -472,7 +509,9 @@
    "scene": "A eucalyptus-lined road with two cyclists carrying sacks, riding away from the camera. Tiny and unidentifiable.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-eucalyptus-cyclists-{width}.webp"
+   "outputPattern": "src/img/route-eucalyptus-cyclists-{width}.webp",
+   "batch": "final30",
+   "order": 17
   },
   {
    "id": "route-dawn-trading-centre",
@@ -483,7 +522,9 @@
    "scene": "A trading-centre street at dawn, shutters half open, charcoal smoke, motorbikes parked. No readable signs.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-dawn-trading-centre-{width}.webp"
+   "outputPattern": "src/img/route-dawn-trading-centre-{width}.webp",
+   "batch": "final30",
+   "order": 18
   },
   {
    "id": "route-rain-road",
@@ -494,7 +535,9 @@
    "scene": "A rain-dark road with puddles reflecting the headlight of a passing boda-boda.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-rain-road-{width}.webp"
+   "outputPattern": "src/img/route-rain-road-{width}.webp",
+   "batch": "final30",
+   "order": 19
   },
   {
    "id": "route-terraces-sunrise",
@@ -505,7 +548,9 @@
    "scene": "Cultivated terraces on a hillside at sunrise, smoke rising from a farm kitchen. No figures.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/route-terraces-sunrise-{width}.webp"
+   "outputPattern": "src/img/route-terraces-sunrise-{width}.webp",
+   "batch": "final30",
+   "order": 20
   },
   {
    "id": "gear-boots-doorstep",
@@ -516,7 +561,9 @@
    "scene": "Worn boots on a concrete doorstep, one lace undone, dust in the creases.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/gear-boots-doorstep-{width}.webp"
+   "outputPattern": "src/img/gear-boots-doorstep-{width}.webp",
+   "batch": "final30",
+   "order": 21
   },
   {
    "id": "gear-pack-laid-out",
@@ -527,7 +574,9 @@
    "scene": "Backpack contents laid out on a cloth: notebook, power bank, water bottle, first-aid pouch, a cap. No readable labels.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/gear-pack-laid-out-{width}.webp"
+   "outputPattern": "src/img/gear-pack-laid-out-{width}.webp",
+   "batch": "final30",
+   "order": 22
   },
   {
    "id": "gear-notebook-desk",
@@ -538,7 +587,9 @@
    "scene": "A field notebook open with scribbled, illegible lines, a pen, and a phone with a dark screen on a wooden table.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/gear-notebook-desk-{width}.webp"
+   "outputPattern": "src/img/gear-notebook-desk-{width}.webp",
+   "batch": "final30",
+   "order": 23
   },
   {
    "id": "gear-staff-cap",
@@ -549,7 +600,9 @@
    "scene": "A walking staff and a cap leaning against a whitewashed wall in hard light.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/gear-staff-cap-{width}.webp"
+   "outputPattern": "src/img/gear-staff-cap-{width}.webp",
+   "batch": "final30",
+   "order": 24
   },
   {
    "id": "gear-route-sketch",
@@ -560,7 +613,9 @@
    "scene": "A paper route sketch with a hand-drawn line and unreadable marks, held down by a stone.",
    "wave": 1,
    "caption": "AI-generated illustration",
-   "outputPattern": "src/img/gear-route-sketch-{width}.webp"
+   "outputPattern": "src/img/gear-route-sketch-{width}.webp",
+   "batch": "final30",
+   "order": 25
   },
   {
    "id": "remake-home-hero",
@@ -578,7 +633,9 @@
    ],
    "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/remake-home-hero-{width}.webp"
+   "outputPattern": "src/img/remake-home-hero-{width}.webp",
+   "batch": "final30",
+   "order": 1
   },
   {
    "id": "remake-live-banner",
@@ -596,7 +653,9 @@
    ],
    "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/remake-live-banner-{width}.webp"
+   "outputPattern": "src/img/remake-live-banner-{width}.webp",
+   "batch": "final30",
+   "order": 3
   },
   {
    "id": "remake-community-banner",
@@ -614,7 +673,9 @@
    ],
    "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/remake-community-banner-{width}.webp"
+   "outputPattern": "src/img/remake-community-banner-{width}.webp",
+   "batch": "final30",
+   "order": 2
   },
   {
    "id": "remake-portrait",
@@ -633,7 +694,8 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/remake-portrait-{width}.webp"
+   "outputPattern": "src/img/remake-portrait-{width}.webp",
+   "batch": "reserve"
   },
   {
    "id": "remake-riverbank",
@@ -651,7 +713,9 @@
    ],
    "pilot": true,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/remake-riverbank-{width}.webp"
+   "outputPattern": "src/img/remake-riverbank-{width}.webp",
+   "batch": "final30",
+   "order": 4
   },
   {
    "id": "remake-narrow-path",
@@ -669,7 +733,86 @@
    ],
    "pilot": false,
    "caption": "Mbanda Shyaka, AI-generated image",
-   "outputPattern": "src/img/remake-narrow-path-{width}.webp"
+   "outputPattern": "src/img/remake-narrow-path-{width}.webp",
+   "batch": "final30",
+   "order": 12
+  },
+  {
+   "id": "life-tea-vendor",
+   "set": "F",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Community page; Gallery",
+   "scene": "A tea kiosk vendor's hands pouring tea into a cup, seen from the customer's side. A boda-boda rider waits behind, turned away. No face in sharp focus.",
+   "wave": 1,
+   "subject": "others",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/life-tea-vendor-{width}.webp",
+   "batch": "final30",
+   "order": 26
+  },
+  {
+   "id": "life-market-tomatoes",
+   "set": "F",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Get involved page; Gallery",
+   "scene": "A woman arranging tomatoes on a roadside stall, in profile, with other shoppers blurred behind her. Adults only.",
+   "wave": 1,
+   "subject": "others",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/life-market-tomatoes-{width}.webp",
+   "batch": "final30",
+   "order": 27
+  },
+  {
+   "id": "life-boda-waiting",
+   "set": "F",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Live page; Gallery",
+   "scene": "A boda-boda rider at a stage adjusting his helmet, side view, other riders blurred behind him. No licence plate.",
+   "wave": 1,
+   "subject": "others",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/life-boda-waiting-{width}.webp",
+   "batch": "final30",
+   "order": 28
+  },
+  {
+   "id": "life-farmer-path",
+   "set": "F",
+   "kind": "scenery",
+   "aspect": "3:2",
+   "slot": "Journeys cards; Gallery",
+   "scene": "An adult farmer walking a narrow path with two goats, seen from behind, a terraced hillside beyond.",
+   "wave": 1,
+   "subject": "others",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/life-farmer-path-{width}.webp",
+   "batch": "final30",
+   "order": 29
+  },
+  {
+   "id": "life-cyclist-sacks",
+   "set": "F",
+   "kind": "scenery",
+   "aspect": "2:3",
+   "slot": "Community page; Gallery",
+   "scene": "A cyclist pushing a bicycle loaded with sacks up a gentle slope, seen from behind, on a red-earth road lined with eucalyptus trees.",
+   "wave": 1,
+   "subject": "others",
+   "caption": "AI-generated illustration",
+   "outputPattern": "src/img/life-cyclist-sacks-{width}.webp",
+   "batch": "final30",
+   "order": 30
   }
- ]
+ ],
+ "firstRun": {
+  "count": 30,
+  "withMbanda": 12,
+  "withoutMbanda": 18,
+  "note": "The first run is the 30 pictures with batch \"final30\", in order. Every other shot is held in reserve (seated and crouched poses are all in reserve: no original photograph shows them)."
+ },
+ "styleBlockOthers": "An unposed documentary photograph in ordinary natural daylight (overcast or open shade), muted honest colour, real texture, slightly imperfect framing. A believable Ugandan roadside, trading-centre or lodging setting. Mbanda is not in these pictures. Any people who do appear are adults, shown from behind, in profile or as hands only, with no face in sharp focus."
 }

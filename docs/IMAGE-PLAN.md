@@ -10,9 +10,11 @@ Prepared 9 November 2026. Built on the first audit (commit `f91b4a6`), a second 
 4. **The 28 October ten-image test is skipped.**
 5. **Generator: ChatGPT Images, run in the ChatGPT app,** where several reference photographs can be attached. The Zapier ChatGPT action on this account offers only GPT Image 1 and 1.5 and a single source image, so it cannot carry the reference pack. It could make the scenery and objects (no person), at a lower model level, if asked.
 
-All five are recorded in `src/data/image-register.json`.
+6. **First run: one prompt, 30 pictures.** 12 show Mbanda and 18 do not (8 scenery, 5 gear and objects, 5 other adults on the road). The prompt tells ChatGPT to find his portrait and the other reference photographs in the PCI folder in Drive. It is `docs/ONE-PROMPT.md`. The other 16 prepared pictures, including every seated or crouched pose, are held in reserve.
 
-**Built and tested** (with dummy images; no real photograph has been ingested yet): the register and its rules, the label audit in `tools/check_site.mjs`, `tools/ingest-drive.mjs`, `tools/make_scenes.py`, and `tools/assemble-prompts.mjs` with its output `docs/prompts-ready.md`, and the generation protocol `docs/GENERATION-PROTOCOL.md` with its empty log `docs/generation-log.csv`. The AI label on the home hero and the page banners now says "AI-generated". **Not built yet:** the render-time resolver and page wiring, AVIF output, gallery filters and "show more", the journey-page "Photographs at the source" rows, and the admin-form approval fields.
+All six are recorded in `src/data/image-register.json`.
+
+**Built and tested** (with dummy images; no real photograph has been ingested yet): the register and its rules, the label audit in `tools/check_site.mjs`, `tools/ingest-drive.mjs`, `tools/make_scenes.py`, and `tools/assemble-prompts.mjs` with its outputs `docs/ONE-PROMPT.md` (the single prompt) and `docs/prompts-ready.md` (one prompt per picture, for redos), and the generation protocol `docs/GENERATION-PROTOCOL.md` with its empty log `docs/generation-log.csv`. The AI label on the home hero and the page banners now says "AI-generated". **Not built yet:** the render-time resolver and page wiring, AVIF output, gallery filters and "show more", the journey-page "Photographs at the source" rows, and the admin-form approval fields.
 
 ## 1. What changed since the first version
 
@@ -147,13 +149,15 @@ A generated image is reused only if it was made from the Drive pack, passes the 
 
 ## 5. The numbers
 
-| Scenario | Real | Kept AI scenery | New AI scenery and objects | New AI with Mbanda | Total |
-|---|---|---|---|---|---|
-| No new real photographs | 10 | 6 | 16 | 25 | **57** |
-| The 22 archive candidates used | 32 | 6 | 16 | 6 (remakes only) | **60** |
-| Those plus the eight Drive-only photographs | 40 | 6 | 16 | 0 to 6 | **62** and up |
+The first run adds **30** AI pictures (12 with Mbanda, 18 without). Everything else on the site stays.
 
-Every scenario clears 50. The more real photographs are used, the fewer AI portraits of Mbanda are needed. **Recommended order:** ingest the real photographs first, run the 16 scenery and object images straight away (no identity risk), run the six-image pilot, and only then decide how many person images to generate.
+| Scenario | Real | Kept AI scenery | New AI without Mbanda | New AI with Mbanda | Total |
+|---|---|---|---|---|---|
+| No new real photographs | 10 | 6 | 18 | 12 | **46** |
+| The 22 archive candidates used | 32 | 6 | 18 | 12 | **68** |
+| Those plus the three walking originals | 35 | 6 | 18 | 12 | **71** |
+
+**With only the 30 new pictures the site has 46, which is under your 50.** Ingesting the 22 archive photographs takes it to 68, so do that too, or draw pictures from the reserve. **Recommended order:** ingest the real photographs first, run the six-picture pilot, then the rest of the 30.
 
 ## 6. Real candidates (cleared to use; the crop and claim checks still apply)
 
@@ -188,7 +192,9 @@ The 52-image archive: 10 are already on this site (archive 01, 26 to 28, 34, 37,
 
 **Twelve photographs to ask Mbanda for** (through the journal form, with its own approval box ticked; no child's face): his boots at the start of a day; the road ahead; a bottle being filled; his notebook; a roadside meal; a bridge or river he crossed; a phone route screenshot with the overlay cropped; a companion's shoes beside his; a sunrise start; a market he passed; his pack the night before; a tea stop, with the server's permission.
 
-## 7. The AI shot list (41)
+## 7. The AI shot list (46 designed; the first run is the 30 in `docs/ONE-PROMPT.md`)
+
+The tables below were written for the first 41 designs. Set F (five pictures of other adults on the road: `life-tea-vendor`, `life-market-tomatoes`, `life-boda-waiting`, `life-farmer-path`, `life-cyclist-sacks`) was added for the first run and is in the pack. The run order and the reserve are in the pack (`batch`, `order`).
 
 Wave 1 (16, scenery and objects) can run at any time. Wave 2 (6, the remakes) follows the pilot. Wave 3 (19) runs only for gaps real photographs leave. ★ marks the six pilot shots; two of them (`road-phone-check`, `met-phone-call`) belong to wave 3 and are run only as likeness tests unless real photographs leave a gap. Full prompts are in `docs/candid-prompt-pack.json`.
 
@@ -265,7 +271,7 @@ Wave 1 (16, scenery and objects) can run at any time. Wave 2 (6, the remakes) fo
 
 ## 8. How to generate
 
-Follow `docs/GENERATION-PROTOCOL.md` for the rules (checks before a run, the pilot decision, the review gate, the three-attempt limit and the log) and `docs/prompts-ready.md` for the prompts. The prompts file holds the final prompt, the reference photographs to attach, the size to ask for and the file name for all 41 pictures, in running order.
+Use `docs/ONE-PROMPT.md` (one prompt for all 30) and follow `docs/GENERATION-PROTOCOL.md` for the rules (checks before a run, the pilot decision, the review gate, the three-attempt limit and the log) and `docs/prompts-ready.md` to redo a single picture. The prompts file holds the final prompt, the reference photographs to attach, the size to ask for and the file name for all 41 pictures, in running order.
 
 1. Run the **pilot** (six shots) in the ChatGPT app, one new chat each, with the reference photographs attached. Compare each face with the portrait at the same size.
 2. Wave 1 (scenery and objects) can run at any time.

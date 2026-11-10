@@ -28,14 +28,16 @@ Companion files: `docs/prompts-ready.md` (the prompts), `docs/candid-prompt-pack
 
 All of these must be true. If one is not, stop.
 
-- [ ] The six reference files are in one folder and their names and sizes match the pack: `Shyaka_Mbanda_Portrait_Reference.jpeg` (152,850 bytes), `22-23.jpg.jpeg` (760,612), `22-24.jpg.jpeg` (920,386), `22-29.jpg.jpeg` (642,980), `22-9.jpg.jpeg` (693,701), `22-10.jpg.jpeg` (723,396).
+- [ ] ChatGPT can reach the Drive folder (or the six reference files are attached by hand). Their names and sizes match the pack: `Shyaka_Mbanda_Portrait_Reference.jpeg` (152,850 bytes), `22-23.jpg.jpeg` (760,612), `22-24.jpg.jpeg` (920,386), `22-29.jpg.jpeg` (642,980), `22-9.jpg.jpeg` (693,701), `22-10.jpg.jpeg` (723,396).
 - [ ] The register has a row for the picture, with status `planned`.
 - [ ] The prompt is taken from `docs/prompts-ready.md` made from the current `docs/candid-prompt-pack.json`. Note the commit.
 - [ ] The tool and model are recorded as shown in the app on the day (for example "ChatGPT Images", with the date).
 
 ## 4. Running one picture
 
-For a **person picture**:
+The **one-prompt route** (`docs/ONE-PROMPT.md`) follows the same rules: one chat, one picture per reply, references read from the Drive folder (or attached), `next` to continue and `redo` to repeat a picture from the originals.
+
+For a **person picture** run on its own:
 
 1. Open a **new chat**. Never continue an old one.
 2. **Attach the listed inputs, portrait first.** The attach list is in `docs/prompts-ready.md`. Typical sets: front or unestablished poses take portrait + `22-23`; side poses take portrait + `22-24`; rear poses take portrait + `22-29`. Add `22-9` or `22-10` only for a broad smile. **Never attach a generated picture or a generated reference sheet as an identity input.**
@@ -49,7 +51,7 @@ For a **scenery or object picture** (no person): the same steps with no inputs a
 
 ## 5. The pilot
 
-The pilot is the six shots marked `pilot` in the pack: `remake-home-hero`, `remake-live-banner`, `remake-community-banner`, `remake-riverbank`, `road-phone-check`, `met-phone-call`. They cover front, side and rear views. No other person picture is run until the pilot is decided.
+The pilot is the first six pictures of the run (P01 to P06), the shots marked `pilot` in the pack: `remake-home-hero`, `remake-live-banner`, `remake-community-banner`, `remake-riverbank`, `road-phone-check`, `met-phone-call`. They cover front, side and rear views. No other person picture is run until the pilot is decided.
 
 **Decision rule** *(proposed)*:
 
@@ -96,12 +98,11 @@ Review at **full size** and at the **size it will be shown** (phone and desktop)
 
 ## 7. Order and stop rules
 
-1. **Wave 1** (16 scenery and object pictures, no person) can run at any time.
-2. **Pilot** (six pictures), then the decision in section 5.
-3. **Wave 2** (the other two remakes), then **wave 3** (17 more candid scenes).
-4. **Before wave 3,** check which slots real photographs have filled. Run wave 3 only for gaps.
-5. Run **unestablished poses** (seated, crouched) last. No original shows them, so identity drift is most likely.
-6. **Stop and report** if two pictures in a row fail on identity, if the tool changes its behaviour or model, or if credits run low.
+1. The first run is the **30 pictures in `docs/ONE-PROMPT.md`**. P01 to P06 are the pilot, P07 to P12 are the other Mbanda pictures, and P13 to P30 show no Mbanda (scenery, gear and other adults). P13 to P30 carry no identity risk, so they can also be run first, in a separate chat.
+2. After P06, decide (section 5) before going on.
+3. The other 16 prepared pictures are **reserve**. Before using any of them, check which slots real photographs have filled.
+4. **Seated and crouched poses are all in reserve.** No original shows them, so identity drift is most likely. Run them last, if at all.
+5. **Stop and report** if two pictures in a row fail on identity, if the tool changes its behaviour or model, or if credits run low.
 
 ## 8. After a picture passes
 

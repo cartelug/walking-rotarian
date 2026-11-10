@@ -43,7 +43,7 @@ const norm = (s) => s.toLowerCase().replace(/_/g, "-");
 
 /** Finds the register row for a file. Returns { row, by } or null. */
 export function matchFile(reg, name, hash) {
-  const base = path.basename(name), stem = norm(base.replace(/\.[^.]+$/, ""));
+  const base = path.basename(name), stem = norm(base.replace(/\.[^.]+$/, "")).replace(/^p\d{2}-/, ""); // "P05_road-phone-check.png" matches road-phone-check
   const byHash = reg.images.find((r) => r.sha256 === hash);
   if (byHash) return { row: byHash, by: "sha256" };
   const num = base.match(/^(\d{2})[_-]/);

@@ -31,6 +31,11 @@ test('the register records the owner decisions and keeps the unsafe items out', 
   assert.equal(by('archive-44-announcing-the-education-journey').claim.stageApproved, false);
   assert.equal(r.images.filter(i => i.class === 'generated-person' && i.status === 'planned').length, 25);
   assert.ok(r.images.filter(i => i.class === 'news-linkonly').every(i => !i.file));
+  const run = r.images.filter(i => i.batch === 'final30');
+  assert.equal(run.length, 30);
+  assert.equal(run.filter(i => i.class === 'generated-person').length, 12);
+  assert.deepEqual(run.map(i => i.order).sort((x, y) => x - y), Array.from({length: 30}, (_, k) => k + 1));
+  assert.ok(run.filter(i => i.class === 'generated-person').every(i => i.poseBasis !== 'unestablished'));
 });
 
 test('rules: permission, children, news copies, stage claims and checksums', () => {
@@ -71,6 +76,7 @@ test('ingest matches by archive number, name and picture id, and respects permis
   assert.equal(matchFile(r, '/x/29_akright_city.jpeg', 'h').by, 'archive number');
   assert.equal(matchFile(r, '/x/22-23.jpg.jpeg', 'h').row.id, 'walking-front');
   assert.equal(matchFile(r, '/x/Road_Bootlace.png', 'h').by, 'picture id');
+  assert.equal(matchFile(r, '/x/P07_road-bootlace.png', 'h').row.id, 'road-bootlace');
   assert.equal(matchFile(r, '/x/unknown.jpg', 'h'), null);
 
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wr-ingest-')), out = fs.mkdtempSync(path.join(os.tmpdir(), 'wr-root-'));
