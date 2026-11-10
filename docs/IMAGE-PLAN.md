@@ -302,6 +302,7 @@ Use `docs/ONE-PROMPT.md` (one prompt for all 30) and follow `docs/GENERATION-PRO
 3. **Look at the 2023 photographs** (`20230308_*.jpg`) and decide.
 4. **Check the crop of each video preview.** The register carries a default crop for the status and player bars, flagged `needsCropReview` until someone has looked.
 5. The Zapier route is **not authorised** (protocol section 11). Nothing is generated until the Owner starts a run.
+6. **Collect the place, vehicle and object photographs** for the 18 pictures without Mbanda and the backgrounds of the others: `docs/REFERENCE-REQUEST.md` (18 must-have folders, 6 extras, one zip). When the zip is in the Drive folder `WR website references`, `docs/ONE-PROMPT.md` gets a step that points each picture at its folder.
 
 ## 11. What I did not verify
 
