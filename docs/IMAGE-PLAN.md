@@ -4,8 +4,8 @@ Prepared 9 November 2026. Built on the first audit (commit `f91b4a6`), a second 
 
 ## Decisions recorded 9 November 2026
 
-1. **Mbanda approves** the 22 archive candidates and a labelled AI set of invented candid moments of him. His son, the site owner, gave this in conversation. It is spoken, not yet written.
-2. **PCI approves** its photographs from the archive (church appeal 42, campus 52 and the PCI items already on the site).
+1. **Mbanda directed this.** He told his son, the site owner and web builder, to generate the labelled AI set and to use the archive candidates. No further approval is needed.
+2. **PCI is Mbanda's company,** so its photographs in the archive (church appeal 42, campus 52 and the PCI items already on the site) fall under the same direction. No separate approval is needed.
 3. **The three walking photographs (22-23, 22-24, 22-29) are published with no date, place or walk named,** and stay off the journey pages. The two group photographs (22-9, 22-10) stay out: crowd, banners and payment details.
 4. **The 28 October ten-image test is skipped.**
 5. **Generator: ChatGPT Images, run in the ChatGPT app,** where several reference photographs can be attached. The Zapier ChatGPT action on this account offers only GPT Image 1 and 1.5 and a single source image, so it cannot carry the reference pack. It could make the scenery and objects (no person), at a lower model level, if asked.
@@ -19,7 +19,7 @@ All five are recorded in `src/data/image-register.json`.
 1. **Drive holds an authoritative identity pack and a rule file.** My first prompt pack contradicted it in seven places (section 3). It is corrected, and the corrected pack is the one to use.
 2. **The real-photograph supply is bigger than I first thought, but every item is gated.** The 52-image archive in Drive holds 22 more candidates for this site (19 frames from Mbanda's own public video posts, one Instagram photo, two PCI photographs). Five full-size originals and three 2023 photographs sit in Drive beside them. None has been cleared for publication.
 3. **Source waterfall.** A slot takes a real photograph first, then a link to the source, then AI. This replaces "generate 41 images" with "generate only what real photographs cannot fill" (section 4).
-4. **A register links every image to its PCI source** by checksum, and records who approved it, what it claims and how it is labelled. The register is built: `src/data/image-register.json` (93 rows).
+4. **A register links every image to its PCI source** by checksum, and records its source, what it claims and how it is labelled. The register is built: `src/data/image-register.json` (93 rows).
 5. **Previously generated images** are reused only through a ladder with a decision for each set (section 4.5). Most should not be reused.
 
 **I could not look at any of the Drive reference photographs.** The Drive connector returns text only for images. Everything in section 3 about what each photograph shows comes from the owner's own rule files, not from my eyes. Someone should lay the six reference files beside the first pilot images before anything is approved.
@@ -96,7 +96,7 @@ One row per image. Built from rows I verified against the repository and the Dri
 ### 4.3 Gates (checked at build time)
 
 - **Permission:** `rights.permission` must be approved, or the class must be link-only.
-- **Claim:** a picture that shows a stage of an underway or proposed walk is hidden until the owner approves that claim. This ties to the site's existing "last verified update" rule, so Walk for Education frames (archive 44 to 51) stay hidden until a stage is confirmed.
+- **Claim:** a picture that shows a stage of an underway or proposed walk is hidden until the owner confirms that claim (a one-line switch in the register; Mbanda's direction is enough). This ties to the site's existing "last verified update" rule, so Walk for Education frames (archive 44 to 51) stay hidden until a stage is confirmed.
 - **Children:** any row flagged `children: true` fails.
 - **Branding:** a generated image must record that Rotary and club marks were removed.
 - **Label:** every AI image shows its caption, on every page it appears.
@@ -132,15 +132,15 @@ A generated image is reused only if it was made from the Drive pack, passes the 
 
 | Page | Source order |
 |---|---|
-| Home hero | A real original at 1600 px or wider if approved (22-23, 22-24 or 22-29), else AI `remake-home-hero` |
+| Home hero | A real original at 1600 px or wider (22-23, 22-24 or 22-29), if one is wide enough, else AI `remake-home-hero` |
 | Home essay and stories | Real Kiburara photographs (live), route-record frames, AI remakes |
 | Journeys index (7 cards) | Scenery only. Never a person. |
 | Journey pages | **Real only**, plus a scenery banner. Faith in Motion: live items plus its own-post frames. Walk for Education: its eight frames, hidden until a stage is approved. |
 | Nakivale, Makerere and Ishekye journey pages | "Photographs at the source" links to the Nile Post and URN pieces (archive 17 to 20, 22 to 25). No copies. |
 | Live | Real own-post frames. One labelled AI candid image on the explainer. |
 | Community | Real Kiburara photographs, AI `remake-community-banner` |
-| Get involved, Partners, Reports, Media | Scenery and object banners. The church-appeal photograph (42) on Get involved if PCI approves. |
-| His story | Real portrait, the Instagram portrait (02), 2023 photographs if approved |
+| Get involved, Partners, Reports, Media | Scenery and object banners. The church-appeal photograph (42) on Get involved. |
+| His story | Real portrait, the Instagram portrait (02), the 2023 photographs if they suit |
 | Gallery | Everything, filtered by class: Photographs, Own posts, AI scenes, Scenery |
 | Shop | Gear objects, labelled concept |
 | Journal posts | Attachments from the form only |
@@ -149,44 +149,44 @@ A generated image is reused only if it was made from the Drive pack, passes the 
 
 | Scenario | Real | Kept AI scenery | New AI scenery and objects | New AI with Mbanda | Total |
 |---|---|---|---|---|---|
-| Nothing new approved | 10 | 6 | 16 | 25 | **57** |
-| The 22 archive candidates approved | 32 | 6 | 16 | 6 (remakes only) | **60** |
+| No new real photographs | 10 | 6 | 16 | 25 | **57** |
+| The 22 archive candidates used | 32 | 6 | 16 | 6 (remakes only) | **60** |
 | Those plus the eight Drive-only photographs | 40 | 6 | 16 | 0 to 6 | **62** and up |
 
-Every scenario clears 50. The more real photographs the owner approves, the fewer AI portraits of Mbanda are needed. **Recommended order:** ask for approvals now, run the 16 scenery and object images straight away (no identity risk), run the six-image pilot, and only then decide how many person images to generate.
+Every scenario clears 50. The more real photographs are used, the fewer AI portraits of Mbanda are needed. **Recommended order:** ingest the real photographs first, run the 16 scenery and object images straight away (no identity risk), run the six-image pilot, and only then decide how many person images to generate.
 
-## 6. Real candidates (all gated, none approved)
+## 6. Real candidates (cleared to use; the crop and claim checks still apply)
 
 The 52-image archive: 10 are already on this site (archive 01, 26 to 28, 34, 37, 39 to 41, 43), 22 are candidates, 8 are news photographs (link only: 17 to 20, 22 to 25), 9 show children or learners (03, 07 to 14) and 3 are promotional posters (04, 05, 15).
 
 | # | Image | Size | Class | Gate |
 |---|---|---|---|---|
-| 02 | Personal walking portrait (Instagram) | 640x640 | own-post | Mbanda written OK |
-| 42 | Supporters carrying the church appeal | 1079x608 | pci-photo | PCI OK and consent of the women pictured |
-| 52 | UCU-Kagando University College campus | 750x499 | pci-photo | PCI OK; caption must say it is not the nursery school |
-| 29 | Akright City to Mpigi, day 1 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 30 | Roadside record, day 2 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 31 | A reflection from day 4 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 32 | Maddu to Kyayi trading centre | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 33 | A day 6 journey record | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 35 | Mabaale to Rwimi, day 10 | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 36 | Rwimi to Kasese, posted as 31 km | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 38 | A public record at the Equator | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 06 | Walk4Code: Nyabihoko to Kisizi | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 16 | Public reflection on long-distance walking | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 21 | Masaka to Lukaya, posted as day 5 (Peace Walk 2025) | 640x1138 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported |
-| 44 | Announcing the education journey | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 45 | Rift Valley descent: Limuru to Longonot | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 46 | A post titled On top of Mt Longonot | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 47 | Longonot to Naivasha, day 4 | 540x960 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 48 | Kamara to Timboroa, posted as 30 km | 540x960 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 49 | Another Kamara-Timboroa record, 29 km | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 50 | Timboroa to Burnt Forest, 26 km post | 640x360 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
-| 51 | A nature reflection during the trek | 640x1136 | own-post | Mbanda written OK; crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 02 | Personal walking portrait (Instagram) | 640x640 | own-post | Cite the Instagram post |
+| 42 | Supporters carrying the church appeal | 1079x608 | pci-photo | Published by PCI already |
+| 52 | UCU-Kagando University College campus | 750x499 | pci-photo | Caption must say it is not the nursery school |
+| 29 | Akright City to Mpigi, day 1 | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 30 | Roadside record, day 2 | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 31 | A reflection from day 4 | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 32 | Maddu to Kyayi trading centre | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 33 | A day 6 journey record | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 35 | Mabaale to Rwimi, day 10 | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 36 | Rwimi to Kasese, posted as 31 km | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 38 | A public record at the Equator | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 06 | Walk4Code: Nyabihoko to Kisizi | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 16 | Public reflection on long-distance walking | 640x1136 | own-post | crop the player bars; show any distance as self-reported |
+| 21 | Masaka to Lukaya, posted as day 5 (Peace Walk 2025) | 640x1138 | own-post | crop the player bars; show any distance as self-reported |
+| 44 | Announcing the education journey | 640x1136 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 45 | Rift Valley descent: Limuru to Longonot | 640x1136 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 46 | A post titled On top of Mt Longonot | 640x1136 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 47 | Longonot to Naivasha, day 4 | 540x960 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 48 | Kamara to Timboroa, posted as 30 km | 540x960 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 49 | Another Kamara-Timboroa record, 29 km | 640x1136 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 50 | Timboroa to Burnt Forest, 26 km post | 640x360 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
+| 51 | A nature reflection during the trek | 640x1136 | own-post | crop the player bars; show any distance as self-reported; HOLD until a Walk for Education stage is approved on the site |
 
-**Drive-only originals** (not in the archive): `22-23`, `22-24`, `22-29` (full-size walking photographs, 0.6 to 0.9 MB) have no recorded date, place, walk or photographer, so any claim is blocked until that is known. `22-9` and `22-10` show a Walk for Education send-off with banners, a crowd and payment details, so they need cropping and consent or should be skipped. Three `20230308_*.jpg` photographs (1.3 to 1.5 MB each, 8 March 2023) are the only large real photographs of the earlier work. I have not seen them.
+**Drive-only originals** (not in the archive): `22-23`, `22-24`, `22-29` (full-size walking photographs, 0.6 to 0.9 MB) have no recorded date, place, walk or photographer, so they are published with none of those named and stay off the journey pages. `22-9` and `22-10` show a Walk for Education send-off with banners, a crowd and payment details, so they need cropping and consent or should be skipped. Three `20230308_*.jpg` photographs (1.3 to 1.5 MB each, 8 March 2023) are the only large real photographs of the earlier work. I have not seen them.
 
-**Twelve photographs to ask Mbanda for** (through the journal form, with the approval box ticked; no recognisable person without consent; no child's face): his boots at the start of a day; the road ahead; a bottle being filled; his notebook; a roadside meal; a bridge or river he crossed; a phone route screenshot with the overlay cropped; a companion's shoes beside his; a sunrise start; a market he passed; his pack the night before; a tea stop, with the server's permission.
+**Twelve photographs to ask Mbanda for** (through the journal form, with its own approval box ticked; no child's face): his boots at the start of a day; the road ahead; a bottle being filled; his notebook; a roadside meal; a bridge or river he crossed; a phone route screenshot with the overlay cropped; a companion's shoes beside his; a sunrise start; a market he passed; his pack the night before; a tea stop, with the server's permission.
 
 ## 7. The AI shot list (41)
 
@@ -291,12 +291,11 @@ Follow `docs/GENERATION-PROTOCOL.md` for the rules (checks before a run, the pil
 
 ## 10. Still open
 
-1. **Put the approvals in writing.** One line from Mbanda and one from PCI, pasted into `approvals` in the register.
-2. **Get the approved files into one folder.** The Drive connector cannot move image files, so download the 22 archive items (Drive folder "02 Archived Public Photos & Video Previews") and the three walking originals, then run the ingest tool. Leave out the three 2023 photographs until someone has looked at them.
-3. **Run the pilot** in ChatGPT and check it against the portrait.
-4. **Look at the 2023 photographs** (`20230308_*.jpg`) and decide.
-5. **Check the crop of each video preview.** The register carries a default crop for the status and player bars, flagged `needsCropReview` until someone has looked.
-6. The Zapier route is **not authorised** (protocol section 11). Nothing is generated until the Owner starts a run.
+1. **Get the files into one folder.** The Drive connector cannot move image files, so download the 22 archive items (Drive folder "02 Archived Public Photos & Video Previews") and the three walking originals, then run the ingest tool. Leave out the three 2023 photographs until someone has looked at them.
+2. **Run the pilot** in ChatGPT and check it against the portrait.
+3. **Look at the 2023 photographs** (`20230308_*.jpg`) and decide.
+4. **Check the crop of each video preview.** The register carries a default crop for the status and player bars, flagged `needsCropReview` until someone has looked.
+5. The Zapier route is **not authorised** (protocol section 11). Nothing is generated until the Owner starts a run.
 
 ## 11. What I did not verify
 

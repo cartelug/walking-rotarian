@@ -22,7 +22,7 @@
  },
  "approvals": {
   "mbanda": {
-   "by": "Mbanda Shyaka, through his son and the site owner (spoken, not yet written)",
+   "by": "Mbanda Shyaka, who told his son (the site owner and web builder) to generate and publish",
    "on": "2026-11-09",
    "covers": [
     "own-post",
@@ -31,7 +31,7 @@
    ]
   },
   "pci": {
-   "by": "Pamodzi Community Initiative (PCI), as told by the site owner (not yet written)",
+   "by": "Pamodzi Community Initiative (PCI). It is Mbanda's company, so his direction covers it.",
    "on": "2026-11-09",
    "covers": [
     "pci-photo"
@@ -41,11 +41,11 @@
  "decisions": [
   {
    "on": "2026-11-09",
-   "text": "Mbanda Shyaka approves the 22 archive candidates and a labelled AI set of invented candid moments of him. His son, the site owner, gave this in conversation. A short written message from Mbanda should be filed here."
+   "text": "Mbanda Shyaka directed his son, the site owner and web builder, to generate the labelled AI set and to use the 22 archive candidates. No further approval is needed."
   },
   {
    "on": "2026-11-09",
-   "text": "PCI approves use of its photographs from the archive (church appeal 42, campus 52, and the PCI items already on the site)."
+   "text": "PCI is Mbanda's company. Its photographs from the archive (church appeal 42, campus 52, and the PCI items already on the site) fall under the same direction."
   },
   {
    "on": "2026-11-09",
@@ -541,7 +541,7 @@
    },
    "people": {
     "children": false,
-    "consent": "PCI-published; consent of the women pictured to be confirmed by PCI"
+    "consent": "Published by PCI (Mbanda's company)"
    }
   },
   {

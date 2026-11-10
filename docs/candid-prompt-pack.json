@@ -1,6 +1,6 @@
 {
  "created": "2026-11-09",
- "status": "APPROVED TO PROCEED in conversation on 9 Nov 2026 (Mbanda and PCI; spoken, not yet written). Nothing has been generated. Follow docs/GENERATION-PROTOCOL.md.",
+ "status": "CLEARED TO PROCEED. Mbanda told the site owner (his son) to generate. PCI is Mbanda's company. Nothing has been generated yet. Follow docs/GENERATION-PROTOCOL.md.",
  "supersedes": "The first version of this file (commit f91b4a6), whose identity block contradicted the Drive identity standard.",
  "authority": "Drive folder \"Shyaka Mbanda - Authoritative References - 2026-10-28\" (inside PCI > Walk for Education > Project Hub > 05 Photos and Videos). Its READ_FIRST rules and SHYAKA_FACE_IDENTITY_STANDARD.txt govern. Original photographs overrule every generated sheet.",
  "inputRoles": {
@@ -18,7 +18,7 @@
  "assemble": "person shots: identityBlock + \" Scene: \" + scene + \" \" + styleBlock + \" \" + negativeBlock + \" Aspect ratio \" + aspect.  other shots: styleBlockNoPerson + \" Scene: \" + scene + \" \" + negativeBlock + \" Aspect ratio \" + aspect.",
  "process": [
   "1. Run the six pilot shots (pilot: true) and compare each with the portrait at the same face size.",
-  "2. Mbanda or the owner approves or rejects the pilot set. Only then run wave 2, then wave 3 for gaps that real photographs did not fill.",
+  "2. The Reviewer (someone who knows his face) passes or rejects the pilot set. Only then run wave 2, then wave 3 for gaps that real photographs did not fill.",
   "3. Wave 1 (scenery and objects, no identity risk) can run at any time.",
   "4. Unestablished poses (seated, crouched) are run last, with the closest observed view attached."
  ],

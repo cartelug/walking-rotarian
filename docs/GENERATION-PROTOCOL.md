@@ -12,7 +12,7 @@ Companion files: `docs/prompts-ready.md` (the prompts), `docs/candid-prompt-pack
 4. **No claims.** No distance, stage, milestone, named place, date or event in any picture.
 5. **No children's faces,** and no invented beneficiaries, refugees or people with disabilities.
 6. **No Rotary, Rotarian, Rtn., Club of Akright City or wheel marks** in any derivative image. The fabric is reconstructed naturally.
-7. **Real photographs come first.** A generated picture only fills a slot that no approved real photograph can fill.
+7. **Real photographs come first.** A generated picture only fills a slot that no usable real photograph can fill.
 
 ## 2. Roles
 
@@ -21,14 +21,13 @@ Companion files: `docs/prompts-ready.md` (the prompts), `docs/candid-prompt-pack
 | Owner | The site owner | Starts a run, keeps the register and the log, decides what is placed |
 | Generator | Whoever uses ChatGPT Images (the owner, or someone the owner names) | Runs the prompts exactly as written, logs every attempt |
 | Reviewer | A person who knows Mbanda's face, such as the owner or family | Compares each result with the portrait and passes or rejects it. **The face check cannot be done by software.** |
-| Approver | Mbanda Shyaka | Confirms in writing that the set is a fair likeness and may be published |
+| Director | Mbanda Shyaka | Directed the work. He may look at the pilot if he wants to. No sign-off is needed. |
 | Second reader | Claude, if the pictures are shared in the conversation | Checks everything except identity: stray text, hands and boots, Rotary marks, children, place claims. Gives an opinion on likeness only if the portrait is shared too, and that opinion never replaces the Reviewer. |
 
 ## 3. Before any run (gate G0)
 
 All of these must be true. If one is not, stop.
 
-- [ ] Mbanda's approval and PCI's approval are written down and pasted into `approvals` in the register. (Today they are spoken only.)
 - [ ] The six reference files are in one folder and their names and sizes match the pack: `Shyaka_Mbanda_Portrait_Reference.jpeg` (152,850 bytes), `22-23.jpg.jpeg` (760,612), `22-24.jpg.jpeg` (920,386), `22-29.jpg.jpeg` (642,980), `22-9.jpg.jpeg` (693,701), `22-10.jpg.jpeg` (723,396).
 - [ ] The register has a row for the picture, with status `planned`.
 - [ ] The prompt is taken from `docs/prompts-ready.md` made from the current `docs/candid-prompt-pack.json`. Note the commit.
@@ -54,9 +53,9 @@ The pilot is the six shots marked `pilot` in the pack: `remake-home-hero`, `rema
 
 **Decision rule** *(proposed)*:
 
-- **Pass:** all six pass the review within three attempts, and the Approver confirms the set is a fair likeness. Waves 2 and 3 may begin.
+- **Pass:** all six pass the review within three attempts, and the Reviewer judges the set a fair likeness. Waves 2 and 3 may begin.
 - **Revise:** one or two pictures fail on identity after three attempts. Stop. The Owner and Reviewer decide whether to change the inputs (for example add the expression photograph, or a second body view), keep the pose closer to an observed view, or replace the shot with a real photograph. Then run the pilot again.
-- **Stop:** three or more fail, or the Approver is unhappy with the set. No more person pictures are made. The site keeps real photographs and scenery.
+- **Stop:** three or more fail, or the Reviewer (or Mbanda, if he looks) is unhappy with the set. No more person pictures are made. The site keeps real photographs and scenery.
 
 ## 6. The review gate (G1)
 
@@ -109,7 +108,7 @@ Review at **full size** and at the **size it will be shown** (phone and desktop)
 1. **Export a JPEG at quality 92** (about 400 to 600 KB) from the PNG, named `<id>.jpg`, and keep the original PNG in Drive. *Reason: 41 PNG masters of 2 to 3 MB would add about 100 MB to a public repository.*
 2. Put the exports in one folder. Run `node tools/ingest-drive.mjs <folder>` to see the plan, then with `--write`.
 3. Run `python3 -I tools/make_scenes.py`.
-4. In `src/data/image-register.json`, for each picture set `generation.gate` to `passed`, `branding.removed` to `true`, and add `reviewedBy` and `reviewedOn`. For a person picture, the Approver's confirmation is on file.
+4. In `src/data/image-register.json`, for each picture set `generation.gate` to `passed`, `branding.removed` to `true`, and add `reviewedBy` and `reviewedOn`.
 5. Run `node tools/check_images.mjs`, then `node build.mjs`, `node tools/check_site.mjs` and `node --test tests/*.test.mjs`.
 6. Placing the picture on a page is a separate step. **AI pictures of Mbanda never go on an individual journey page.**
 
