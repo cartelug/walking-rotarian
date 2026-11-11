@@ -1,13 +1,17 @@
 import { site } from '../data/site.mjs';
 import { platformData } from '../lib/platform-data.mjs';
-import { esc, rel } from '../lib/util.mjs';
+import { esc, rel, icons } from '../lib/util.mjs';
 import { pageHead } from '../lib/layout.mjs';
 
 const intro=(p,title,description,body)=>({path:p,title,description,current:p.split('/')[1],body:`${pageHead({eyebrow:'The Walking Rotarian',title,intro:description})}<section class="block"><div class="container wr-platform">${body}</div></section>`});
 const actions=p=>`<nav class="wr-section-nav" aria-label="Journey tools">${[['/live/','Live journal'],['/journey-atlas/','Journey atlas'],['/archive/','Search & archive'],['/saved/','Saved stories'],['/reports/','Journey reports']].map(([href,label])=>`<a href="${rel(p,href)}">${label}</a>`).join('')}</nav>`;
 const loading='<p class="wr-loading" role="status">Loading stories from the road…</p>';
 const adminPage = path => ({path,title:'Website admin',description:'One place to publish stories, manage the shop and update the journey.',noindex:true,body:`<header class="wr-admin-pagehead"><div class="container"><div><p class="eyebrow">The Walking Rotarian</p><h1>Website admin</h1><p>Your stories. Your shop. Your journey.</p></div><a class="wr-action" href="${rel(path,'/')}">View website</a></div></header><section class="wr-admin-section"><div class="container wr-platform"><div data-wr="studio"><p role="status">Opening your publishing desk…</p></div><noscript><p>Use GitHub’s publishing forms directly:</p><p><a href="${esc(site.publishing.journalForm)}">Write an update</a> · <a href="${esc(site.publishing.productForm)}">Manage a product</a> · <a href="${esc(site.publishing.progressForm)}">Update walking progress</a> · <a href="${esc(site.publishing.connectionsForm)}">Update official links</a></p></noscript></div></section>`});
-export function journalCard(e,p){return `<article class="wr-entry" id="entry-${esc(e.id)}"><p class="eyebrow">${esc(e.place||'From the archive')} · ${esc(e.author)}</p><h2><a href="${rel(p,`/journal/${e.id}/`)}">${esc(e.title)}</a></h2><p>${esc(e.body.slice(0,300))}</p><p><a href="${rel(p,`/journal/${e.id}/`)}">Read this story</a></p></article>`;}
+export function journalCard(e,p){
+ const heading=p==='/'?'h3':'h2';
+ const media=e.media?.find(m=>m.type==='image');
+ return `<article class="wr-journal-card" id="entry-${esc(e.id)}">${media?`<a class="wr-journal-card__image" href="${rel(p,`/journal/${e.id}/`)}" tabindex="-1" aria-hidden="true"><img src="${esc(media.url)}" alt="${esc(media.alt)}" width="800" height="520" loading="lazy"><span>From the archive</span></a>`:''}<div class="wr-journal-card__body"><p class="eyebrow">${esc(e.publishedAt.slice(0,10))} / ${esc(e.place||'From the archive')}</p><${heading}><a href="${rel(p,`/journal/${e.id}/`)}">${esc(e.title)}</a></${heading}><p>${esc(e.body.slice(0,145))}${e.body.length>145?'…':''}</p><a class="wr-text-link" href="${rel(p,`/journal/${e.id}/`)}">Read the story ${icons.arrow}</a></div></article>`;
+}
 export function platformPages(){
   const seed=platformData();
   return [

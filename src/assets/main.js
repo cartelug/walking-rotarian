@@ -26,10 +26,10 @@
       setTimeout(() => pre.remove(), 700);
     }
   };
-  const minShow = calm ? 0 : seen ? 0 : 250;
+  const minShow = 0;
   const whenLoaded = () => setTimeout(reveal, Math.max(0, minShow - performance.now()));
-  if (doc.readyState === "complete") whenLoaded();
-  else window.addEventListener("load", whenLoaded, { once: true });
+  if (doc.readyState !== "loading") whenLoaded();
+  else doc.addEventListener("DOMContentLoaded", whenLoaded, { once: true });
   setTimeout(reveal, 5000); // never keep anyone waiting on a slow picture
   window.addEventListener("pageshow", (e) => { if (e.persisted) reveal(); });
 

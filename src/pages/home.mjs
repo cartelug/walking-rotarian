@@ -11,8 +11,9 @@ export function home(){
  const link=(href,label,cls='button')=>`<a class="${cls}" href="${a(href)}">${label}${icons.arrow}</a>`;
  const routes=indexRows().slice(0,3);
  const routeImages=['campaign-highlands','kiburara-procession','campaign-forest'];
+ const mission=`<section class="wr-current wr-scene wr-journey-picker" id="current-walk" aria-labelledby="current-h" data-journey-explorer><div class="container"><div class="wr-route-heading"><div><p class="eyebrow">Education. Faith. Peace.</p><h2 id="current-h">Every road.<br><span>A reason.</span></h2></div><div><p>Choose a journey. Meet the people and the purpose behind each walk.</p><div class="wr-purpose-tabs" role="tablist" aria-label="Explore a walking purpose">${routes.map((r,i)=>`<button id="purpose-tab-${i}" type="button" role="tab" aria-selected="${i===0}" aria-controls="purpose-panel-${i}" tabindex="${i===0?0:-1}">${['Education','Faith','Peace'][i]}</button>`).join('')}</div></div></div>${routes.map((r,i)=>`<div class="wr-route-panel" id="purpose-panel-${i}" role="tabpanel" aria-labelledby="purpose-tab-${i}" tabindex="0"${i?' hidden':''}><figure>${photo(routeImages[i],i===1?'The community welcome at Kiburara.':'Campaign landscape artwork.',{sizes:'(min-width: 900px) 50vw, 90vw'})}<figcaption>${i===1?'Photograph supplied via PCI':'Campaign landscape artwork'}</figcaption><span class="wr-route-panel__stamp">0${i+1} / ${['EDUCATION','FAITH','PEACE'][i]}</span></figure><div class="wr-route-panel__copy"><p class="eyebrow"><span class="wr-live-dot" aria-hidden="true"></span> ${esc(r.dateLabel)}</p><h3>${esc(r.title)}</h3><p class="wr-route-panel__route">${esc(r.route)}</p><p>${esc(r.summary)}</p><div class="wr-distance"><strong>${esc(r.distance)}</strong><span>${i===0?'Approximate planned route<br>Not distance already walked':esc(r.evidence)}</span></div><div class="wr-actions">${link('/journeys/'+r.slug+'/','Discover this journey','button button--onink')}${i===0?ext(currentWalk.url,'Support through PCI','wr-text-link'):link('/live/?journey='+r.slug,'Read the journal','wr-text-link')}</div></div></div>`).join('')}<div class="wr-route-more">${link('/journeys/','Explore every journey','wr-text-link')}${link('/journey-atlas/','Open the journey atlas','wr-text-link')}</div></div></section>`;
  const body=`
-<section class="wr-opening" aria-labelledby="hero-h">
+<section class="wr-opening" aria-labelledby="hero-h"><span class="wr-opening__wordmark" aria-hidden="true">THE WALKING ROTARIAN</span>
  <div class="wr-opening__landscape" aria-hidden="true"></div>
  <div class="container wr-opening__grid">
   <div class="wr-opening__copy">
@@ -30,12 +31,7 @@ export function home(){
  <div class="container wr-opening__trail"><span aria-hidden="true">01 / THE JOURNEY CONTINUES</span><a href="#current-walk">Discover the purpose <span aria-hidden="true">↓</span></a></div>
 </section>
 
-<section class="wr-current wr-scene" id="current-walk" aria-labelledby="current-h">
- <div class="container wr-current__grid">
-  <div class="wr-current__heading"><p class="eyebrow"><span class="wr-live-dot" aria-hidden="true"></span> The current mission / 2026</p><h2 id="current-h">Walking for<br><span>their future.</span></h2><p class="intro">Nairobi to Kagando.<br>Education that goes further.</p></div>
-  <div class="wr-current__details"><p class="wr-route-label">KENYA <span aria-hidden="true">────────</span> UGANDA</p><h3>Walk for Education</h3><p>${esc(currentWalk.purpose)}</p><div class="wr-distance"><strong>1,100 <small>km</small></strong><span>Approximate planned route<br>Not distance already walked</span></div><p class="wr-current__status">Underway · Organiser-reported. Verified stages will be added when confirmed.</p><div class="wr-actions">${link('/journeys/walk-for-education/','Explore this walk')}${ext(currentWalk.url,'Support through PCI','wr-text-link')}</div></div>
- </div>
-</section>
+${mission}
 
 ${homepageJournal()}
 
@@ -43,8 +39,6 @@ ${homepageJournal()}
  <figure class="wr-person__visual">${photo('shyaka-walking-cutout','Campaign artwork of Shyaka walking with a backpack.',{sizes:'(min-width: 900px) 40vw, 80vw',cls:'wr-walker'})}<figcaption>Campaign artwork · an illustration of the journey.</figcaption></figure>
  <div class="wr-person__copy"><p class="eyebrow">The person behind the miles</p><h2 id="person-h">A life in motion.<br><span>A purpose that stays.</span></h2><p class="intro">Before the long walks, there were classrooms, learning tools and communities.</p><p>Shyaka brings that same belief to the road: people can come together to move something meaningful forward. His journeys connect education, peace, faith and community.</p>${link('/his-story/','Discover his story','button button--secondary')}<a class="wr-person__signature" href="${esc('https://www.facebook.com/mbanda.shyaka')}" target="_blank" rel="noopener noreferrer">Follow Mbanda on Facebook ${icons.ext}</a></div>
 </div></section>
-
-<section class="wr-expeditions" aria-labelledby="expeditions-h"><div class="container"><div class="wr-section-heading"><div><p class="eyebrow">Different roads. Shared purpose.</p><h2 id="expeditions-h">The journeys.</h2></div>${link('/journeys/','Explore every walk','wr-text-link')}</div><div class="wr-expedition-grid">${routes.map((r,i)=>`<a class="wr-expedition" href="${a('/journeys/'+r.slug+'/')}"><div class="wr-expedition__image">${photo(routeImages[i],i===1?'Supporters welcome Shyaka at Kiburara.':'Campaign landscape artwork.',{sizes:'(min-width: 900px) 30vw, 90vw'})}<span class="wr-expedition__index">0${i+1}</span></div><div class="wr-expedition__copy"><p class="eyebrow">${esc(r.dateLabel)}</p><h3>${esc(r.title)}</h3><p>${esc(r.route)}</p><div class="wr-expedition__meta"><span>${esc(r.distance)}<small>${i===0?'Planned route':esc(r.evidence)}</small></span>${icons.arrow}</div></div></a>`).join('')}</div></div></section>
 
 <section class="wr-together wr-scene" aria-labelledby="together-h"><div class="container"><p class="eyebrow">The people make the journey</p><h2 id="together-h">He walks.<br><span>We move together.</span></h2><p>Every welcome, every conversation, every act of support carries the purpose further.</p>${link('/community/','Find your place in the journey','button button--onink')}<p class="wr-art-credit">Campaign landscape artwork</p></div></section>
 

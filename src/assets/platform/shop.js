@@ -19,7 +19,7 @@ export async function renderShop(root, ctx) {
     cart = summary.cart;
     root.querySelector('[data-shop-copy-panel]').hidden = true;
     const persisted = writeLocal(storageKey, cart);
-    root.querySelector('[data-cart-count]').textContent = summary.quantity;
+    root.querySelectorAll('[data-cart-count]').forEach(el => el.textContent = summary.quantity);
     root.querySelector('[data-cart-lines]').innerHTML = cart.length ? cart.map((line, index) => {
       const product = shop.products.find(p => p.id === line.productId);
       const details = [line.size, line.colour].filter(Boolean).join(' · ');

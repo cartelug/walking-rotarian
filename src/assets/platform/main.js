@@ -1,3 +1,4 @@
+import {bindExperience,homepageStoryCard} from './experience.js';
 import {createClient,h,readLocal,writeLocal,toast} from './client.js';
 import {entryCard,renderJournal,renderArchive,renderSaved,renderAtlas,renderCommunity,renderPartners,renderReports,renderSubscription,bindReaderActions} from './readers.js';
 import {renderStudio} from './studio.js';
@@ -7,7 +8,7 @@ const setLowData=value=>{document.documentElement.classList.toggle('wr-low-data'
 setLowData(readLocal('wr.low-data',navigator.connection?.saveData===true));
 document.querySelectorAll('[data-low-data]').forEach(b=>b.addEventListener('click',()=>{const value=!document.documentElement.classList.contains('wr-low-data');writeLocal('wr.low-data',value);setLowData(value);}));
 async function start(){
-  try{await ctx.load();bindReaderActions(ctx);
+  try{await ctx.load();bindReaderActions(ctx);bindExperience(ctx);
     const socials=ctx.data.settings.socials||{};
     document.querySelectorAll('[data-social-links]').forEach(el=>{el.innerHTML=Object.entries(socials).filter(([,url])=>url).map(([name,url])=>`<a href="${h(url)}" target="_blank" rel="noopener noreferrer">${h(name==='facebook'?'Follow on Facebook':name[0].toUpperCase()+name.slice(1))}</a>`).join(' · ');});
     for(const root of document.querySelectorAll('[data-wr]')){
@@ -22,7 +23,7 @@ async function start(){
       if(type==='subscription')await renderSubscription(root,ctx);
       if(type==='studio')await renderStudio(root,ctx);
       if(type==='shop')await renderShop(root,ctx);
-      if(type==='preview')root.innerHTML=ctx.data.entries.slice(0,3).map(e=>`<article class="wr-entry"><p class="eyebrow">${h(e.publishedAt.slice(0,10))} · ${h(e.place)}</p><h3><a href="${h(ctx.entryURL(e))}">${h(e.title)}</a></h3><p>${h(e.body.slice(0,190))}…</p><a href="${h(ctx.entryURL(e))}">Read this story</a></article>`).join('');
+      if(type==='preview')root.innerHTML=ctx.data.entries.slice(0,3).map(e=>homepageStoryCard(e,ctx)).join('');
       if(type==='story'){const entry=ctx.data.entries.find(e=>e.id===root.dataset.entry);if(entry){root.innerHTML=entryCard(entry,ctx,{full:true,heading:'h1'});ctx.event('story_view',entry.id);}}
     }
     const currentPath=location.pathname.replace(ctx.base,'');

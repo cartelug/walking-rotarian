@@ -8,9 +8,6 @@ export function logoPlate(ctx, { height = 64, cls = "", alt = "The Walking Rotar
   return `<span class="logo ${cls}"><img src="${rel(ctx, "/assets/img/logo-ink-160.webp")}" srcset="${srcset}" sizes="${Math.round(height * 0.72)}px" width="703" height="977" alt="${alt}" decoding="async"></span>`;
 }
 
-// Footprints for the page loader: a short walk across the screen.
-const steps = Array.from({ length: 8 }, (_, i) => `<span class="step step--${i % 2 ? "r" : "l"}" style="--i:${i}"><svg viewBox="0 0 20 34" width="14" height="24" focusable="false"><path d="M10 1c5 0 8 5 8 12s-3 10-8 10-8-3-8-10S5 1 10 1z"/><ellipse cx="10" cy="29" rx="5.5" ry="4.5"/></svg></span>`).join("");
-
 export function layout({ path: p, title, description, body, current = "", ogImage = "share-card.jpg", jsonld = [], assetVersion }) {
   const isHome = p === "/";
   const fullTitle = isHome ? `${site.name}: ${site.person}` : `${title} | ${site.name}`;
@@ -66,12 +63,14 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).repl
   <div class="container site-header__inner">
     <a class="brand" href="${a("/")}" aria-label="${esc(site.name)}: home">${logoPlate(p, { alt: "" })}<span class="brand__name" aria-hidden="true">The Walking<br>Rotarian</span></a>
     <nav class="primary-nav" aria-label="Main">
+      <a class="wr-search-trigger" href="${a('/archive/')}" data-search-open aria-label="Search the website" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-toggle__label">Menu</span></button>
       <div class="primary-nav__panel" id="site-menu">
         <ul class="primary-nav__list">
 ${nav}
         </ul>
-        ${ext(currentWalk.url, `Support the current walk`, "button button--header")}
+        ${ext(currentWalk.url, `Support the walk`, "button button--header")}
+        <div class="wr-menu-tools"><button type="button" data-low-data aria-pressed="false">Low data: off</button><a href="${a('/saved/')}">Saved stories</a></div>
       </div>
     </nav>
   </div>
@@ -125,21 +124,14 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
 
   return `${head}
 <body class="${isHome ? 'wr-home' : 'wr-inner'}" data-page="${esc(p.split('/').filter(Boolean)[0] || 'home')}">
-<div class="preloader" aria-hidden="true">
-  <div class="preloader__inner">
-    <img class="preloader__logo" src="${a("/assets/img/logo-ink-320.webp")}" width="320" height="445" alt="">
-    <div class="preloader__trail">${steps}</div>
-    <div class="preloader__bar"><span></span></div>
-    <p class="preloader__tag">Every step has a story.</p>
-  </div>
-</div>
 ${header}
 <div class="wr-utility"><nav class="container" aria-label="Reading tools"><a href="${a('/archive/')}">Search</a><a href="${a('/saved/')}">Saved stories</a><button type="button" data-low-data aria-pressed="false">Low data: off</button><button type="button" data-install>Add to home screen</button><span data-social-links></span></nav></div>
 <main id="main" tabindex="-1">
 ${body}
 </main>
 ${footer}
-<nav class="wr-mobile-nav" aria-label="Quick navigation">${[['/','Home','home'],['/live/','Journal','journal'],['/journeys/','Walks','walks'],['/get-involved/','Support','support']].map(([href,label,key])=>`<a href="${a(href)}"${p===href?' aria-current="page"':''}><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${({home:'<path d="m3 10 9-7 9 7v10H7V10h10v10"/>',journal:'<path d="M4 4h7l2 2h7v15h-7l-2-2H4zM8 9h8M8 13h8"/>',walks:'<path d="M6 20c-6-6 13-9 12-15M6 20h.01M18 5h.01"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="5" r="2"/>',support:'<path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1s0 7 8 14C20 12 23 8 20 5Z"/>'})[key]}</svg><span>${label}</span></a>`).join('')}</nav>
+<dialog class="wr-search-dialog" data-quick-search aria-labelledby="quick-search-h"><div class="wr-search-dialog__head"><div><p class="eyebrow">Find your next story</p><h2 id="quick-search-h">Explore the journey.</h2></div><button type="button" data-search-close aria-label="Close search">${icons.close}</button></div><form><label for="quick-search-input" class="visually-hidden">Search stories, places and walks</label><input id="quick-search-input" name="q" type="search" placeholder="A story, a place, a purpose…" maxlength="120" autocomplete="off"></form><p class="wr-search-count" data-search-count role="status" aria-live="polite"></p><div data-search-results></div><a class="wr-search-all" href="${a('/archive/')}">Open the full archive ${icons.arrow}</a></dialog>
+<nav class="wr-mobile-nav" aria-label="Quick navigation">${[['/','Home','home'],['/live/','Journal','journal'],['/journeys/','Walks','walks'],['/get-involved/','Support','support']].map(([href,label,key])=>`<a href="${a(href)}"${(p===href || (href!=='/' && p.startsWith(href)) || (href==='/live/' && p.startsWith('/journal/')))?' aria-current="page"':''}><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${({home:'<path d="m3 10 9-7 9 7v10H7V10h10v10"/>',journal:'<path d="M4 4h7l2 2h7v15h-7l-2-2H4zM8 9h8M8 13h8"/>',walks:'<path d="M6 20c-6-6 13-9 12-15M6 20h.01M18 5h.01"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="5" r="2"/>',support:'<path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1s0 7 8 14C20 12 23 8 20 5Z"/>'})[key]}</svg><span>${label}</span></a>`).join('')}</nav>
 </body>
 </html>
 `;
