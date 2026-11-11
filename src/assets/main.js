@@ -26,12 +26,20 @@
       setTimeout(() => pre.remove(), 700);
     }
   };
-  const minShow = calm ? 0 : seen ? 450 : 1300;
+  const minShow = calm ? 0 : seen ? 0 : 250;
   const whenLoaded = () => setTimeout(reveal, Math.max(0, minShow - performance.now()));
   if (doc.readyState === "complete") whenLoaded();
   else window.addEventListener("load", whenLoaded, { once: true });
   setTimeout(reveal, 5000); // never keep anyone waiting on a slow picture
   window.addEventListener("pageshow", (e) => { if (e.persisted) reveal(); });
+
+  /* Calm portrait motion: only animate while visible, and pause in background tabs. */
+  if (!calm && 'IntersectionObserver' in window) {
+    const portraits = doc.querySelectorAll('.wr-opening__portrait, .wr-person__visual');
+    const portraitObserver = new IntersectionObserver(entries => entries.forEach(entry => entry.target.classList.toggle('is-visible', entry.isIntersecting)));
+    portraits.forEach(el => portraitObserver.observe(el));
+    doc.addEventListener('visibilitychange', () => root.classList.toggle('wr-paused', doc.hidden));
+  }
 
   /* Header shadow once the page moves */
   const header = doc.querySelector(".site-header");

@@ -1,241 +1,59 @@
-import { site, currentWalk } from "../data/site.mjs";
-import { indexRows, statusLabels } from "../data/journeys.mjs";
-import { bio, timeline } from "../data/story.mjs";
-import { notes } from "../data/fieldnotes.mjs";
-import { listen } from "../data/media.mjs";
-import { esc, rel, ext, icons, img, figure, chip, md, paras } from "../lib/util.mjs";
-import { donateSection, chapter, journeyRow, facts, externalButton, internalButton, evidenceTag } from "../lib/blocks.mjs";
-import { homepageJournal } from './platform.mjs';
+import {site, currentWalk} from '../data/site.mjs';
+import {indexRows} from '../data/journeys.mjs';
+import {listen} from '../data/media.mjs';
+import {esc, rel, ext, icons, img} from '../lib/util.mjs';
+import {donateSection} from '../lib/blocks.mjs';
+import {homepageJournal} from './platform.mjs';
 
-export function home() {
-  const p = "/";
-  const a = (to) => rel(p, to);
-
-  const hero = `<section class="hero hero--home hero--photographic" aria-labelledby="hero-h">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="container hero__grid">
-    <div class="hero__text">
-      <p class="eyebrow">${esc(site.person)} · ${esc(site.name)}</p>
-      <h1 id="hero-h">Every step has a <span class="accent">story.</span></h1>
-      <p class="intro intro--light hero__intro">Meet ${esc(site.person)}, the Walking Rotarian. Explore the journeys, the people and the causes behind the miles.</p>
-      <p class="hero__actions">
-        ${internalButton(p, "/journeys/", "Explore the journeys", "button--clay")}
-        <a class="button button--ghost" href="${a('/live/?journey=walk-for-education')}">Follow the live journal</a>
-      </p>
-      <p class="hero__donate"><a href="${a("/#donate")}">Or make a donation</a></p>
-      <p class="hero__motto">${esc(site.motto)}</p>
-    </div>
-    <figure class="hero__mobile-art">
-      ${img('campaign-open-road', {ctx:p, alt:'Campaign artwork of Mbanda walking beside open East African grassland.', sizes:'100vw'})}
-      <figcaption>Campaign artwork created from supplied photographs.</figcaption>
-    </figure>
+export function home(){
+ const p='/'; const a=to=>rel(p,to);
+ const photo=(name,alt,opts={})=>img(name,{ctx:p,alt,...opts});
+ const link=(href,label,cls='button')=>`<a class="${cls}" href="${a(href)}">${label}${icons.arrow}</a>`;
+ const routes=indexRows().slice(0,3);
+ const routeImages=['campaign-highlands','kiburara-procession','campaign-forest'];
+ const body=`
+<section class="wr-opening" aria-labelledby="hero-h">
+ <div class="wr-opening__landscape" aria-hidden="true"></div>
+ <div class="container wr-opening__grid">
+  <div class="wr-opening__copy">
+   <p class="eyebrow">Mbanda Shyaka / The Walking Rotarian</p>
+   <h1 id="hero-h">Every step<br>has a <span>story.</span></h1>
+   <p class="wr-opening__intro">One man. A road ahead.<br>A purpose bigger than the miles.</p>
+   <div class="wr-opening__actions">${link('/live/','Follow the journey','button button--clay')}${link('/his-story/','Meet Shyaka','wr-text-link')}</div>
   </div>
-  <div class="container">
-    <dl class="hero__stats">
-      <div><dt>Faith in Motion, 2026</dt><dd><span class="hero__num">About 400 km</span><span class="hero__stat-note">Completed, as reported by PCI</span></dd></div>
-      <div><dt>Peace walk, 2024 to 2025</dt><dd><span class="hero__num">300 km</span><span class="hero__stat-note">Nakivale to Makerere, media-reported</span></dd></div>
-      <div><dt>Walk for Education, 2026</dt><dd><span class="hero__num">About 1,100 km</span><span class="hero__stat-note">Planned route, now underway</span></dd></div>
-    </dl>
-    <div class="hero__footnote"><p class="hero__note">Each figure belongs to its own walk.</p><a href="${a('/gallery/?collection=artwork#gallery')}">Campaign artwork · view the collection${icons.arrow}</a></div>
-  </div>
-</section>`;
+  <figure class="wr-opening__portrait">
+   <span class="wr-opening__halo" aria-hidden="true"></span>
+   ${photo('shyaka-cutout','Mbanda Shyaka, the Walking Rotarian, smiling in his grey Rotary shirt.',{priority:true,lazy:false,sizes:'(min-width: 900px) 48vw, 92vw'})}
+   <figcaption>Mbanda Shyaka<span>Walking with purpose.</span></figcaption>
+  </figure>
+ </div>
+ <div class="container wr-opening__trail"><span aria-hidden="true">01 / THE JOURNEY CONTINUES</span><a href="#current-walk">Discover the purpose <span aria-hidden="true">↓</span></a></div>
+</section>
 
-  // 01
-  const meet = chapter({
-    id: "meet",
-    num: "01",
-    heading: "Meet the walker",
-    body: `    <div class="split">
-      <figure class="split__figure">
-        ${img("portrait", { ctx: p, alt: "Mbanda Shyaka, smiling, wearing a black headwrap and a grey polo shirt with a Rotary Club of Akright City badge.", sizes: "(min-width: 1024px) 320px, 80vw" })}
-        <figcaption class="caption">Mbanda Shyaka. Supplied for the Walk for Education campaign.</figcaption>
-      </figure>
-      <div class="split__text">
-        <p class="reading">${esc(bio.short)}</p>
-        ${facts([
-          ["Known as", "The Walking Rotarian"],
-          ["Also published as", esc(site.alsoPublishedAs)],
-          ["Current walk", `<a href="${a("/journeys/walk-for-education/")}">Walk for Education</a>, underway`],
-          ["Last completed walk", `<a href="${a("/journeys/faith-in-motion/")}">Faith in Motion</a>, about 400 km, finished 2 August 2026`],
-        ])}
-        <p>${internalButton(p, "/his-story/", "Read his story", "button--secondary")}</p>
-      </div>
-    </div>`,
-  });
+<section class="wr-current wr-scene" id="current-walk" aria-labelledby="current-h">
+ <div class="container wr-current__grid">
+  <div class="wr-current__heading"><p class="eyebrow"><span class="wr-live-dot" aria-hidden="true"></span> The current mission / 2026</p><h2 id="current-h">Walking for<br><span>their future.</span></h2><p class="intro">Nairobi to Kagando.<br>Education that goes further.</p></div>
+  <div class="wr-current__details"><p class="wr-route-label">KENYA <span aria-hidden="true">────────</span> UGANDA</p><h3>Walk for Education</h3><p>${esc(currentWalk.purpose)}</p><div class="wr-distance"><strong>1,100 <small>km</small></strong><span>Approximate planned route<br>Not distance already walked</span></div><p class="wr-current__status">Underway · Organiser-reported. Verified stages will be added when confirmed.</p><div class="wr-actions">${link('/journeys/walk-for-education/','Explore this walk')}${ext(currentWalk.url,'Support through PCI','wr-text-link')}</div></div>
+ </div>
+</section>
 
-  // 02
-  const now = chapter({
-    id: "now",
-    num: "02",
-    heading: "On the road now",
-    body: `    <article class="panel panel--now" aria-labelledby="now-h3">
-      <p class="panel__top">${chip("underway", statusLabels)}<span class="evidence"><span class="evidence__label">Evidence</span> Organiser-reported</span></p>
-      <h3 id="now-h3">${esc(currentWalk.name)}</h3>
-      <p class="panel__route">${esc(currentWalk.route)}</p>
-      <p class="reading">${esc(currentWalk.purpose)}</p>
-      ${facts([
-        ["Distance", `${esc(currentWalk.distance)}. <span class="muted">${esc(currentWalk.distanceBasis)}</span>`],
-        ["Where he is", "No live location is shown on this site."],
-        ["Last verified update", currentWalk.lastVerifiedUpdate ? esc(currentWalk.lastVerifiedUpdate) : "None yet. Dated stages will appear here once the campaign team confirms them."],
-      ])}
-      <p class="panel__actions">
-        <a class="button" href="${a("/journeys/walk-for-education/")}">Follow the walk${icons.arrow}</a>
-        ${externalButton(currentWalk.url, "Support the current walk", "button--secondary")}
-      </p>
-    </article>`,
-  });
-
-  // 03
-  const rows = indexRows().slice(0, 4);
-  const journeysCh = chapter({
-    id: "journeys",
-    num: "03",
-    heading: "The journeys",
-    body: `    <p class="intro reading">Walks for education, peace and faith. Each one says what it was for, how far it went, and who reported it.</p>
-    <ul class="jlist">
-${rows.map((r) => journeyRow(r, p, "h3")).join("\n")}
-    </ul>
-    <p>${internalButton(p, "/journeys/", "All journeys, with filters", "button--secondary")}</p>`,
-  });
-
-  // 04
-  const before = ["teaching", "edutab", "mwalimutab", "codeimpact"].map((id) => timeline.find((t) => t.id === id));
-  const beforeCh = chapter({
-    id: "before",
-    num: "04",
-    heading: "Before the miles",
-    body: `    <p class="intro reading">Before the long walks there were classrooms, tablets and coding clubs. The record is below, with the source beside each line.</p>
-    <ul class="cards cards--four">
-${before
-  .map(
-    (t) => `      <li class="card">
-        <p class="card__when">${esc(t.when)}</p>
-        <h3>${esc(t.title)}</h3>
-        <p>${md(t.text, p)}</p>
-        <p class="card__foot">${evidenceTag(t.evidence)}</p>
-      </li>`
-  )
-  .join("\n")}
-    </ul>
-    <p>${internalButton(p, "/his-story/", "The full timeline", "button--secondary")}</p>`,
-  });
-
-  // 05
-  const people = chapter({
-    id: "people",
-    num: "05",
-    heading: "People along the way",
-    body: `    <p class="reading">On Sunday 2 August 2026, people met the end of the Faith in Motion walk along the road at Kiburara. These photographs were supplied through PCI.</p>
-    <div class="essay">
-      <figure class="essay__lead">${img("kiburara-procession", { ctx: p, alt: "Shyaka walking along a dirt road at Kiburara among a crowd of people carrying green branches.", sizes: "(min-width: 1024px) 700px, 100vw" })}<figcaption class="caption">The welcome procession at Kiburara.</figcaption></figure>
-      <figure class="essay__a">${img("arrival-celebration", { ctx: p, alt: "Shyaka smiling in a selfie with four women at the finish in Kiburara. One of them holds a leaflet.", sizes: "(min-width: 1024px) 460px, 100vw" })}<figcaption class="caption">Arrival celebration with supporters.</figcaption></figure>
-      <figure class="essay__b">${img("kiburara-crowd", { ctx: p, alt: "A crowd of adults and children on a road at Kiburara, with Shyaka’s face at the right edge of the frame.", sizes: "(min-width: 1024px) 460px, 100vw" })}<figcaption class="caption">Community welcome at the finish.</figcaption></figure>
-    </div>
-    <p>${internalButton(p, "/gallery/", "See the gallery", "button--secondary")}</p>`,
-  });
-
-  // 06
-  const voice = chapter({
-    id: "voice",
-    num: "06",
-    heading: "In his own voice",
-    body: `    <p class="reading">Where Shyaka speaks for himself, on the record, he is easy to find. These are the originals. They open on the publisher’s own page.</p>
-    <ul class="cards cards--two">
-${listen
-  .slice(0, 2)
-  .map(
-    (m, i) => `      <li class="card card--media">
-        <p class="card__when">${esc(m.kind)} · ${esc(m.date)}</p>
-        <h3>${esc(m.title)}</h3>
-        <p class="muted">${esc(m.outlet)}</p>
-        <p>${esc(m.note)}</p>
-        <p>${ext(m.url, `${icons.play}<span>${i === 0 ? "Watch on YouTube" : "Listen on Apple Podcasts"}</span>`, "button button--secondary")}</p>
-      </li>`
-  )
-  .join("\n")}
-    </ul>
-    <p>${internalButton(p, "/media/", "The media room", "button--secondary")}</p>`,
-  });
-
-  // 07
-  const fieldCh = chapter({
-    id: "notes",
-    num: "07",
-    heading: "Field notes",
-    body: `    <p class="reading">Dated records from the road, written from what the sources say. Nothing here is written in Shyaka’s voice unless he wrote the words himself.</p>
-    <ol class="notelist">
-${notes
-  .slice(0, 3)
-  .map(
-    (n) => `      <li class="notelist__item">
-        <p class="notelist__date">${esc(n.dateLabel)}<span class="notelist__place">${esc(n.place)}</span></p>
-        <h3><a href="${a(`/field-notes/#${n.id}`)}">${esc(n.title)}</a></h3>
-      </li>`
-  )
-  .join("\n")}
-    </ol>
-    <p>${internalButton(p, "/field-notes/", "All field notes", "button--secondary")}</p>`,
-  });
-
-  const carry = `<section class="band band--dark" id="carry" aria-labelledby="carry-h">
-  <div class="container">
-    <p class="eyebrow eyebrow--onink">08 · Carry the purpose</p>
-    <h2 id="carry-h">You do not have to walk to be part of a walk.</h2>
-    <ul class="cards cards--three cards--onink">
-      <li class="card"><h3>Support the current walk</h3><p>Follow the walk and find the official ways to give on PCI’s Walk for Education page.</p><p>${externalButton(currentWalk.url, "Go to PCI", "button--onink")}</p></li>
-      <li class="card"><h3>Host a stop</h3><p>Welcome a walk at your school, church, club or community.</p><p>${internalButton(p, "/get-involved/#enquiry", "Tell us where", "button--onink")}</p></li>
-      <li class="card"><h3>Invite him to speak</h3><p>Talks, interviews and media requests.</p><p>${internalButton(p, "/get-involved/#enquiry", "Send an enquiry", "button--onink")}</p></li>
-    </ul>
-  </div>
-</section>`;
-
-  // A slow-moving strip of the three walks. Each figure belongs to its own walk; nothing is added together.
-  const tickerItems = ["Faith in Motion · about 400 km · 2026", "Peace walk · 300 km · 2024 to 2025", "Walk for Education · about 1,100 km planned · 2026", "Every step has a story"];
-  const tickerRun = (hidden) => `<ul class="ticker__run"${hidden ? ' aria-hidden="true"' : ""}>${tickerItems.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`;
-  const ticker = `<div class="ticker" role="group" aria-label="The three walks"><div class="ticker__track">${tickerRun(false)}${tickerRun(true)}</div></div>`;
-
-  const visualStories = `<section class="block visual-stories" aria-labelledby="visual-stories-h"><div class="container">
-    <div class="visual-stories__heading"><div><p class="eyebrow">A life in motion</p><h2 id="visual-stories-h">The road.<br>The people.<br>The purpose.</h2></div><p>A quiet moment, a shared conversation, another path ahead. Explore the stories that give the miles their meaning.</p></div>
-    <div class="visual-stories__grid">
-      <a class="visual-story visual-story--portrait" href="${a('/his-story/')}">${img('campaign-portrait',{ctx:p,alt:'Campaign portrait of Mbanda seated beside a path.',sizes:'(min-width: 800px) 40vw, 100vw'})}<span><small>Meet the walker</small><strong>The person behind the miles</strong>${icons.arrow}</span></a>
-      <a class="visual-story" href="${a('/live/')}">${img('campaign-riverside',{ctx:p,alt:'Campaign artwork of Mbanda reflecting beside a river.',sizes:'(min-width: 800px) 55vw, 100vw'})}<span><small>From the road</small><strong>Moments worth sharing</strong>${icons.arrow}</span></a>
-      <a class="visual-story" href="${a('/community/')}">${img('campaign-community',{ctx:p,alt:'Campaign artwork of Mbanda and illustrative adult walking companions.',sizes:'(min-width: 800px) 55vw, 100vw'})}<span><small>Walk with the purpose</small><strong>There is room for you</strong>${icons.arrow}</span></a>
-    </div><p class="visual-stories__credit">AI-generated campaign artwork, inspired by the supplied PCI and personal photographs. <a href="${a('/gallery/?collection=artwork#gallery')}">Explore all 12 new scenes</a>.</p>
-  </div></section>`;
-
-  const body = `${hero}
-${ticker}
 ${homepageJournal()}
-${visualStories}
-<div class="container thread" data-thread>
-${meet}
-${now}
-${journeysCh}
-${beforeCh}
-${people}
-${voice}
-${fieldCh}
-</div>
+
+<section class="wr-person wr-scene" aria-labelledby="person-h"><div class="container wr-person__grid">
+ <figure class="wr-person__visual">${photo('shyaka-walking-cutout','Campaign artwork of Shyaka walking with a backpack.',{sizes:'(min-width: 900px) 40vw, 80vw',cls:'wr-walker'})}<figcaption>Campaign artwork · an illustration of the journey.</figcaption></figure>
+ <div class="wr-person__copy"><p class="eyebrow">The person behind the miles</p><h2 id="person-h">A life in motion.<br><span>A purpose that stays.</span></h2><p class="intro">Before the long walks, there were classrooms, learning tools and communities.</p><p>Shyaka brings that same belief to the road: people can come together to move something meaningful forward. His journeys connect education, peace, faith and community.</p>${link('/his-story/','Discover his story','button button--secondary')}<a class="wr-person__signature" href="${esc('https://www.facebook.com/mbanda.shyaka')}" target="_blank" rel="noopener noreferrer">Follow Mbanda on Facebook ${icons.ext}</a></div>
+</div></section>
+
+<section class="wr-expeditions" aria-labelledby="expeditions-h"><div class="container"><div class="wr-section-heading"><div><p class="eyebrow">Different roads. Shared purpose.</p><h2 id="expeditions-h">The journeys.</h2></div>${link('/journeys/','Explore every walk','wr-text-link')}</div><div class="wr-expedition-grid">${routes.map((r,i)=>`<a class="wr-expedition" href="${a('/journeys/'+r.slug+'/')}"><div class="wr-expedition__image">${photo(routeImages[i],i===1?'Supporters welcome Shyaka at Kiburara.':'Campaign landscape artwork.',{sizes:'(min-width: 900px) 30vw, 90vw'})}<span class="wr-expedition__index">0${i+1}</span></div><div class="wr-expedition__copy"><p class="eyebrow">${esc(r.dateLabel)}</p><h3>${esc(r.title)}</h3><p>${esc(r.route)}</p><div class="wr-expedition__meta"><span>${esc(r.distance)}<small>${i===0?'Planned route':esc(r.evidence)}</small></span>${icons.arrow}</div></div></a>`).join('')}</div></div></section>
+
+<section class="wr-together wr-scene" aria-labelledby="together-h"><div class="container"><p class="eyebrow">The people make the journey</p><h2 id="together-h">He walks.<br><span>We move together.</span></h2><p>Every welcome, every conversation, every act of support carries the purpose further.</p>${link('/community/','Find your place in the journey','button button--onink')}<p class="wr-art-credit">Campaign landscape artwork</p></div></section>
+
+<section class="wr-moments" aria-labelledby="moments-h"><div class="container"><div class="wr-section-heading"><div><p class="eyebrow">Real people. Real moments.</p><h2 id="moments-h">Along the way.</h2></div>${link('/gallery/','Open the gallery','wr-text-link')}</div><div class="wr-moments__grid"><figure>${photo('kiburara-procession','Shyaka walking with the welcome procession at Kiburara.',{sizes:'(min-width: 900px) 60vw, 100vw'})}<figcaption>The welcome at Kiburara · Faith in Motion, 2 August 2026</figcaption></figure><figure>${photo('arrival-celebration','Shyaka with supporters at the finish of Faith in Motion.',{sizes:'(min-width: 900px) 36vw, 100vw'})}<figcaption>A shared finish. A shared purpose. · Photographs supplied via PCI</figcaption></figure></div></div></section>
+
+<section class="wr-listen" aria-labelledby="listen-h"><div class="container"><div class="wr-section-heading"><div><p class="eyebrow">In his own voice</p><h2 id="listen-h">Stories worth hearing.</h2></div>${link('/media/','The media room','wr-text-link')}</div><div class="wr-listen__grid">${listen.slice(0,2).map((m,i)=>`<article class="wr-listen__item"><span class="wr-listen__play" aria-hidden="true">${icons.play}</span><p class="eyebrow">${esc(m.kind)} / ${esc(m.date)}</p><h3>${esc(m.title)}</h3><p>${esc(m.outlet)}</p><p class="wr-listen__note">${esc(m.note)}</p>${ext(m.url,i===0?'Watch the talk':'Listen to the conversation','wr-text-link')}</article>`).join('')}</div></div></section>
+
+<section class="wr-carry" aria-labelledby="carry-h"><div class="container wr-carry__grid"><div><p class="eyebrow">Carry a little of the journey</p><h2 id="carry-h">Purpose, beyond<br>the road.</h2><p>Explore merchandise and publications. Ask the team about designs, availability and prices.</p>${link('/shop/','Explore the collection','button button--secondary')}</div><figure>${photo('campaign-essentials','Illustrative Walking Rotarian merchandise concepts.',{sizes:'(min-width: 900px) 46vw, 100vw'})}<figcaption>Collection concepts · products and prices to be confirmed.</figcaption></figure></div></section>
 ${donateSection(p)}
-${carry}`;
-
-  const jsonld = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: site.name,
-      description: site.description,
-      ...(site.url ? { url: site.url } : {}),
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: site.person,
-      alternateName: [site.alsoPublishedAs, "The Walking Rotarian"],
-      description: bio.short,
-      ...(site.url ? { url: site.url } : {}),
-    },
-  ];
-
-  return { path: p, title: "Home", description: site.description, body, jsonld };
+<section class="wr-closing wr-scene"><div class="container"><p class="eyebrow">There is a place for you</p><h2>The next step<br>can be yours.</h2><div class="wr-actions">${link('/get-involved/','Walk with the purpose','button button--onink')}${link('/live/','Read the journal','wr-text-link')}</div></div></section>`;
+ return {path:p,title:'Home',description:site.description,body,jsonld:[{'@context':'https://schema.org','@type':'WebSite',name:site.name,...(site.url?{url:site.url}:{})},{'@context':'https://schema.org','@type':'Person',name:site.person,alternateName:[site.alsoPublishedAs,'The Walking Rotarian']}]};
 }

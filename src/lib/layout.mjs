@@ -47,7 +47,7 @@ ${ogUrl ? `<meta property="og:image" content="${esc(ogUrl)}">\n<meta property="o
 <link rel="stylesheet" href="${a("/assets/main.css")}?v=${assetVersion.css}">
 <link rel="stylesheet" href="${a('/assets/platform/platform.css')}?v=${assetVersion.platformCSS}">
 <link rel="stylesheet" href="${a('/assets/visuals.css')}?v=${assetVersion.visualsCSS}">
-${isHome ? `<link rel="preload" as="image" href="${a('/assets/img/campaign-hero-1672.webp')}" media="(min-width: 64rem)">` : ''}
+
 <script>document.documentElement.className+=" js";</script>
 <script src="${a("/assets/main.js")}?v=${assetVersion.js}" defer></script>
 <script type="module" src="${a('/assets/platform/main.js')}?v=${assetVersion.platformJS}"></script>
@@ -124,7 +124,7 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
 </footer>`;
 
   return `${head}
-<body>
+<body class="${isHome ? 'wr-home' : 'wr-inner'}" data-page="${esc(p.split('/').filter(Boolean)[0] || 'home')}">
 <div class="preloader" aria-hidden="true">
   <div class="preloader__inner">
     <img class="preloader__logo" src="${a("/assets/img/logo-ink-320.webp")}" width="320" height="445" alt="">
@@ -139,6 +139,7 @@ ${header}
 ${body}
 </main>
 ${footer}
+<nav class="wr-mobile-nav" aria-label="Quick navigation">${[['/','Home','home'],['/live/','Journal','journal'],['/journeys/','Walks','walks'],['/get-involved/','Support','support']].map(([href,label,key])=>`<a href="${a(href)}"${p===href?' aria-current="page"':''}><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${({home:'<path d="m3 10 9-7 9 7v10H7V10h10v10"/>',journal:'<path d="M4 4h7l2 2h7v15h-7l-2-2H4zM8 9h8M8 13h8"/>',walks:'<path d="M6 20c-6-6 13-9 12-15M6 20h.01M18 5h.01"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="5" r="2"/>',support:'<path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1s0 7 8 14C20 12 23 8 20 5Z"/>'})[key]}</svg><span>${label}</span></a>`).join('')}</nav>
 </body>
 </html>
 `;

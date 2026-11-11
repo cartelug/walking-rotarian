@@ -56,7 +56,7 @@ export function story() {
 <section class="block">
   <div class="container split split--story">
     <figure class="split__figure">
-      ${img("portrait", { ctx: p, alt: "Mbanda Shyaka, smiling, wearing a black headwrap and a grey polo shirt with a Rotary Club of Akright City badge.", sizes: "(min-width: 1024px) 360px, 80vw", lazy: false })}
+      ${img("shyaka-cutout", { ctx: p, alt: "Mbanda Shyaka, smiling, wearing a black headwrap and a grey polo shirt with a Rotary Club of Akright City badge.", sizes: "(min-width: 1024px) 360px, 80vw", lazy: false })}
       <figcaption class="caption">Mbanda Shyaka. Supplied for the Walk for Education campaign.</figcaption>
     </figure>
     <div class="split__text">

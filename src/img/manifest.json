@@ -1,203 +1,219 @@
 {
- "portrait": {
-  "w": 710,
-  "h": 974,
-  "widths": [
-   480,
-   710
-  ]
- },
- "river-crossing": {
-  "w": 774,
-  "h": 1032,
-  "widths": [
-   480,
-   774
-  ]
- },
- "arrival-celebration": {
-  "w": 1080,
-  "h": 608,
-  "widths": [
-   480,
-   800,
-   1080
-  ]
- },
- "kiburara-procession": {
-  "w": 1079,
-  "h": 608,
-  "widths": [
-   480,
-   800,
-   1079
-  ]
- },
- "kiburara-crowd": {
-  "w": 1080,
-  "h": 608,
-  "widths": [
-   480,
-   800,
-   1080
-  ]
- },
- "route-kasese": {
-  "w": 540,
-  "h": 960,
-  "widths": [
-   360,
-   540
-  ]
- },
- "route-riverside": {
-  "w": 540,
-  "h": 960,
-  "widths": [
-   360,
-   540
-  ]
- },
- "route-mpara-biguli": {
-  "w": 540,
-  "h": 960,
-  "widths": [
-   360,
-   540
-  ]
- },
- "poster-345": {
-  "w": 720,
-  "h": 1080,
-  "widths": [
-   480,
-   720
-  ]
- },
- "evening-road": {
-  "w": 498,
-  "h": 884,
-  "widths": [
-   360,
-   498
-  ]
- },
- "logo": {
-  "w": 397,
-  "h": 532,
-  "widths": [
-   96,
-   192,
-   288,
-   397
-  ]
- },
- "campaign-hero": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-journal": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-community": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-portrait": {
-  "w": 1086,
-  "h": 1448,
-  "widths": [
-   480,
-   960,
-   1086
-  ]
- },
- "campaign-highlands": {
-  "w": 1913,
-  "h": 822,
-  "widths": [
-   480,
-   960,
-   1913
-  ]
- },
- "campaign-learning": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-riverside": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-evening": {
-  "w": 1913,
-  "h": 822,
-  "widths": [
-   480,
-   960,
-   1913
-  ]
- },
- "campaign-footsteps": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-essentials": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- },
- "campaign-forest": {
-  "w": 1914,
-  "h": 822,
-  "widths": [
-   480,
-   960,
-   1914
-  ]
- },
- "campaign-open-road": {
-  "w": 1672,
-  "h": 941,
-  "widths": [
-   480,
-   960,
-   1672
-  ]
- }
+  "portrait": {
+    "w": 710,
+    "h": 974,
+    "widths": [
+      480,
+      710
+    ]
+  },
+  "river-crossing": {
+    "w": 774,
+    "h": 1032,
+    "widths": [
+      480,
+      774
+    ]
+  },
+  "arrival-celebration": {
+    "w": 1080,
+    "h": 608,
+    "widths": [
+      480,
+      800,
+      1080
+    ]
+  },
+  "kiburara-procession": {
+    "w": 1079,
+    "h": 608,
+    "widths": [
+      480,
+      800,
+      1079
+    ]
+  },
+  "kiburara-crowd": {
+    "w": 1080,
+    "h": 608,
+    "widths": [
+      480,
+      800,
+      1080
+    ]
+  },
+  "route-kasese": {
+    "w": 540,
+    "h": 960,
+    "widths": [
+      360,
+      540
+    ]
+  },
+  "route-riverside": {
+    "w": 540,
+    "h": 960,
+    "widths": [
+      360,
+      540
+    ]
+  },
+  "route-mpara-biguli": {
+    "w": 540,
+    "h": 960,
+    "widths": [
+      360,
+      540
+    ]
+  },
+  "poster-345": {
+    "w": 720,
+    "h": 1080,
+    "widths": [
+      480,
+      720
+    ]
+  },
+  "evening-road": {
+    "w": 498,
+    "h": 884,
+    "widths": [
+      360,
+      498
+    ]
+  },
+  "logo": {
+    "w": 397,
+    "h": 532,
+    "widths": [
+      96,
+      192,
+      288,
+      397
+    ]
+  },
+  "campaign-hero": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-journal": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-community": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-portrait": {
+    "w": 1086,
+    "h": 1448,
+    "widths": [
+      480,
+      960,
+      1086
+    ]
+  },
+  "campaign-highlands": {
+    "w": 1913,
+    "h": 822,
+    "widths": [
+      480,
+      960,
+      1913
+    ]
+  },
+  "campaign-learning": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-riverside": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-evening": {
+    "w": 1913,
+    "h": 822,
+    "widths": [
+      480,
+      960,
+      1913
+    ]
+  },
+  "campaign-footsteps": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-essentials": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "campaign-forest": {
+    "w": 1914,
+    "h": 822,
+    "widths": [
+      480,
+      960,
+      1914
+    ]
+  },
+  "campaign-open-road": {
+    "w": 1672,
+    "h": 941,
+    "widths": [
+      480,
+      960,
+      1672
+    ]
+  },
+  "shyaka-cutout": {
+    "w": 1013,
+    "h": 1449,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "shyaka-walking-cutout": {
+    "w": 790,
+    "h": 1746,
+    "widths": [
+      360,
+      640
+    ]
+  }
 }
