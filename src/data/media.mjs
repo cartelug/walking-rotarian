@@ -184,3 +184,9 @@ export const distanceRules = [
   "The Dar es Salaam expedition is a proposal. Do not describe it as walked or planned for a date.",
   "Wellbeing statements are Shyaka’s personal views, not medical advice.",
 ];
+
+// News and recordings added from the website admin come first.
+import { adminMedia } from "../lib/admin-content.mjs";
+const fromAdmin = adminMedia();
+press.unshift(...fromAdmin.press);
+listen.unshift(...fromAdmin.listen);

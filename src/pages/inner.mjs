@@ -8,6 +8,10 @@ import { esc, md, rel, ext, icons, img, manifest, chip, paras } from "../lib/uti
 import { pageHead } from "../lib/layout.mjs";
 import { donateSection, chapter, evidenceTag, sourceList, facts, journeyRow, filterBar, externalButton, internalButton } from "../lib/blocks.mjs";
 
+/** A photograph added through the admin lives at a full web address rather than in the image set. */
+const remoteImg = (url, alt, { lazy = true, cls = "" } = {}) => `<img${cls ? ` class="${cls}"` : ""} src="${esc(url)}" alt="${esc(alt)}" width="1200" height="900" decoding="async"${lazy ? ' loading="lazy"' : ' fetchpriority="high"'} referrerpolicy="no-referrer" style="object-fit:cover">`;
+const picture = (f, ctx, opts) => (f.url ? remoteImg(f.url, f.alt, { lazy: opts.lazy !== false }) : img(f.image, { ctx, alt: f.alt, ...opts }));
+
 const evidenceLegend = () => `<details class="legend">
   <summary>How to read the evidence labels</summary>
   <dl>
@@ -130,10 +134,10 @@ function chapterBody(content, ctx) {
   const c = Array.isArray(content) ? { paras: content } : content;
   const figs = (c.figures || [])
     .map(
-      (f) => `      <figure class="figure">${img(f.image, { ctx, alt: f.alt, sizes: "(min-width: 1024px) 380px, 100vw" })}<figcaption class="caption">${md(f.caption, ctx)}</figcaption></figure>`
+      (f) => `      <figure class="figure">${picture(f, ctx, { sizes: "(min-width: 1024px) 380px, 100vw" })}${f.caption ? `<figcaption class="caption">${md(f.caption, ctx)}</figcaption>` : ""}</figure>`
     )
     .join("\n");
-  return `    <div class="reading">${paras(c.paras || [], ctx)}</div>${figs ? `\n    <div class="figures figures--${c.figures.length}">\n${figs}\n    </div>` : ""}`;
+  return `    <div class="reading">${paras(c.paras || [], ctx)}</div>${figs ? `\n    <div class="figures figures--${Math.min(c.figures.length, 3)}">\n${figs}\n    </div>` : ""}`;
 }
 
 export function journeyPage(j, prev, next) {
@@ -161,7 +165,7 @@ ${sourceList(j.record.sources, p)}
   );
 
   const hero = j.hero
-    ? `<figure class="journey-head__figure">${img(j.hero.image, { ctx: p, alt: j.hero.alt, sizes: "(min-width: 1024px) 440px, 100vw", lazy: false, priority: true })}<figcaption class="caption">${md(j.hero.caption, p)}</figcaption></figure>`
+    ? `<figure class="journey-head__figure">${picture(j.hero, p, { sizes: "(min-width: 1024px) 440px, 100vw", lazy: false, priority: true })}<figcaption class="caption">${md(j.hero.caption, p)}</figcaption></figure>`
     : "";
   const cta = j.cta
     ? `<section class="band band--dark" aria-labelledby="cta-h"><div class="container"><h2 id="cta-h">${esc(j.cta.heading)}</h2><p class="intro intro--light">${esc(j.cta.text)}</p><p>${j.cta.url.startsWith("/") ? internalButton(p,j.cta.url,j.cta.label,"button--onink") : externalButton(j.cta.url,j.cta.label,"button--onink")}</p></div></section>`
@@ -237,12 +241,13 @@ export function fieldNotes() {
     intro: "Dated records from the road, written from what the sources say. Newest first.",
   });
   const last = currentWalk.lastVerifiedUpdate;
+  const walkChip = { Underway: "underway", Completed: "completed" }[currentWalk.status] || "proposed";
   const pin = `<aside class="panel panel--now" aria-labelledby="pin-h">
-    <p class="panel__top">${chip("underway", statusLabels)}</p>
-    <h2 id="pin-h">${esc(pinned.heading)}</h2>
-    <p class="reading">${esc(pinned.text)}</p>
+    <p class="panel__top">${chip(walkChip, { ...statusLabels, [walkChip]: currentWalk.status })}</p>
+    <h2 id="pin-h">${esc(currentWalk.status === "Underway" ? `On the road now: ${currentWalk.name}` : `${currentWalk.status}: ${currentWalk.name}`)}</h2>
+    <p class="reading">${esc(currentWalk.statusNote || pinned.text)}</p>
     <p class="muted">Last verified update: ${last ? esc(last) : "none yet"}. No live location is shown on this site.</p>
-    <p>${internalButton(p, "/journeys/walk-for-education/", "About the walk", "button--secondary")}</p>
+    <p>${internalButton(p, `/journeys/${currentWalk.journeySlug}/`, "About the walk", "button--secondary")}</p>
   </aside>`;
   const list = notes
     .map((n) => {
@@ -286,24 +291,22 @@ export function gallery() {
   });
   const tiles = galleryItems
     .map((g) => {
-      const m = manifest[g.image];
-      const biggest = m.widths[m.widths.length - 1];
+      const full = g.url || rel(p, `/assets/img/${g.image}-${manifest[g.image].widths.at(-1)}.webp`);
       const tokens = [...(g.group === "artwork" ? [] : ["all"]), ...g.filters].join(" ");
       return `    <li class="tile-wrap" data-filter="${tokens}">
-      <a class="tile" href="${rel(p, `/assets/img/${g.image}-${biggest}.webp`)}" data-id="${g.id}">
-        ${img(g.image, { ctx: p, alt: g.alt, sizes: "(min-width: 1024px) 380px, (min-width: 640px) 46vw, 100vw" })}
+      <a class="tile" href="${esc(full)}" data-id="${g.id}">
+        ${picture(g, p, { sizes: "(min-width: 1024px) 380px, (min-width: 640px) 46vw, 100vw" })}
         <span class="tile__label"><span class="tile__kind${g.group === "artwork" ? " tile__kind--artwork" : ""}">${esc(g.kind)}</span><span class="tile__title">${esc(g.title)}</span></span>
       </a>
     </li>`;
     })
     .join("\n");
   const data = galleryItems.map((g) => {
-    const m = manifest[g.image];
-    const biggest = m.widths[m.widths.length - 1];
+    const m = g.url ? { w: 1200, h: 900, widths: [] } : manifest[g.image];
     const j = journeys.find((x) => x.slug === g.journey);
     return {
       id: g.id,
-      src: rel(p, `/assets/img/${g.image}-${biggest}.webp`),
+      src: g.url || rel(p, `/assets/img/${g.image}-${m.widths.at(-1)}.webp`),
       w: m.w,
       h: m.h,
       alt: g.alt,

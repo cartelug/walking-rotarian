@@ -9,6 +9,8 @@
 // reason, road, along, people, followed, record. Leave a chapter out when there
 // is nothing sourced to say. Never pad a chapter.
 
+import { applyJourneys } from "../lib/admin-content.mjs";
+
 const PCI_WALK = {
   label: "PCI, Faith in Motion: the walk",
   url: "https://pamodzici.com/walk/",
@@ -27,7 +29,7 @@ const PCI_WFE = {
   note: "The distance and the UGX 25 billion goal are planning figures. No distance completed is published.",
 };
 
-export const journeys = [
+const baseJourneys = [
   {
     slug: "walk-for-education",
     page: true,
@@ -425,6 +427,9 @@ export const journeys = [
     },
   },
 ];
+
+// Journeys added or updated from the website admin are laid over the list above.
+export const journeys = applyJourneys(baseJourneys);
 
 // Rows shown on the journeys index, newest first, proposals last.
 // The "earlier walks" page is shown as its own rows (one per item).

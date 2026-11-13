@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   save:
-    if: startsWith(github.event.issue.title, '[Journal]') || startsWith(github.event.issue.title, '[Product]') || startsWith(github.event.issue.title, '[Progress]') || startsWith(github.event.issue.title, '[Connections]')
+    if: startsWith(github.event.issue.title, '[Journal]') || startsWith(github.event.issue.title, '[Product]') || startsWith(github.event.issue.title, '[Progress]') || startsWith(github.event.issue.title, '[Connections]') || startsWith(github.event.issue.title, '[Current walk]') || startsWith(github.event.issue.title, '[Journey]') || startsWith(github.event.issue.title, '[Photo]') || startsWith(github.event.issue.title, '[Media]')
     runs-on: ubuntu-latest
     permissions:
       contents: write

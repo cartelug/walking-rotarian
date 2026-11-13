@@ -1,0 +1,108 @@
+name: Add or update a journey
+description: Add a new walk to the Journeys page, or update a walk (for example, mark it completed and say what happened).
+title: "[Journey] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write the journey's name in the title above. **To update an existing journey,** keep its identifier and fill in only what changed: anything you write in What happened is added to that journey's page. **For a new journey,** fill in the dates, summary, walk status and cause. Forms and photographs are public on GitHub.
+  - type: input
+    id: journey-id
+    attributes:
+      label: Journey identifier
+      description: Leave blank for a new journey (it is made from the title). For an existing journey, the admin fills this in. Do not change it later.
+  - type: dropdown
+    id: walk-status
+    attributes:
+      label: Walk status
+      default: 0
+      options:
+        - Keep current status
+        - Underway
+        - Completed
+        - Planned (not walked yet)
+  - type: input
+    id: dates
+    attributes:
+      label: Dates
+      description: How the dates should read. For example, 1 to 20 March 2027.
+  - type: input
+    id: start-date
+    attributes:
+      label: Start date
+      description: Optional, as YYYY-MM-DD. Used to put journeys in order.
+  - type: input
+    id: route
+    attributes:
+      label: Route
+      description: For example, Kampala to Mbarara.
+  - type: dropdown
+    id: cause
+    attributes:
+      label: Cause
+      default: 0
+      options:
+        - Keep current cause
+        - Education
+        - Peace
+        - Faith
+        - Wellbeing
+  - type: input
+    id: distance
+    attributes:
+      label: Distance
+      description: For example, About 300 km.
+  - type: input
+    id: distance-basis
+    attributes:
+      label: Distance basis
+      description: Who reported the distance. For example, Planned route, or Walked and recorded by the team.
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Who reports this journey.
+      default: 0
+      options:
+        - Keep current evidence
+        - Self-reported
+        - Organiser-reported
+        - Media-reported
+        - Club-reported
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences shown on the Journeys page.
+  - type: textarea
+    id: story
+    attributes:
+      label: What happened
+      description: The story of the walk. Leave a blank line between paragraphs. Add photographs with the attachment button under this box.
+  - type: input
+    id: source-link
+    attributes:
+      label: Source link
+      description: Optional link to a news report, Facebook post or campaign page about this journey.
+  - type: input
+    id: source-name
+    attributes:
+      label: Source name
+      description: Optional, for example Nile Post or PCI campaign page.
+  - type: dropdown
+    id: publication
+    attributes:
+      label: Publication
+      default: 0
+      options:
+        - Publish
+        - Withdraw this change
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Journey confirmation
+      options:
+        - label: I confirm this journey information is accurate and approved for the public website.
+          required: true

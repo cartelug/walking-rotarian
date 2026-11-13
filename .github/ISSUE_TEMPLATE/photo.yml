@@ -1,0 +1,57 @@
+name: Add photographs to the gallery
+description: Add one or more photographs to the website gallery.
+title: "[Photo] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write a short title above. Then attach your photographs in the **Photographs** box: tap the box, then tap **Paste, drop, or click to add files** (or the paperclip or image icon) and choose photos from your phone. Wait until each one has uploaded. Photographs on GitHub are public.
+  - type: textarea
+    id: photographs
+    attributes:
+      label: Photographs
+      description: Attach up to 20 photographs here. Do not delete the lines that appear; they are your photos.
+    validations:
+      required: true
+  - type: textarea
+    id: caption
+    attributes:
+      label: Caption
+      description: What the photograph shows, where and when. For example, The welcome at Kasese, 12 March 2027.
+  - type: input
+    id: description
+    attributes:
+      label: Photo description
+      description: Optional. Describe the picture for people who cannot see it.
+  - type: input
+    id: credit
+    attributes:
+      label: Photo credit
+      description: Who took the photograph.
+  - type: input
+    id: date
+    attributes:
+      label: Date taken
+      description: For example, 12 March 2027.
+  - type: input
+    id: journey
+    attributes:
+      label: Journey
+      description: Optional. The journey's name as shown on the Journeys page.
+  - type: dropdown
+    id: publication
+    attributes:
+      label: Publication
+      default: 0
+      options:
+        - Show in gallery
+        - Remove from gallery
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Photo confirmation
+      options:
+        - label: I have permission to publish these photographs on the public website.
+          required: true

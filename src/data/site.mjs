@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import {validateSiteSettings} from '../assets/platform/github-model.js';
+import {applyCurrentWalk} from '../lib/admin-content.mjs';
 
 export const websiteSettings = validateSiteSettings(JSON.parse(fs.readFileSync(new URL('./settings.json', import.meta.url), 'utf8')));
 
@@ -72,7 +73,7 @@ export const site = {
 
 // The one walk the "Support the current walk" button points to.
 // Everything about the current campaign lives here and nowhere else.
-export const currentWalk = {
+export const currentWalk = applyCurrentWalk({
   name: "Walk for Education 2026",
   route: "Nairobi to UCU–Kagando University College",
   purpose:
@@ -91,4 +92,4 @@ export const currentWalk = {
   url: "https://pamodzici.com/walk-for-education/",
   takePartUrl: "https://pamodzici.com/take-part/",
   contributeUrl: "/donate/?purpose=education",
-};
+});

@@ -6,6 +6,7 @@ export const JOURNEY_NAMES = {
   'Nakivale to Makerere peace walk': 'peace-walk-nakivale-makerere',
   'General update': '',
 };
+export const PUBLISHING_FORMS = ['journal.yml', 'product.yml', 'progress.yml', 'connections.yml', 'current-walk.yml', 'journey.yml', 'photo.yml', 'media.yml'];
 export const SOCIAL_HOSTS = {
   facebook: ['facebook.com', 'www.facebook.com', 'm.facebook.com', 'fb.watch'],
   instagram: ['instagram.com', 'www.instagram.com'],
@@ -21,7 +22,8 @@ export function validateSiteSettings(input) {
   const whatsapp = cleanText(input.whatsapp, 30).replace(/[+\s()-]/g, '');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Enter a valid public contact email.');
   if (!/^[1-9]\d{7,14}$/.test(whatsapp)) throw new Error('Use a WhatsApp number with its country code.');
-  if (!Object.values(JOURNEY_NAMES).includes(input.currentJourney)) throw new Error('Choose a valid default journal journey.');
+  // Built-in journeys plus any journey added from the admin (a lowercase identifier).
+  if (typeof input.currentJourney !== 'string' || !/^[a-z0-9-]{0,90}$/.test(input.currentJourney)) throw new Error('Choose a valid default journal journey.');
   const socials = {};
   for (const [name, hosts] of Object.entries(SOCIAL_HOSTS)) {
     const value = webURL(input.socials?.[name] || '');
@@ -38,7 +40,7 @@ export function validateSiteSettings(input) {
 // and receives the final submission; no repository credential enters this page.
 export function githubFormURL(repository, template, fields = {}) {
   if (!/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/?$/.test(repository)) throw new Error('The GitHub publishing address is invalid.');
-  if (!['journal.yml', 'product.yml', 'progress.yml', 'connections.yml'].includes(template)) throw new Error('Unknown publishing form.');
+  if (!PUBLISHING_FORMS.includes(template)) throw new Error('Unknown publishing form.');
   const url = new URL(repository.replace(/\/$/, '') + '/issues/new');
   url.searchParams.set('template', template);
   for (const [key, value] of Object.entries(fields)) {

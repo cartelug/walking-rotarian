@@ -8,6 +8,7 @@
 // filter. The press photographs from news reports are linked, not reproduced.
 
 import {campaignArtwork} from './campaign-artwork.mjs';
+import {adminGalleryItems} from '../lib/admin-content.mjs';
 
 export const items = [
   {
@@ -173,6 +174,8 @@ export const items = [
 ];
 
 items.push(...campaignArtwork);
+// Photographs added from the website admin come first.
+items.unshift(...adminGalleryItems());
 
 export const filterLabels = {
   all: "All photographs",

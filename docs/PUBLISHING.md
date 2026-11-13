@@ -10,6 +10,10 @@ The admin offers:
 - **Shop:** add products or open a prefilled update for a current item. Existing category and availability stay unchanged unless the editor explicitly changes them.
 - **Walking progress:** publish a verified daily distance, map stop, or both. Corrections replace a journey/date total rather than adding it twice. Only confirmed records enter the public atlas.
 - **Official links:** update public Facebook and other social URLs, contact email and shop WhatsApp number. Blank fields keep their current value; REMOVE clears a social link. Secrets never belong in a public form.
+- **Current walk:** change the walk shown as current, mark it Completed with a short note, or switch to a new walk. Blank fields keep what is published.
+- **Journeys:** add a new walk (dates, route, cause, summary, story and photographs), or update an existing one. An update changes only the fields filled in, and its story and photographs are added to that journey's “What followed” chapter. **Withdraw this change** removes only what that form added.
+- **Gallery:** attach one or more photographs with one caption, credit and journey. **Remove from gallery** takes them down.
+- **News & media:** add a news article, video, TV interview or radio programme link to the Media page.
 - **Publishing status:** check the latest Pages build or open the full GitHub workflow history.
 
 The final sign-in and submission happen on GitHub. Submitting a form starts the publishing workflow, then builds and deploys the website. Updates take a Pages build rather than appearing immediately. This is not an independent email/password CMS.

@@ -1,0 +1,71 @@
+name: Update the current walk
+description: Change the walk shown as current on the website, or mark it completed.
+title: "[Current walk] Update"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in only what has changed. **Blank fields keep what the website already shows.** When the walk ends, choose **Completed** and write a short status note. When a new walk begins, change the walk name, the journey page and the status.
+  - type: input
+    id: walk-name
+    attributes:
+      label: Walk name
+      description: For example, Walk for Education 2026.
+  - type: input
+    id: journey-page
+    attributes:
+      label: Journey page
+      description: The journey's name exactly as shown on the Journeys page. Add a new journey first with the Journey form.
+  - type: dropdown
+    id: walk-status
+    attributes:
+      label: Walk status
+      default: 0
+      options:
+        - Keep current status
+        - Underway
+        - Completed
+        - Starting soon
+        - Paused
+  - type: textarea
+    id: status-note
+    attributes:
+      label: Status note
+      description: One or two sentences people see beside the status. For example, "The walk finished in Kagando on 20 December."
+  - type: input
+    id: route
+    attributes:
+      label: Route
+      description: For example, Nairobi to Kagando.
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: Why this walk matters, in one or two sentences.
+  - type: input
+    id: planned-distance
+    attributes:
+      label: Planned distance
+      description: For example, About 1,100 km.
+  - type: input
+    id: distance-basis
+    attributes:
+      label: Distance basis
+      description: Where the distance comes from. For example, Planned route (campaign figure). Not distance walked.
+  - type: input
+    id: campaign-page
+    attributes:
+      label: Campaign page
+      description: Optional official campaign link, starting with https://
+  - type: input
+    id: last-verified
+    attributes:
+      label: Last verified update
+      description: Optional date of the latest confirmed stage, as YYYY-MM-DD.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Current walk confirmation
+      options:
+        - label: I confirm these details about the current walk are correct for the public website.
+          required: true

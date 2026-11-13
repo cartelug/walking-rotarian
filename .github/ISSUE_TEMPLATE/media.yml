@@ -1,0 +1,62 @@
+name: Add a news story, video or interview
+description: Add a link to the Media page.
+title: "[Media] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write the headline or title above, exactly as the publisher wrote it. The website links to the publisher; it does not copy their photographs.
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The full link, starting with https://
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Media type
+      options:
+        - News article
+        - Video
+        - TV interview
+        - Radio or podcast
+    validations:
+      required: true
+  - type: input
+    id: outlet
+    attributes:
+      label: Outlet
+      description: Who published it. For example, Nile Post, NTV Uganda, Radio One.
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date published
+      description: For example, 12 March 2027.
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Short description
+      description: One sentence about what it covers.
+  - type: dropdown
+    id: publication
+    attributes:
+      label: Publication
+      default: 0
+      options:
+        - Show on website
+        - Remove from website
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Media confirmation
+      options:
+        - label: I checked this link and it is about the Walking Rotarian.
+          required: true
