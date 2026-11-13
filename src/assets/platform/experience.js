@@ -35,7 +35,9 @@ export function bindExperience(ctx) {
 export function homepageStoryCard(entry, ctx) {
   const image=(entry.media||[]).find(media=>media.type==='image');
   const journey=ctx.data.journeys.find(j=>j.id===entry.journey);
-  const source=image?.url||journey?.image;
-  const thumbnail=source?`<img src="${h(ctx.mediaURL(source))}" alt="${h(image?.alt||journey?.title||'Photograph from the journey')}" width="800" height="520" loading="lazy" decoding="async">`:'<span class="wr-journal-monogram" aria-hidden="true">WR</span>';
-  return `<article class="wr-journal-card"><a class="wr-journal-card__image" href="${h(ctx.entryURL(entry))}" tabindex="-1" aria-hidden="true">${thumbnail}<span>${h(entry.type==='reflection'?'Reflection':'From the archive')}</span></a><div class="wr-journal-card__body"><p class="eyebrow"><time datetime="${h(entry.publishedAt)}">${h(entry.publishedAt.slice(0,10))}</time> / ${h(entry.place||'The journey')}</p><h3><a href="${h(ctx.entryURL(entry))}">${h(entry.title)}</a></h3><p>${h(entry.body.slice(0,145))}${entry.body.length>145?'…':''}</p><a class="wr-text-link" href="${h(ctx.entryURL(entry))}">Read the story <span aria-hidden="true">${arrow}</span></a></div></article>`;
+  const documentary=Boolean(image?.url||journey?.image);
+  const landscape=String(entry.place||'').toLowerCase().includes('nakivale')?'campaign-forest-960':'editorial-road-960';
+  const source=image?.url||journey?.image||ctx.href('/assets/img/'+landscape+'.webp');
+  const thumbnail=source?`<img src="${h(ctx.mediaURL(source))}" alt="${h(image?.alt||(documentary?journey?.title:'A landscape visual for the journey')||'From the journey')}" width="800" height="520" loading="lazy" decoding="async">`:'<span class="wr-journal-monogram" aria-hidden="true">WR</span>';
+  return `<article class="wr-journal-card"><a class="wr-journal-card__image" href="${h(ctx.entryURL(entry))}" tabindex="-1" aria-hidden="true">${thumbnail}<span>${h(documentary?(entry.type==='reflection'?'Reflection':'From the archive'):'Journey visual')}</span></a><div class="wr-journal-card__body"><p class="eyebrow"><time datetime="${h(entry.publishedAt)}">${h(entry.publishedAt.slice(0,10))}</time> / ${h(entry.place||'The journey')}</p><h3><a href="${h(ctx.entryURL(entry))}">${h(entry.title)}</a></h3><p>${h(entry.body.slice(0,145))}${entry.body.length>145?'…':''}</p><a class="wr-text-link" href="${h(ctx.entryURL(entry))}">Read the story <span aria-hidden="true">${arrow}</span></a></div></article>`;
 }
