@@ -1,64 +1,16 @@
 {
-  "currency": "UGX",
-  "intro": "Choose what interests you and send your list to the team. We will confirm availability, prices and delivery before you order.",
+  "currency": "USD",
+  "intro": "A signature collection of streetwear and travel pieces. Build your list; the team confirms production, availability and delivery.",
   "products": [
     {
-      "id": "walking-cap",
-      "title": "Walking cap",
-      "category": "accessories",
-      "description": "Add a cap to your enquiry and ask the team about available colours and designs.",
-      "illustration": "cap",
-      "status": "enquiry",
-      "price": null,
-      "sizes": [],
-      "colours": [],
-      "image": "/assets/img/collection-cap-960.webp"
-    },
-    {
-      "id": "reusable-bottle",
-      "title": "Reusable bottle",
-      "category": "accessories",
-      "description": "Interested in a bottle for the road? Request the available options and a quote.",
-      "illustration": "bottle",
-      "status": "enquiry",
-      "price": null,
-      "sizes": [],
-      "colours": [],
-      "image": "/assets/img/collection-bottle-960.webp"
-    },
-    {
-      "id": "journey-publications",
-      "title": "Books & journey publications",
-      "category": "books",
-      "description": "Ask about available books, printed stories and publications connected with the journey.",
-      "illustration": "book",
-      "status": "enquiry",
-      "price": null,
-      "sizes": [],
-      "colours": [],
-      "image": "/assets/img/collection-book-960.webp"
-    },
-    {
-      "id": "everyday-tote",
-      "title": "Everyday tote",
-      "category": "accessories",
-      "description": "Ask about a reusable carry bag for everyday essentials and community gatherings.",
-      "illustration": "tote",
-      "status": "enquiry",
-      "price": null,
-      "sizes": [],
-      "colours": [],
-      "image": "/assets/img/collection-tote-960.webp"
-    },
-    {
       "id": "walking-t-shirt",
-      "title": "Walking T-shirt",
+      "title": "Every Step Tee",
       "category": "clothing",
-      "description": "Ask about a Walking Rotarian T-shirt for your next walk or community event.",
+      "description": "Bone oversized tee with the signature WR portrait, a copper route line and a generous boxy silhouette.",
       "status": "enquiry",
-      "price": null,
-      "currency": "UGX",
-      "image": "/assets/img/collection-shirt-960.webp",
+      "price": 95,
+      "currency": "USD",
+      "image": "/assets/img/street-tee-960.webp",
       "illustration": "shirt",
       "sizes": [
         "S",
@@ -67,8 +19,111 @@
         "XL",
         "2XL"
       ],
-      "colours": [],
-      "sourceIssue": 1
+      "colours": [
+        "Bone"
+      ]
+    },
+    {
+      "id": "journey-hoodie",
+      "title": "After Miles Hoodie",
+      "category": "clothing",
+      "description": "Washed-charcoal hoodie with a compact WR chest mark, tonal contour graphics and copper details.",
+      "status": "enquiry",
+      "price": 195,
+      "currency": "USD",
+      "image": "/assets/img/street-hoodie-960.webp",
+      "illustration": "shirt",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "colours": [
+        "Washed charcoal"
+      ]
+    },
+    {
+      "id": "walking-cap",
+      "title": "Signature Trail Cap",
+      "category": "accessories",
+      "description": "A dark, structured cap with the WR portrait mark, understated copper stitching and an adjustable silhouette.",
+      "status": "enquiry",
+      "price": 75,
+      "currency": "USD",
+      "image": "/assets/img/street-cap-960.webp",
+      "illustration": "cap",
+      "sizes": [],
+      "colours": [
+        "Charcoal"
+      ]
+    },
+    {
+      "id": "reusable-bottle",
+      "title": "Route Flask",
+      "category": "accessories",
+      "description": "A sleek charcoal bottle with the WR identity and a single copper trail line. A companion for the everyday journey.",
+      "status": "enquiry",
+      "price": 65,
+      "currency": "USD",
+      "image": "/assets/img/street-bottle-960.webp",
+      "illustration": "cap",
+      "sizes": [],
+      "colours": [
+        "Charcoal"
+      ]
+    },
+    {
+      "id": "everyday-tote",
+      "title": "City to Trail Tote",
+      "category": "accessories",
+      "description": "A structured black utility tote with a bold WR mark, an angled pocket and subtle route-line detailing.",
+      "status": "enquiry",
+      "price": 95,
+      "currency": "USD",
+      "image": "/assets/img/street-tote-960.webp",
+      "illustration": "cap",
+      "sizes": [],
+      "colours": [
+        "Black"
+      ]
+    },
+    {
+      "id": "journey-publications",
+      "title": "Field Notes Journal",
+      "category": "books",
+      "description": "A bone-cover journal with the WR portrait, dark cloth spine and copper route detail. Space for your next chapter.",
+      "status": "enquiry",
+      "price": 65,
+      "currency": "USD",
+      "image": "/assets/img/street-journal-960.webp",
+      "illustration": "book",
+      "sizes": [],
+      "colours": [
+        "Bone"
+      ]
+    },
+    {
+      "id": "expedition-jacket",
+      "title": "Off Route Shell",
+      "category": "clothing",
+      "description": "An architectural charcoal jacket with angular panels, a compact WR chest mark and copper hardware details.",
+      "status": "enquiry",
+      "price": 295,
+      "currency": "USD",
+      "image": "/assets/img/street-jacket-960.webp",
+      "illustration": "shirt",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL"
+      ],
+      "colours": [
+        "Charcoal"
+      ]
     }
   ]
 }

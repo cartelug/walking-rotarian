@@ -17,15 +17,16 @@ export async function renderShop(root, ctx) {
   function updateCart() {
     const summary = cartSummary(cart, shop.products, shop.currency);
     cart = summary.cart;
+    const shortcut=root.querySelector('.wr-shop-shortcut');if(shortcut)shortcut.hidden=summary.quantity===0;
     root.querySelector('[data-shop-copy-panel]').hidden = true;
     const persisted = writeLocal(storageKey, cart);
     root.querySelectorAll('[data-cart-count]').forEach(el => el.textContent = summary.quantity);
     root.querySelector('[data-cart-lines]').innerHTML = cart.length ? cart.map((line, index) => {
       const product = shop.products.find(p => p.id === line.productId);
       const details = [line.size, line.colour].filter(Boolean).join(' · ');
-      return `<div class="wr-cart-line"><div><strong>${h(product.title)}</strong>${details ? `<span class="wr-muted">${h(details)}</span>` : ''}<span class="wr-muted">${product.status === 'available' ? h(money(product.price, shop.currency)) + ' each' : 'Quote requested'}</span></div><div class="wr-cart-line__controls"><button type="button" class="wr-quantity" data-cart-change="${index}" data-delta="-1" aria-label="Decrease ${h(product.title)} quantity"${line.quantity === 1 ? ' disabled' : ''}>−</button><span aria-label="Quantity">${line.quantity}</span><button type="button" class="wr-quantity" data-cart-change="${index}" data-delta="1" aria-label="Increase ${h(product.title)} quantity"${line.quantity === 99 ? ' disabled' : ''}>+</button><button type="button" class="wr-cart-remove" data-cart-remove="${index}" aria-label="Remove ${h(product.title)}">Remove</button></div></div>`;
+      return `<div class="wr-cart-line"><div><strong>${h(product.title)}</strong>${details ? `<span class="wr-muted">${h(details)}</span>` : ''}<span class="wr-muted">${product.price !== null ? h(money(product.price, shop.currency)) + ' each · availability to confirm' : 'Quote requested'}</span></div><div class="wr-cart-line__controls"><button type="button" class="wr-quantity" data-cart-change="${index}" data-delta="-1" aria-label="Decrease ${h(product.title)} quantity"${line.quantity === 1 ? ' disabled' : ''}>−</button><span aria-label="Quantity">${line.quantity}</span><button type="button" class="wr-quantity" data-cart-change="${index}" data-delta="1" aria-label="Increase ${h(product.title)} quantity"${line.quantity === 99 ? ' disabled' : ''}>+</button><button type="button" class="wr-cart-remove" data-cart-remove="${index}" aria-label="Remove ${h(product.title)}">Remove</button></div></div>`;
     }).join('') : '<p class="wr-muted">Choose an item to start your enquiry.</p>';
-    root.querySelector('[data-cart-summary]').innerHTML = cart.length ? `<p class="wr-cart-total">${summary.quoteCount ? 'Quote requested' : h(money(summary.subtotal, shop.currency))}</p>${summary.quoteCount && summary.subtotal ? `<p>Priced items ${h(money(summary.subtotal, shop.currency))}</p>` : ''}<p class="wr-muted">${summary.quoteCount ? 'The team will confirm item prices and availability.' : 'Item subtotal. Delivery and final availability are confirmed by the team.'}</p>` : '';
+    root.querySelector('[data-cart-summary]').innerHTML = cart.length ? `<p class="wr-cart-total">${summary.quoteCount ? 'Quote requested' : h(money(summary.subtotal, shop.currency))}</p>${summary.quoteCount && summary.subtotal ? `<p>Priced items ${h(money(summary.subtotal, shop.currency))}</p>` : ''}<p class="wr-muted">${summary.quoteCount ? 'The team will confirm item prices and availability.' : 'Collection subtotal. Production, availability and delivery are confirmed by the team.'}</p>` : '';
     root.querySelectorAll('[data-shop-whatsapp], [data-shop-copy]').forEach(button => button.disabled = !cart.length);
     root.querySelectorAll('[data-cart-change]').forEach(button => button.addEventListener('click', () => {
       const index = Number(button.dataset.cartChange);
@@ -56,6 +57,8 @@ export async function renderShop(root, ctx) {
     form.querySelector('[data-product-status]').textContent = 'Added to your list.';
     toast(product.title + ' added to your list.');
   }));
+
+  root.querySelectorAll('[data-shop-add]').forEach(form=>{const product=shop.products.find(p=>p.id===form.dataset.shopAdd);form.querySelector('button[type=submit]').disabled=!product||product.status==='sold-out';});
 
   const filter = () => {
     const query = root.querySelector('#shop-search').value.trim().toLowerCase();

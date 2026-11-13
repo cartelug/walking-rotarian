@@ -115,3 +115,12 @@ test('the catalogue validates and publishing does not interpolate submitted text
   assert.match(source, /uses: \.\/\.github\/workflows\/pages.yml/);
   assert.doesNotMatch(source, /\$\{\{\s*github.event.issue.body/);
 });
+
+test('published USD prices remain visible in enquiries without claiming stock',()=>{
+ const tee=validateProduct({id:'tee',title:'Every Step Tee',category:'clothing',status:'enquiry',price:95,sizes:['M']},'USD');
+ const hoodie=validateProduct({id:'hoodie',title:'After Miles Hoodie',category:'clothing',status:'enquiry',price:195},'USD');
+ const lines=[{productId:'tee',size:'M',quantity:2},{productId:'hoodie',quantity:1}];
+ const summary=cartSummary(lines,[tee,hoodie],'USD');
+ assert.equal(summary.subtotal,385);assert.equal(summary.quoteCount,0);assert.equal(tee.status,'enquiry');
+ const text=quoteMessage(lines,[tee,hoodie],{currency:'USD'});assert.match(text,/USD 190.00/);assert.match(text,/Item subtotal: USD 385.00/);assert.match(text,/confirm availability/);
+});

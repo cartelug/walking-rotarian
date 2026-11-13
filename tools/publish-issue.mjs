@@ -95,7 +95,7 @@ export function productFromIssue(issue, existing = null, currency = 'UGX') {
   const product = validateProduct({
     id, title: issue.title.replace(/^\[Product\]\s*/i, ''), category,
     description: sections.Description,
-    status, price: sections['Price in UGX']?.replace(/,/g, '') || null,
+    status, price: (sections['Price'] ?? sections['Price in UGX'])?.replace(/,/g, '') || null,
     image, illustration: existing?.illustration || (category === 'clothing' ? 'shirt' : 'book'),
     sizes: (sections.Sizes || '').split(','), colours: (sections.Colours || '').split(','),
   }, currency);

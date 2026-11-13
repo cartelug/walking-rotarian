@@ -68,7 +68,7 @@ export function cartSummary(lines, products, currency = 'UGX') {
   for (const line of cart) {
     const product = products.find(p => p.id === line.productId);
     quantity += line.quantity;
-    if (product.status === 'available' && product.price !== null) {
+    if (product.price !== null) {
       subtotalMinor += Math.round(product.price * factor) * line.quantity;
     } else quoteCount += line.quantity;
   }
@@ -89,7 +89,7 @@ export function quoteMessage(lines, products, {currency = 'UGX', note = '', deli
   summary.cart.forEach((line, index) => {
     const product = products.find(p => p.id === line.productId);
     const details = [line.size && 'size ' + line.size, line.colour].filter(Boolean).join(', ');
-    const price = product.status === 'available' && product.price !== null ? money(product.price * line.quantity, currency) : 'quote requested';
+    const price = product.price !== null ? money(product.price * line.quantity, currency) : 'quote requested';
     text.push(`${index + 1}. ${product.title} × ${line.quantity}${details ? ' (' + details + ')' : ''} — ${price}`);
   });
   if (summary.quoteCount === 0) text.push('', 'Item subtotal: ' + money(summary.subtotal, currency));

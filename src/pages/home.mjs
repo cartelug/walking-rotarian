@@ -28,7 +28,7 @@ export function home(){
    <figcaption>Mbanda Shyaka<span>Walking with purpose.</span></figcaption>
   </figure>
  </div>
- <div class="container wr-opening__trail"><span aria-hidden="true">01 / THE JOURNEY CONTINUES</span><a href="#current-walk">Discover the purpose <span aria-hidden="true">↓</span></a></div>
+ <div class="container wr-opening__trail"><span aria-hidden="true">01 / THE JOURNEY CONTINUES</span><a href="#current-walk">Discover the purpose <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v11M4 9l4 4 4-4"/></svg></a></div>
 </section>
 
 ${mission}
@@ -46,7 +46,7 @@ ${homepageJournal()}
 
 <section class="wr-listen" aria-labelledby="listen-h"><div class="container"><div class="wr-section-heading"><div><p class="eyebrow">In his own voice</p><h2 id="listen-h">Stories worth hearing.</h2></div>${link('/media/','The media room','wr-text-link')}</div><div class="wr-listen__grid">${listen.slice(0,2).map((m,i)=>`<article class="wr-listen__item"><span class="wr-listen__play" aria-hidden="true">${icons.play}</span><p class="eyebrow">${esc(m.kind)} / ${esc(m.date)}</p><h3>${esc(m.title)}</h3><p>${esc(m.outlet)}</p><p class="wr-listen__note">${esc(m.note)}</p>${ext(m.url,i===0?'Watch the talk':'Listen to the conversation','wr-text-link')}</article>`).join('')}</div></div></section>
 
-<section class="wr-carry" aria-labelledby="carry-h"><div class="container wr-carry__grid"><div><p class="eyebrow">Carry a little of the journey</p><h2 id="carry-h">Purpose, beyond<br>the road.</h2><p>Explore merchandise and publications. Ask the team about designs, availability and prices.</p>${link('/shop/','Explore the collection','button button--secondary')}</div><figure>${photo('collection-essentials','Walking collection concept: a shirt, cap, bottle, tote and journal.',{sizes:'(min-width: 900px) 46vw, 100vw'})}<figcaption>Collection concepts · products and prices to be confirmed.</figcaption></figure></div></section>
+<section class="wr-carry" aria-labelledby="carry-h"><div class="container wr-carry__grid"><div><p class="eyebrow">Carry a little of the journey</p><h2 id="carry-h">Purpose, beyond<br>the road.</h2><p>Discover the WR streetwear collection. Signature pieces for the road, the city and the story ahead.</p>${link('/shop/','Explore the collection','button button--secondary')}</div><figure>${photo('street-hero','Walking Rotarian streetwear collection with the signature WR logo.',{sizes:'(min-width: 900px) 46vw, 100vw'})}<figcaption>The Journey Collection · explore the pieces and published prices.</figcaption></figure></div></section>
 ${donateSection(p)}
 <section class="wr-closing wr-scene"><div class="container"><p class="eyebrow">There is a place for you</p><h2>The next step<br>can be yours.</h2><div class="wr-actions">${link('/get-involved/','Walk with the purpose','button button--onink')}${link('/live/','Read the journal','wr-text-link')}</div></div></section>`;
  return {path:p,title:'Home',description:site.description,body,jsonld:[{'@context':'https://schema.org','@type':'WebSite',name:site.name,...(site.url?{url:site.url}:{})},{'@context':'https://schema.org','@type':'Person',name:site.person,alternateName:[site.alsoPublishedAs,'The Walking Rotarian']}]};

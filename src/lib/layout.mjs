@@ -64,8 +64,8 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).repl
     <a class="brand" href="${a("/")}" aria-label="${esc(site.name)}: home">${logoPlate(p, { alt: "" })}<span class="brand__name" aria-hidden="true">The Walking<br>Rotarian</span></a>
     <nav class="primary-nav" aria-label="Main">
       <a class="wr-search-trigger" href="${a('/archive/')}" data-search-open aria-label="Search the website" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-toggle__label">Menu</span></button>
-      <div class="primary-nav__panel" id="site-menu">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-toggle__label">Menu</span><span class="wr-menu-glyph" aria-hidden="true"><i></i><i></i></span></button>
+      <div class="primary-nav__panel" id="site-menu"><div class="wr-menu-intro">${logoPlate(p,{height:64,alt:''})}<div><p class="eyebrow">The Walking Rotarian</p><p>Find your next story.</p></div></div>
         <ul class="primary-nav__list">
 ${nav}
         </ul>
@@ -124,8 +124,9 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
 
   return `${head}
 <body class="${isHome ? 'wr-home' : 'wr-inner'}" data-page="${esc(p.split('/').filter(Boolean)[0] || 'home')}">
-<div class="preloader" aria-hidden="true"><div class="preloader__inner">${logoPlate(p,{height:100})}<span class="preloader__tag">Every step has a story.</span><span class="preloader__bar"><span></span></span><span class="wr-loader-caption">The Walking Rotarian</span></div></div>
+<div class="preloader wr-loader-v2" aria-hidden="true"><div class="preloader__inner"><div class="wr-loader-emblem"><svg viewBox="0 0 240 240" class="wr-loader-orbit" fill="none"><circle cx="120" cy="120" r="114" stroke="currentColor" stroke-opacity=".15"/><path d="M12 120C12 60 65 16 120 16S224 60 224 120s-48 104-104 104S16 180 16 120" stroke="currentColor" stroke-width="1.5" pathLength="100"/><circle cx="120" cy="16" r="4" fill="currentColor"/></svg><img src="${a('/assets/img/logo-light-320.webp')}" width="703" height="977" alt="" decoding="async"></div><p class="wr-loader-title">EVERY <span>STEP.</span></p><p class="wr-loader-motto">A purpose beyond the miles.</p><div class="preloader__bar"><span></span></div><span class="wr-loader-caption">${esc(isHome?'The journey begins':title)}</span></div><span class="wr-loader-corner">THE WALKING ROTARIAN / UGANDA</span></div>
 ${header}
+<button class="wr-menu-backdrop" data-menu-dismiss aria-label="Close navigation menu" tabindex="-1" hidden></button>
 <div class="wr-utility"><nav class="container" aria-label="Reading tools"><a href="${a('/archive/')}">Search</a><a href="${a('/saved/')}">Saved stories</a><button type="button" data-install>Add to home screen</button><span data-social-links></span></nav></div>
 <main id="main" tabindex="-1">
 ${body}

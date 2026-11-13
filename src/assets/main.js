@@ -137,7 +137,7 @@
 
   /* Editorial reveals cover current pages and dynamically inserted journal cards. */
   if (!calm && 'IntersectionObserver' in window) {
-    const selector = '.wr-route-heading, .wr-route-panel > figure, .wr-route-panel__copy, .wr-journal-card, .wr-person__visual, .wr-person__copy, .wr-together .container > *, .wr-moments__grid > figure, .wr-listen__item, .wr-carry__grid > *, .wr-support-invitation .container > *, .wr-closing .container > *, .wr-product, .wr-shop-process > *, .wr-shop-help > *, .wr-giving-explainer > li, .wr-giving-closing .container > *';
+    const selector = '.wr-route-heading, .wr-route-panel > figure, .wr-route-panel__copy, .wr-journal-card, .wr-person__visual, .wr-person__copy, .wr-together .container > *, .wr-moments__grid > figure, .wr-listen__item, .wr-carry__grid > *, .wr-support-invitation .container > *, .wr-closing .container > *, .wr-product, .wr-shop-process > *, .wr-shop-help > *, .wr-giving-explainer > li, .wr-giving-closing .container > *, .wr-collection-intro > *, .wr-lookbook > *, .wr-collection-code > *';
     const observed = new WeakSet();
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -182,29 +182,36 @@
   });
   window.addEventListener('pageshow',()=>root.classList.remove('wr-page-leaving'));
 
-  /* Menu on small screens */
-  const toggle = doc.querySelector(".menu-toggle");
-  const panel = doc.getElementById("site-menu");
-  if (toggle && panel) {
-    const label = toggle.querySelector(".menu-toggle__label");
-    const setOpen = (open) => {
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      panel.classList.toggle("is-open", open);
-      if (label) label.textContent = open ? "Close" : "Menu";
+  /* A mobile navigation sheet with keyboard containment and background isolation. */
+  const toggle = doc.querySelector('.menu-toggle');
+  const panel = doc.getElementById('site-menu');
+  const backdrop = doc.querySelector('[data-menu-dismiss]');
+  if(toggle && panel){
+    const wide = matchMedia('(min-width: 64rem)');
+    const label=toggle.querySelector('.menu-toggle__label');
+    const isolated=[...doc.querySelectorAll('#main,.site-footer,.wr-utility,.wr-mobile-nav')];
+    let restoreFocus=false;
+    const focusables=()=>[toggle,...panel.querySelectorAll('a[href],button:not([disabled]),input:not([disabled])')].filter(el=>el.getClientRects().length);
+    const setOpen=(open,{returnFocus=true}={})=>{
+      open=Boolean(open&&!wide.matches);
+      toggle.setAttribute('aria-expanded',String(open));panel.classList.toggle('is-open',open);root.classList.toggle('wr-menu-open',open);
+      if(label)label.textContent=open?'Close':'Menu';
+      if(backdrop)backdrop.hidden=!open;
+      isolated.forEach(el=>el.inert=open);
+      if(open){panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label','Explore the Walking Rotarian');restoreFocus=true;panel.querySelector('.primary-nav__list a')?.focus({preventScroll:true});}
+      else{panel.removeAttribute('role');panel.removeAttribute('aria-modal');panel.removeAttribute('aria-label');if(restoreFocus&&returnFocus)toggle.focus({preventScroll:true});restoreFocus=false;}
     };
-    toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
-    doc.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
-        setOpen(false);
-        toggle.focus();
-      }
+    toggle.addEventListener('click',()=>setOpen(toggle.getAttribute('aria-expanded')!=='true'));
+    backdrop?.addEventListener('click',()=>setOpen(false));
+    doc.querySelector('[data-search-open]')?.addEventListener('click',()=>setOpen(false,{returnFocus:false}));
+    doc.addEventListener('keydown',event=>{
+      if(toggle.getAttribute('aria-expanded')!=='true')return;
+      if(event.key==='Escape'){event.preventDefault();setOpen(false);return;}
+      if(event.key==='Tab'){const items=focusables(),first=items[0],last=items.at(-1);if(event.shiftKey&&doc.activeElement===first){event.preventDefault();last?.focus();}else if(!event.shiftKey&&doc.activeElement===last){event.preventDefault();first?.focus();}}
     });
-    panel.addEventListener("click", (e) => {
-      if (e.target.closest("a")) setOpen(false);
-    });
-    window.matchMedia("(min-width: 64rem)").addEventListener("change", (e) => {
-      if (e.matches) setOpen(false);
-    });
+    panel.addEventListener('click',event=>{if(event.target.closest('a'))setOpen(false,{returnFocus:false});});
+    wide.addEventListener('change',()=>setOpen(false,{returnFocus:false}));
+    window.addEventListener('pageshow',()=>setOpen(false,{returnFocus:false}));
   }
 
   /* The journey thread: a fine line that follows how far down the chapters you have read */

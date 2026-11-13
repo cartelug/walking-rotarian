@@ -1,7 +1,7 @@
 /* The Walking Rotarian: approved font roles. Paths are relative to this file.
    Retain fonts/source notices and verify web-use licensing before publication.
    Headings: MTN Brighter Sans Bold (700 only). Body: Sky Text Regular 400.
-   Nav, buttons, emphasis: Sky Text Bold 700. Large intro text: Sky Text Light 300. */
+   All non-body headings and UI labels: Brighter Sans Bold 700. Large intro text: Sky Text Light 300. */
 @font-face {
   font-family: "WR Brighter Sans";
   src: url("./fonts/MTNBrighterSans-Bold.woff2") format("woff2"), url("./fonts/MTNBrighterSans-Bold.woff") format("woff");

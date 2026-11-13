@@ -1,4 +1,12 @@
 const scenes = [
+  ['street-hero','The WR Journey Collection','A premium WR streetwear capsule in charcoal, bone and copper.','Streetwear collection design preview. Production and availability confirmed by the team.'],
+  ['street-tee','Every Step Tee','Bone oversized tee with the WR portrait and copper trail.','Streetwear design concept.'],
+  ['street-hoodie','After Miles Hoodie','Charcoal WR hoodie with contour line details.','Streetwear design concept.'],
+  ['street-cap','Signature Trail Cap','A dark cap with the WR portrait in ivory.','Accessories design concept.'],
+  ['street-bottle','Route Flask','A charcoal bottle with the WR logo and copper trail.','Accessories design concept.'],
+  ['street-tote','City to Trail Tote','A structured black canvas tote with the WR identity.','Accessories design concept.'],
+  ['street-journal','Field Notes Journal','A bone journal with the WR mark and black spine.','Stationery design concept.'],
+  ['street-jacket','Off Route Shell','An architectural charcoal WR jacket with copper accents.','Streetwear design concept.'],
   ['editorial-road','The road ahead','A winding red-earth road in green hills.','A scenic visual created for the website.'],
   ['collection-essentials','Made for the journey','Shirt, cap, bottle, tote and journal together on a garden bench.','Collection concept. Actual designs and availability are confirmed by the team.'],
   ['collection-accessories','Companions for the road','A green cap and olive reusable bottle.','Accessories concept for the collection.'],
@@ -27,8 +35,8 @@ export const campaignArtwork = scenes.map(([id, title, alt, caption]) => ({
   alt: 'Generated visual. ' + alt,
   caption: caption + ' Created with AI for this website.',
   group: 'artwork', kind: 'Generated visual', filters: ['artwork'],
-  source: id.startsWith('collection-') || id==='editorial-road' ? 'Generated for the Walking Rotarian website' : 'PCI documentary archive and project-owner supplied reference photographs',
+  source: id.startsWith('street-') || id.startsWith('collection-') || id==='editorial-road' ? 'Generated for the Walking Rotarian website' : 'PCI documentary archive and project-owner supplied reference photographs',
   credit: 'Walking Rotarian visual collection',
-  date: id.startsWith('collection-') || id==='editorial-road' ? 'Created 13 November 2026' : 'Created 7 November 2026', journey: '',
+  date: id.startsWith('street-') || id.startsWith('collection-') || id==='editorial-road' ? 'Created 13 November 2026' : 'Created 7 November 2026', journey: '',
   permission: 'Created at the project owner’s request', focal: '50% 50%',
 }));

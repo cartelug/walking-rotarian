@@ -37,9 +37,9 @@ body:
   - type: input
     id: price
     attributes:
-      label: Price in UGX
-      description: Confirmed price per item in whole Uganda shillings. Leave empty for a quote.
-      placeholder: "25000"
+      label: Price
+      description: Published price per item in the current shop currency (USD). Up to two decimal places. Leave empty for a quote.
+      placeholder: "95"
   - type: dropdown
     id: availability
     attributes:

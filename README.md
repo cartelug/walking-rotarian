@@ -166,3 +166,11 @@ The public donation calls to action now open `/donate/`. Visitors choose a gift 
 Low-data controls and behavior have been removed. The existing reduced-motion preference is respected. Every page has a brief branded preloader, a bounded fallback and an entrance animation. Scroll reveals cover the newer homepage, shop, giving page and dynamically loaded journal cards; native scrolling stays intact.
 
 Nine additional generated visuals are available in the credited visual collection. Responsive WebP files live in `src/img/`; the shop renders individual item concepts with prices and final designs still confirmed by the team. The real supplied portrait, logo and documentary event photographs retain their identity and attribution.
+
+## WR Journey Collection and brand typography
+
+All headings, navigation, controls, links, metadata and captions use WR Brighter Sans. Running body text and entered messages retain Sky Text. The mobile menu is a branded modal sheet with focus containment, Escape and backdrop dismissal, and inert background content. The branded loader draws a route around the supplied WR logo, stays brief, and respects reduced motion.
+
+The Journey Collection uses eight new WR-branded streetwear design visuals. Published retail prices are USD: Every Step Tee 95, After Miles Hoodie 195, Signature Trail Cap 75, Route Flask 65, City to Trail Tote 95, Field Notes Journal 65, and Off Route Shell 295. These remain enquiries until production, availability and delivery are confirmed. Priced enquiries now show accurate subtotals in the list and prepared WhatsApp message. Blank prices remain quote requests. Editing product prices uses the catalogue currency; historical issue forms labelled “Price in UGX” remain supported.
+
+Image-generation prompts and asset identities are recorded in `src/data/streetwear-prompts.json`; gallery image credits distinguish the product designs from documentary photographs.
