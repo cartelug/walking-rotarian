@@ -6,7 +6,7 @@ export function bindExperience(ctx) {
   const dialog = document.querySelector('[data-quick-search]');
   if (dialog) {
     const input = dialog.querySelector('input'), results = dialog.querySelector('[data-search-results]'), status = dialog.querySelector('[data-search-count]');
-    const pages = [['His story','Meet Mbanda Shyaka and discover his work before the walks.','/his-story/'],['Shop','Merchandise, books and accessories.','/shop/'],['Get involved','Support the walk, host a stop or invite Shyaka to speak.','/get-involved/'],['Gallery','Photographs and labelled campaign artwork.','/gallery/'],['Media','Interviews, press coverage and the speaker kit.','/media/']];
+    const pages = [['His story','Meet Mbanda Shyaka and discover his work before the walks.','/his-story/'],['Shop','Merchandise, books and accessories.','/shop/'],['Get involved','Support the walk, host a stop or invite Shyaka to speak.','/get-involved/'],['Gallery','Photographs and visual stories.','/gallery/'],['Media','Interviews, press coverage and the speaker kit.','/media/']];
     const documents = [...ctx.data.journeys.map(j => ({...j, kind:'Journey', url:j.url||ctx.href('/journeys/')})), ...ctx.data.entries.map(e => ({...e, kind:'Journal', url:ctx.entryURL(e)})), ...pages.map(([title,body,url]) => ({title,body,kind:'Explore',url:ctx.href(url)})), ...(ctx.data.searchExtras||[]).map(e=>({...e,kind:'His story'}))];
     let opener;
     const render = () => {

@@ -26,11 +26,11 @@
       setTimeout(() => pre.remove(), 700);
     }
   };
-  const minShow = 0;
+  const minShow = calm ? 0 : (seen ? 420 : 850);
   const whenLoaded = () => setTimeout(reveal, Math.max(0, minShow - performance.now()));
   if (doc.readyState !== "loading") whenLoaded();
   else doc.addEventListener("DOMContentLoaded", whenLoaded, { once: true });
-  setTimeout(reveal, 5000); // never keep anyone waiting on a slow picture
+  setTimeout(reveal, 2400); // never keep anyone waiting on a slow picture
   window.addEventListener("pageshow", (e) => { if (e.persisted) reveal(); });
 
   /* Calm portrait motion: only animate while visible, and pause in background tabs. */
@@ -68,7 +68,7 @@
         } else if (c.nodeType === 1) split(c);
       });
     };
-    doc.querySelectorAll(".hero--home h1, .page-head--art h1").forEach((h) => { n = 0; split(h); });
+    doc.querySelectorAll(".hero--home h1, .page-head--art h1, .wr-opening h1, .wr-shop-hero h1, .wr-giving-hero h1").forEach((h) => { n = 0; split(h); });
   }
 
   /* Hero figures count up once the page is ready */
@@ -134,6 +134,53 @@
       io.observe(el);
     });
   }
+
+  /* Editorial reveals cover current pages and dynamically inserted journal cards. */
+  if (!calm && 'IntersectionObserver' in window) {
+    const selector = '.wr-route-heading, .wr-route-panel > figure, .wr-route-panel__copy, .wr-journal-card, .wr-person__visual, .wr-person__copy, .wr-together .container > *, .wr-moments__grid > figure, .wr-listen__item, .wr-carry__grid > *, .wr-support-invitation .container > *, .wr-closing .container > *, .wr-product, .wr-shop-process > *, .wr-shop-help > *, .wr-giving-explainer > li, .wr-giving-closing .container > *';
+    const observed = new WeakSet();
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-revealed'); observer.unobserve(entry.target);
+    }), {threshold:.06,rootMargin:'0px 0px -25px 0px'});
+    const bindMotion = () => doc.querySelectorAll(selector).forEach((el,index) => {
+      if(observed.has(el)) return; observed.add(el);
+      // Above-the-fold content never depends on scroll to appear.
+      if(el.getBoundingClientRect().top < window.innerHeight * .92){el.classList.add('is-revealed');return;}
+      el.style.setProperty('--motion-delay',Math.min(index%3,2)*65+'ms');
+      el.classList.add('wr-motion');
+      if(el.matches('figure'))el.classList.add('wr-cinema-frame');
+      observer.observe(el);
+    });
+    bindMotion();
+    const dynamic = new MutationObserver(bindMotion);
+    doc.querySelectorAll('[data-wr=preview],.wr-products').forEach(el=>dynamic.observe(el,{childList:true}));
+    // Bounded, scroll-linked depth works on touch and mouse without hijacking scrolling.
+    const opening = doc.querySelector('.wr-opening');
+    if(opening){
+      const landscape=opening.querySelector('.wr-opening__landscape'),copy=opening.querySelector('.wr-opening__copy');
+      let active=true,pending=false;
+      new IntersectionObserver(entries=>{active=entries[0].isIntersecting;}).observe(opening);
+      const paintDepth=()=>{pending=false;if(!active||doc.hidden)return;const y=Math.min(window.scrollY,opening.offsetHeight);landscape?.style.setProperty('--scene-y',Math.round(y*.1)+'px');copy?.style.setProperty('--copy-y',Math.round(y*.035)+'px');};
+      window.addEventListener('scroll',()=>{if(active&&!pending){pending=true;requestAnimationFrame(paintDepth);}},{passive:true});
+      if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+        const portrait=opening.querySelector('.wr-opening__portrait');
+        opening.addEventListener('pointermove',e=>{if(!active)return;const box=opening.getBoundingClientRect();portrait?.style.setProperty('--portrait-x',((e.clientX/box.width-.5)*10).toFixed(1)+'px');portrait?.style.setProperty('--portrait-y',((e.clientY/box.height-.5)*7).toFixed(1)+'px');},{passive:true});
+        opening.addEventListener('pointerleave',()=>{portrait?.style.setProperty('--portrait-x','0px');portrait?.style.setProperty('--portrait-y','0px');});
+      }
+    }
+  }
+  /* Fade only same-site page navigations; preserve modified clicks, anchors and forms. */
+  doc.addEventListener('click',event=>{
+    if(calm||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const link=event.target.closest('a[href]');
+    if(!link||link.target||link.hasAttribute('download')||link.hasAttribute('data-search-open'))return;
+    const url=new URL(link.href,location.href);
+    if(url.origin!==location.origin||!/^https?:$/.test(url.protocol)||url.pathname===location.pathname)return;
+    event.preventDefault();root.classList.add('wr-page-leaving');
+    setTimeout(()=>location.assign(url.href),210);
+  });
+  window.addEventListener('pageshow',()=>root.classList.remove('wr-page-leaving'));
 
   /* Menu on small screens */
   const toggle = doc.querySelector(".menu-toggle");
@@ -311,77 +358,6 @@
     });
   }
 
-
-  /* Donate: builds a tidy WhatsApp message and opens it. No money moves on this site. */
-  (function () {
-    const pf = doc.querySelector("form.donate-form");
-    if (!pf) return;
-    const status = doc.getElementById("donate-status");
-    const amt = pf.elements.amount;
-    const chips = pf.querySelectorAll(".amt");
-    // Key words in the message use a bold sans alphabet (Unicode), so they stand out in WhatsApp.
-    const fancy = (t) => Array.from(t).map((c) => {
-      const k = c.codePointAt(0);
-      if (k >= 65 && k <= 90) return String.fromCodePoint(0x1d5d4 + k - 65);
-      if (k >= 97 && k <= 122) return String.fromCodePoint(0x1d5ee + k - 97);
-      if (k >= 48 && k <= 57) return String.fromCodePoint(0x1d7ec + k - 48);
-      return c;
-    }).join("");
-    const clean = (t, n) => t.replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, n);
-    const money = (v) => { const n = Number(String(v).replace(/[\s,]/g, "")); return Number.isFinite(n) && n > 0 ? n : 0; };
-    const showAmt = () => chips.forEach((c) => c.setAttribute("aria-pressed", String(money(amt.value) === Number(c.dataset.amt))));
-    chips.forEach((c) => c.addEventListener("click", () => {
-      pf.elements.currency.value = "UGX";
-      amt.value = Number(c.dataset.amt).toLocaleString("en-US");
-      showAmt();
-      unfail(amt);
-    }));
-    amt.addEventListener("input", () => { showAmt(); unfail(amt); });
-    pf.elements.name.addEventListener("input", () => unfail(pf.elements.name));
-    amt.addEventListener("blur", () => { const n = money(amt.value); if (n) amt.value = n.toLocaleString("en-US"); });
-    const unfail = (el) => {
-      const f = el.closest(".field");
-      f.classList.remove("is-invalid");
-      const m = f.querySelector(".field__error"); if (m) m.remove();
-      el.removeAttribute("aria-invalid"); el.removeAttribute("aria-describedby");
-    };
-    const fail = (el, text) => {
-      const f = el.closest(".field");
-      f.classList.add("is-invalid");
-      if (!f.querySelector(".field__error")) {
-        const m = doc.createElement("p"); m.className = "field__error"; m.id = el.id + "-err"; m.textContent = "Error: " + text; f.appendChild(m);
-      }
-      el.setAttribute("aria-invalid", "true");
-      el.setAttribute("aria-describedby", el.id + "-err");
-    };
-    pf.addEventListener("submit", (e) => {
-      e.preventDefault();
-      pf.querySelectorAll(".field.is-invalid").forEach((f) => { f.classList.remove("is-invalid"); const m = f.querySelector(".field__error"); if (m) m.remove(); });
-      pf.querySelectorAll("[aria-invalid]").forEach((el) => { el.removeAttribute("aria-invalid"); el.removeAttribute("aria-describedby"); });
-      status.textContent = ""; status.classList.remove("is-error");
-      const name = clean(pf.elements.name.value, 80), note = clean(pf.elements.note.value, 200), n = money(amt.value);
-      let first = null;
-      if (!name) { fail(pf.elements.name, "please add your name."); first = pf.elements.name; }
-      if (!n) { fail(amt, "enter an amount, for example 50,000."); first = amt; }
-      if (first) { first.focus(); return; }
-      const cur = pf.elements.currency.value === "USD" ? "USD" : "UGX";
-      const lines = [
-        "Hello Mbanda Shyaka,", "",
-        "I would like to make a " + fancy("donation") + " to " + fancy("The Walking Rotarian") + ".", "",
-        fancy("Name") + ": " + name,
-        fancy("Donation amount") + ": " + cur + " " + n.toLocaleString("en-US"),
-      ];
-      if (note) lines.push(fancy("Note") + ": " + note);
-      lines.push("", fancy("Every step has a story") + ".");
-      const url = "https://wa.me/" + pf.getAttribute("data-wa") + "?text=" + encodeURIComponent(lines.join("\n"));
-      const win = window.open(url, "_blank", "noopener");
-      const p = doc.createElement("p");
-      p.append("WhatsApp should open with your message ready. Nothing has been sent until you press Send there. If it did not open, ");
-      const a = doc.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "open it here"; p.append(a, ".");
-      status.appendChild(p);
-      if (!win) status.focus();
-    });
-  })();
 
   /* Enquiry form: says honestly what happened */
   doc.querySelectorAll("[data-pick]").forEach((a) =>

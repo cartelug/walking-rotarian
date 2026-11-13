@@ -15,6 +15,7 @@ import { story, journeysIndex, journeyPage, fieldNotes, gallery, mediaPage, getI
 import { platformPages } from './src/pages/platform.mjs';
 import { platformData } from './src/lib/platform-data.mjs';
 import { shopPage } from './src/pages/shop.mjs';
+import { donatePage } from './src/pages/donate.mjs';
 import { shopData } from './src/lib/shop.mjs';
 
 const OUT = path.join(ROOT, process.env.OUT_DIR || "dist");
@@ -54,7 +55,7 @@ const hash = (file) => crypto.createHash("sha1").update(fs.readFileSync(file)).d
 const assetVersion = { css: hash(path.join(OUT, "assets", "main.css")), js: hash(path.join(OUT, "assets", "main.js")), visualsCSS:hash(path.join(OUT,'assets/visuals.css')), platformCSS:hash(path.join(OUT,'assets/platform/platform.css')),platformJS:hash(path.join(OUT,'assets/platform/main.js')) };
 
 // ---- pages ----------------------------------------------------------------
-const pages = [home(), story(), journeysIndex(), fieldNotes(), gallery(), mediaPage(), getInvolved(), privacy(), shopPage()];
+const pages = [home(), story(), journeysIndex(), fieldNotes(), gallery(), mediaPage(), getInvolved(), privacy(), shopPage(), donatePage()];
 pages.push(...platformPages());
 
 const withPages = journeys.filter((j) => j.page).sort((a, b) => b.sortKey - a.sortKey);
@@ -139,7 +140,7 @@ writeFile(path.join(OUT,'manifest.webmanifest'),JSON.stringify({name:site.name,s
 const platformAssets = fs.readdirSync(path.join(OUT, 'assets/platform')).filter(file => file.endsWith('.js') || file.endsWith('.css'));
 const platformHash = platformAssets.map(file => hash(path.join(OUT, 'assets/platform', file))).join('');
 const cacheVersion=crypto.createHash('sha1').update(JSON.stringify(assetVersion)+platformHash+JSON.stringify(platform)+JSON.stringify(shopData())).digest('hex').slice(0,12);
-const precache=['/','/live/','/archive/','/saved/','/shop/','/offline/','/data/platform.json','/data/shop.json','/assets/main.css','/assets/main.js','/assets/visuals.css',...platformAssets.map(file => '/assets/platform/' + file)].map(p=>BASE+p);
+const precache=['/','/donate/','/live/','/archive/','/saved/','/shop/','/offline/','/data/platform.json','/data/shop.json','/assets/main.css','/assets/main.js','/assets/visuals.css',...platformAssets.map(file => '/assets/platform/' + file)].map(p=>BASE+p);
 writeFile(path.join(OUT,'sw.js'),`const CACHE='wr-${cacheVersion}';const BASE=${JSON.stringify(BASE)};const FILES=${JSON.stringify(precache)};
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('wr-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});

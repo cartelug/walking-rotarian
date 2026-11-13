@@ -158,7 +158,7 @@ export const items = [
     id: "poster-345",
     image: "poster-345",
     group: "artwork",
-    kind: "Campaign artwork",
+    kind: "Designed poster",
     filters: ["artwork"],
     title: "Faith in Motion campaign poster",
     caption: "Designed campaign artwork, not a documentary photograph. It was made part-way through the walk and uses the earlier 345 km estimate. PCI later reported about 400 km.",
@@ -179,5 +179,5 @@ export const filterLabels = {
   journeys: "Journeys",
   community: "Community",
   earlier: "Earlier work",
-  artwork: "Campaign artwork",
+  artwork: "Visual stories",
 };

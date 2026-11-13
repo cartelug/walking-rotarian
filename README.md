@@ -158,3 +158,11 @@ A note on one source: POA TV's older web address now redirects to an unrelated s
 | `FORM_ENDPOINT` | `FORM_ENDPOINT=https://... node build.mjs` | The form sends messages through that service |
 | `OUT_DIR` | `OUT_DIR=build2 node build.mjs` | Writes the site into a different folder |
 | `BASE_PATH` | `BASE_PATH=/walk node build.mjs` | Only for a site that lives in a sub-folder, such as `domain.org/walk/` |
+
+## November 13 experience update
+
+The public donation calls to action now open `/donate/`. Visitors choose a gift for the Walking Rotarian or an education step pledge, review it on the site, and prepare a WhatsApp request to the confirmed team number. The team supplies authorised payment instructions; the website does not charge a card, transfer funds, issue receipts or mark pledges as received. The education option uses UGX 5,000 per symbolic step, minimum five steps. PCI links remain as campaign sources and partner information.
+
+Low-data controls and behavior have been removed. The existing reduced-motion preference is respected. Every page has a brief branded preloader, a bounded fallback and an entrance animation. Scroll reveals cover the newer homepage, shop, giving page and dynamically loaded journal cards; native scrolling stays intact.
+
+Nine additional generated visuals are available in the credited visual collection. Responsive WebP files live in `src/img/`; the shop renders individual item concepts with prices and final designs still confirmed by the team. The real supplied portrait, logo and documentary event photographs retain their identity and attribution.

@@ -64,9 +64,9 @@ export const journeys = [
     },
     cta: {
       heading: "Support the current walk",
-      text: "Follow the campaign and find the official ways to give on PCI’s Walk for Education page. This site does not collect money and does not show payment details.",
-      label: "Go to the Walk for Education page",
-      url: "https://pamodzici.com/walk-for-education/",
+      text: "Choose your symbolic steps, review your education pledge here and ask the team for the authorised payment instructions.",
+      label: "Support this journey",
+      url: "/donate/?purpose=education",
     },
     record: {
       sources: [PCI_WFE],

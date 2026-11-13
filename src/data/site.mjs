@@ -87,8 +87,8 @@ export const currentWalk = {
   imageAlt: "Mbanda Shyaka, smiling, wearing a black headwrap and a grey polo shirt.",
   imageCaption: "Mbanda Shyaka. Photograph supplied for the Walk for Education campaign.",
   journeySlug: "walk-for-education",
-  // PCI's official pages. This site never repeats payment details or totals.
+  // Official campaign sources stay available; donation calls to action use our own flow.
   url: "https://pamodzici.com/walk-for-education/",
   takePartUrl: "https://pamodzici.com/take-part/",
-  contributeUrl: "https://pamodzici.com/contribute/",
+  contributeUrl: "/donate/?purpose=education",
 };

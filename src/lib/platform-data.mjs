@@ -19,7 +19,7 @@ export function platformData() {
     version:1, generatedAt:new Date().toISOString(),
     settings:{name:site.name,person:site.person,email:site.email,whatsapp:site.whatsapp,siteUrl:site.url,basePath:BASE,currentJourney:websiteSettings.currentJourney,
       socials:websiteSettings.socials,
-      campaignUrl:currentWalk.url,contributeUrl:currentWalk.contributeUrl,stepRate:5000,currency:'UGX',stepRateSource:currentWalk.url,
+      campaignUrl:currentWalk.url,contributeUrl:`${BASE}/donate/?purpose=education`,stepRate:5000,currency:'UGX',stepRateSource:currentWalk.url,
       bio:bio.short,portrait:image('portrait'),logo:`${BASE}/assets/img/logo-ink-320.webp`,publishing:site.publishing,
     },
     journeys:journeys.map(j=>({id:j.slug,slug:j.slug,title:j.title,summary:j.summary||'',route:j.route||'',years:j.years||'',topic:j.topic||'',walkStatus:j.status,status:'published',distance:j.distance||'',distanceBasis:j.distanceBasis||'',image:image(j.hero?.image),url:j.page?`${BASE}/journeys/${j.slug}/`:`${BASE}/journeys/`,source:j.record?.sources?.[0]?.url||''})),

@@ -85,36 +85,7 @@ export function internalButton(ctx, href, label, cls = "") {
   return `<a class="button ${cls}" href="${rel(ctx, href)}">${esc(label)}${icons.arrow}</a>`;
 }
 
-/** "Walk beside him": a calm donate form. It opens WhatsApp with a message ready; no money moves here. */
+/** A clear entry point to the site's own donation journey. */
 export function donateSection(ctx) {
-  const amounts = [20000, 50000, 100000];
-  return `<section class="block block--tint donate" id="donate" aria-labelledby="donate-h">
-  <div class="container donate__grid">
-    <div class="donate__intro">
-      <p class="eyebrow">Walk beside him</p>
-      <h2 id="donate-h">Make a donation</h2>
-      <p class="intro intro--light">If the walk has meant something to you, say so with a donation. Give what feels right, or nothing at all. Following along is welcome too.</p>
-      <ul class="donate__notes">
-        <li><strong>Nothing is paid on this site.</strong> It takes no money and shows no payment details.</li>
-        <li>Pressing the button opens WhatsApp, addressed to ${esc(site.person)}, with your message ready. Nothing is sent until you press Send there.</li>
-        <li>To give to the official campaign, use ${ext(currentWalk.url, "PCI’s Walk for Education page")}.</li>
-      </ul>
-    </div>
-    <form class="donate-form panel" novalidate data-wa="${esc(site.whatsapp)}" aria-describedby="donate-status">
-      <fieldset class="donate-form__amounts">
-        <legend>Pick an amount, or write your own</legend>
-        <div class="chips" role="group" aria-label="Suggested amounts">
-${amounts.map((n) => `          <button class="amt" type="button" data-amt="${n}" aria-pressed="false">${n.toLocaleString("en-US")}</button>`).join("\n")}
-        </div>
-      </fieldset>
-      <div class="field"><label for="p-amt">Donation amount <span aria-hidden="true">*</span></label>
-        <div class="donate-form__money"><label class="visually-hidden" for="p-cur">Currency</label><select id="p-cur" name="currency"><option value="UGX">UGX</option><option value="USD">USD</option></select><input id="p-amt" name="amount" type="text" inputmode="numeric" autocomplete="off" required></div></div>
-      <div class="field"><label for="p-name">Your name <span aria-hidden="true">*</span></label><input id="p-name" name="name" type="text" autocomplete="name" required></div>
-      <div class="field"><label for="p-note">A line for him <span class="optional">(optional)</span></label><input id="p-note" name="note" type="text" maxlength="200"></div>
-      <div class="form-actions"><button class="button button--clay" type="submit">Donate on WhatsApp${icons.arrow}</button></div>
-      <div class="form-status" id="donate-status" role="status" aria-live="polite" tabindex="-1"></div>
-      <noscript><p>This needs JavaScript. You can also <a href="https://wa.me/${esc(site.whatsapp)}" rel="noopener" target="_blank">open WhatsApp</a> and write to ${esc(site.person)} yourself.</p></noscript>
-    </form>
-  </div>
-</section>`;
+ return `<section class="block donate wr-support-invitation" id="donate" aria-labelledby="donate-h"><div class="container"><div><p class="eyebrow">Your part in the story</p><h2 id="donate-h">A small gift.<br>A meaningful step.</h2><p>Support the Walking Rotarian or dedicate your gift to the education journey. Choose your amount and review the details in a few simple steps.</p><a class="button button--clay" href="${rel(ctx,'/donate/')}">Start your donation ${icons.arrow}</a><p class="wr-support-invitation__note">The team confirms payment instructions before you give.</p></div><div class="wr-support-mark" aria-hidden="true"><span>EVERY</span><span>STEP</span><span>MATTERS.</span><svg viewBox="0 0 240 100" fill="none"><path d="M5 90C50-30 82 150 128 50S195 5 235 10" stroke="currentColor" stroke-width="2" stroke-dasharray="4 7"/><circle cx="235" cy="10" r="6" fill="currentColor"/></svg></div></div></section>`;
 }

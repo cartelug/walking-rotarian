@@ -164,7 +164,7 @@ ${sourceList(j.record.sources, p)}
     ? `<figure class="journey-head__figure">${img(j.hero.image, { ctx: p, alt: j.hero.alt, sizes: "(min-width: 1024px) 440px, 100vw", lazy: false, priority: true })}<figcaption class="caption">${md(j.hero.caption, p)}</figcaption></figure>`
     : "";
   const cta = j.cta
-    ? `<section class="band band--dark" aria-labelledby="cta-h"><div class="container"><h2 id="cta-h">${esc(j.cta.heading)}</h2><p class="intro intro--light">${esc(j.cta.text)}</p><p>${externalButton(j.cta.url, j.cta.label, "button--onink")}</p></div></section>`
+    ? `<section class="band band--dark" aria-labelledby="cta-h"><div class="container"><h2 id="cta-h">${esc(j.cta.heading)}</h2><p class="intro intro--light">${esc(j.cta.text)}</p><p>${j.cta.url.startsWith("/") ? internalButton(p,j.cta.url,j.cta.label,"button--onink") : externalButton(j.cta.url,j.cta.label,"button--onink")}</p></div></section>`
     : "";
   const pager = `<nav class="pager" aria-label="More journeys"><div class="container pager__inner">
   ${prev ? `<a class="pager__link" href="${a(`/journeys/${prev.slug}/`)}"><span class="pager__dir">Newer</span><span class="pager__title">${esc(prev.title)}</span></a>` : "<span></span>"}
@@ -328,7 +328,7 @@ ${tiles}
     </ul>
     <div class="notice" role="note">
       <p class="notice__title">What is and is not here</p>
-      <p>Route records are phone screenshots that carry a tracker reading for one day. Campaign artwork is designed, not photographed, and is always labelled. Photographs published by news outlets are linked from the <a href="${rel(p, "/media/")}">media room</a>, not copied here. Earlier work from 2009 to 2023 has no approved pictures yet.</p>
+      <p>Route records are phone screenshots that carry a tracker reading for one day. The visual stories collection includes generated scenes and product concepts, with image credits. Photographs published by news outlets are linked from the <a href="${rel(p, "/media/")}">media room</a>, not copied here. Earlier work from 2009 to 2023 has no approved pictures yet.</p>
     </div>
   </div>
 </section>
@@ -474,7 +474,7 @@ export function getInvolved() {
   <div class="container">
     <h2 id="ways-h" class="visually-hidden">Ways to take part</h2>
     <ul class="cards cards--three">
-      <li class="card"><h3>Support the current walk</h3><p>Make a donation to Mbanda on WhatsApp, follow the campaign and find the official ways to give on PCI’s Walk for Education page. This site does not collect money and shows no payment details. Check the recipient’s name on PCI’s pages before you send anything.</p><p>${externalButton(currentWalk.url, "Go to PCI’s Walk for Education page")} <a class="button button--secondary" href="${a("/get-involved/#donate")}">Donate</a></p></li>
+      <li class="card"><h3>Support the current walk</h3><p>Choose what you would like to support, select an amount and review your donation request here. The team will confirm the authorised payment details with you.</p><p><a class="button button--secondary" href="${a("/donate/")}">Start your donation ${icons.arrow}</a></p></li>
       <li class="card"><h3>Host a walk stop</h3><p>If your school, church, club or community would like to welcome a walk, say where and when. A date and a place help most.</p><p><a class="button button--secondary" href="${a("/get-involved/#enquiry")}" data-pick="host">Write to the team${icons.arrow}</a></p></li>
       <li class="card"><h3>Invite him to speak</h3><p>Talks, panels and interviews. Tell us the audience, the date and the place.</p><p><a class="button button--secondary" href="${a("/get-involved/#enquiry")}" data-pick="speak">Send an invitation${icons.arrow}</a></p></li>
     </ul>
@@ -484,7 +484,7 @@ export function getInvolved() {
   <div class="container form-wrap">
     <div class="form-wrap__intro">
       <h2 id="enquiry-h">Send an enquiry</h2>
-      <p class="reading">Fields marked with an asterisk are needed. Giving to Walk for Education goes through PCI, not through this form.</p>
+      <p class="reading">Fields marked with an asterisk are needed. For donations, use the dedicated donation page above.</p>
       <p class="reading">${site.formEndpoint ? "Your message is sent when you press the button, and this page tells you whether it arrived." : "Pressing the button opens your own email app with the message ready. Nothing is sent until you press Send there."}</p>
     </div>
     <form class="enquiry" novalidate data-endpoint="${esc(site.formEndpoint)}" data-email="${esc(site.email)}" aria-describedby="form-status">
@@ -518,7 +518,7 @@ export function privacy() {
   const body = `${head}
 <section class="block"><div class="container reading prose">
   <h2>What the site collects</h2>
-  <p>Reading does not require an account. Saved stories, low-data preferences and draft text use storage on the current device. Use the saved-stories page to remove saved copies. Shared publishing, when connected, keeps entries and media on the publishing server.</p>
+  <p>Reading does not require an account. Saved stories and draft text use storage on the current device. Use the saved-stories page to remove saved copies. Shared publishing, when connected, keeps entries and media on the publishing server.</p>
   <p>Team sign-in uses a session cookie on the publishing server. When the server is connected, aggregate website events record story views, sharing actions, support-link clicks and referral domains. They do not certify donations or identify unique readers. No advertising tracker is added.</p>
   <p>The web host keeps ordinary server records, such as the time of a visit and the page asked for. That is a feature of every web host, and it is the host’s record, not this site’s.</p>
   <h2>The enquiry form</h2>

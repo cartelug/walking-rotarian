@@ -1,12 +1,12 @@
+import {bindDonation} from './donation.js';
 import {bindExperience,homepageStoryCard} from './experience.js';
 import {createClient,h,readLocal,writeLocal,toast} from './client.js';
 import {entryCard,renderJournal,renderArchive,renderSaved,renderAtlas,renderCommunity,renderPartners,renderReports,renderSubscription,bindReaderActions} from './readers.js';
 import {renderStudio} from './studio.js';
 import {renderShop} from './shop.js';
 const ctx=createClient();
-const setLowData=value=>{document.documentElement.classList.toggle('wr-low-data',value);document.querySelectorAll('[data-low-data]').forEach(b=>{b.setAttribute('aria-pressed',String(value));b.textContent=value?'Low data: on':'Low data: off';});};
-setLowData(readLocal('wr.low-data',navigator.connection?.saveData===true));
-document.querySelectorAll('[data-low-data]').forEach(b=>b.addEventListener('click',()=>{const value=!document.documentElement.classList.contains('wr-low-data');writeLocal('wr.low-data',value);setLowData(value);}));
+bindDonation();
+try { localStorage.removeItem('wr.low-data'); } catch {}
 async function start(){
   try{await ctx.load();bindReaderActions(ctx);bindExperience(ctx);
     const socials=ctx.data.settings.socials||{};

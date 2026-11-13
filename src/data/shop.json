@@ -12,7 +12,7 @@
       "price": null,
       "sizes": [],
       "colours": [],
-      "image": ""
+      "image": "/assets/img/collection-cap-960.webp"
     },
     {
       "id": "reusable-bottle",
@@ -24,7 +24,7 @@
       "price": null,
       "sizes": [],
       "colours": [],
-      "image": ""
+      "image": "/assets/img/collection-bottle-960.webp"
     },
     {
       "id": "journey-publications",
@@ -36,7 +36,7 @@
       "price": null,
       "sizes": [],
       "colours": [],
-      "image": ""
+      "image": "/assets/img/collection-book-960.webp"
     },
     {
       "id": "everyday-tote",
@@ -48,7 +48,7 @@
       "price": null,
       "sizes": [],
       "colours": [],
-      "image": ""
+      "image": "/assets/img/collection-tote-960.webp"
     },
     {
       "id": "walking-t-shirt",
@@ -58,7 +58,7 @@
       "status": "enquiry",
       "price": null,
       "currency": "UGX",
-      "image": "",
+      "image": "/assets/img/collection-shirt-960.webp",
       "illustration": "shirt",
       "sizes": [
         "S",

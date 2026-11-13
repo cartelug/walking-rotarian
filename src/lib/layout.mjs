@@ -69,8 +69,8 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).repl
         <ul class="primary-nav__list">
 ${nav}
         </ul>
-        ${ext(currentWalk.url, `Support the walk`, "button button--header")}
-        <div class="wr-menu-tools"><button type="button" data-low-data aria-pressed="false">Low data: off</button><a href="${a('/saved/')}">Saved stories</a></div>
+        <a class="button button--header" href="${a("/donate/")}">Donate ${icons.arrow}</a>
+        <div class="wr-menu-tools"><a href="${a('/saved/')}">Saved stories</a></div>
       </div>
     </nav>
   </div>
@@ -88,7 +88,7 @@ ${nav}
       <ul>
         <li><a href="${a("/")}">Home</a></li>
 ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></li>`).join("\n")}
-        <li><a href="${a("/get-involved/#donate")}">Make a donation</a></li>
+        <li><a href="${a("/donate/")}">Make a donation</a></li>
         <li><a href="${a('/journey-atlas/')}">Journey atlas</a></li>
         <li><a href="${a('/archive/')}">Search &amp; archive</a></li>
         <li><a href="${a('/gallery/')}">Gallery</a></li>
@@ -117,21 +117,22 @@ ${site.nav.map((n) => `        <li><a href="${a(n.href)}">${esc(n.label)}</a></l
     </div>
   </div>
   <div class="container site-footer__base">
-    <p>This is an independent personal site. It is not an official website of Rotary International. Wellbeing statements are personal views, not medical advice. Campaign imagery includes AI-generated artwork created from supplied photographs. <a href="${a('/gallery/?collection=artwork#gallery')}">View the labelled artwork collection</a>.</p>
+    <p>This is an independent personal site. It is not an official website of Rotary International. Wellbeing statements are personal views, not medical advice. Some visuals are AI-generated. <a href="${a('/gallery/?collection=artwork#gallery')}">View image credits</a>.</p>
     <p>Facts on this site were last reviewed on ${esc(site.reviewed)}. ${esc(site.fontCredit.text)} ${ext(site.fontCredit.url, esc(site.fontCredit.linkText))} ${esc(site.fontCredit.tail)}.</p>
   </div>
 </footer>`;
 
   return `${head}
 <body class="${isHome ? 'wr-home' : 'wr-inner'}" data-page="${esc(p.split('/').filter(Boolean)[0] || 'home')}">
+<div class="preloader" aria-hidden="true"><div class="preloader__inner">${logoPlate(p,{height:100})}<span class="preloader__tag">Every step has a story.</span><span class="preloader__bar"><span></span></span><span class="wr-loader-caption">The Walking Rotarian</span></div></div>
 ${header}
-<div class="wr-utility"><nav class="container" aria-label="Reading tools"><a href="${a('/archive/')}">Search</a><a href="${a('/saved/')}">Saved stories</a><button type="button" data-low-data aria-pressed="false">Low data: off</button><button type="button" data-install>Add to home screen</button><span data-social-links></span></nav></div>
+<div class="wr-utility"><nav class="container" aria-label="Reading tools"><a href="${a('/archive/')}">Search</a><a href="${a('/saved/')}">Saved stories</a><button type="button" data-install>Add to home screen</button><span data-social-links></span></nav></div>
 <main id="main" tabindex="-1">
 ${body}
 </main>
 ${footer}
 <dialog class="wr-search-dialog" data-quick-search aria-labelledby="quick-search-h"><div class="wr-search-dialog__head"><div><p class="eyebrow">Find your next story</p><h2 id="quick-search-h">Explore the journey.</h2></div><button type="button" data-search-close aria-label="Close search">${icons.close}</button></div><form><label for="quick-search-input" class="visually-hidden">Search stories, places and walks</label><input id="quick-search-input" name="q" type="search" placeholder="A story, a place, a purpose…" maxlength="120" autocomplete="off"></form><p class="wr-search-count" data-search-count role="status" aria-live="polite"></p><div data-search-results></div><a class="wr-search-all" href="${a('/archive/')}">Open the full archive ${icons.arrow}</a></dialog>
-<nav class="wr-mobile-nav" aria-label="Quick navigation">${[['/','Home','home'],['/live/','Journal','journal'],['/journeys/','Walks','walks'],['/get-involved/','Support','support']].map(([href,label,key])=>`<a href="${a(href)}"${(p===href || (href!=='/' && p.startsWith(href)) || (href==='/live/' && p.startsWith('/journal/')))?' aria-current="page"':''}><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${({home:'<path d="m3 10 9-7 9 7v10H7V10h10v10"/>',journal:'<path d="M4 4h7l2 2h7v15h-7l-2-2H4zM8 9h8M8 13h8"/>',walks:'<path d="M6 20c-6-6 13-9 12-15M6 20h.01M18 5h.01"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="5" r="2"/>',support:'<path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1s0 7 8 14C20 12 23 8 20 5Z"/>'})[key]}</svg><span>${label}</span></a>`).join('')}</nav>
+<nav class="wr-mobile-nav" aria-label="Quick navigation">${[['/','Home','home'],['/live/','Journal','journal'],['/journeys/','Walks','walks'],['/donate/','Donate','support']].map(([href,label,key])=>`<a href="${a(href)}"${(p===href || (href!=='/' && p.startsWith(href)) || (href==='/live/' && p.startsWith('/journal/')))?' aria-current="page"':''}><svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${({home:'<path d="m3 10 9-7 9 7v10H7V10h10v10"/>',journal:'<path d="M4 4h7l2 2h7v15h-7l-2-2H4zM8 9h8M8 13h8"/>',walks:'<path d="M6 20c-6-6 13-9 12-15M6 20h.01M18 5h.01"/><circle cx="6" cy="20" r="2"/><circle cx="18" cy="5" r="2"/>',support:'<path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1s0 7 8 14C20 12 23 8 20 5Z"/>'})[key]}</svg><span>${label}</span></a>`).join('')}</nav>
 </body>
 </html>
 `;
@@ -152,7 +153,7 @@ export function pageHead({ eyebrow, title, intro, ctx, extra = "" }) {
     <h1>${esc(title)}</h1>
     ${intro ? `<p class="intro intro--light">${intro}</p>` : ""}
     ${extra}
-    <p class="page-head__credit">Campaign artwork</p>
+
   </div>
 </header>`;
 }

@@ -1,4 +1,13 @@
 const scenes = [
+  ['editorial-road','The road ahead','A winding red-earth road in green hills.','A scenic visual created for the website.'],
+  ['collection-essentials','Made for the journey','Shirt, cap, bottle, tote and journal together on a garden bench.','Collection concept. Actual designs and availability are confirmed by the team.'],
+  ['collection-accessories','Companions for the road','A green cap and olive reusable bottle.','Accessories concept for the collection.'],
+  ['collection-journal','Carry your stories','A canvas tote and ivory journal in sunlight.','Everyday carry concept for the collection.'],
+  ['collection-cap','A little shade','A plain forest-green cotton cap.','Walking cap concept. Final design confirmed by the team.'],
+  ['collection-bottle','Stay ready for the road','A matte olive reusable bottle.','Bottle concept. Final design confirmed by the team.'],
+  ['collection-shirt','An everyday companion','A navy cotton T-shirt in natural light.','Clothing concept. Final design confirmed by the team.'],
+  ['collection-tote','A little room for purpose','An ivory canvas tote on a green bench.','Tote concept. Final design confirmed by the team.'],
+  ['collection-book','Room for the next story','A plain ivory journal on a green garden table.','Publication concept. Ask the team about available titles.'],
   ['campaign-hero', 'Every step has a story', 'Mbanda walking along a green hillside road in soft morning light.', 'A promotional walking scene created from the supplied portraits and walking photographs.'],
   ['campaign-journal', 'A pause along the way', 'Mbanda looking along a quiet red-earth road beneath roadside trees.', 'An imagined moment of reflection for the live journal.'],
   ['campaign-community', 'Walking together', 'Mbanda sharing a laugh with three illustrative adult walking companions.', 'A generated community scene. The accompanying figures are illustrative characters.'],
@@ -15,11 +24,11 @@ const scenes = [
 
 export const campaignArtwork = scenes.map(([id, title, alt, caption]) => ({
   id, image: id, title,
-  alt: 'Campaign artwork. ' + alt,
+  alt: 'Generated visual. ' + alt,
   caption: caption + ' Created with AI for this website.',
-  group: 'artwork', kind: 'AI-generated campaign artwork', filters: ['artwork'],
-  source: 'PCI documentary archive and project-owner supplied reference photographs',
-  credit: 'Walking Rotarian campaign artwork',
-  date: 'Created 7 November 2026', journey: '',
+  group: 'artwork', kind: 'Generated visual', filters: ['artwork'],
+  source: id.startsWith('collection-') || id==='editorial-road' ? 'Generated for the Walking Rotarian website' : 'PCI documentary archive and project-owner supplied reference photographs',
+  credit: 'Walking Rotarian visual collection',
+  date: id.startsWith('collection-') || id==='editorial-road' ? 'Created 13 November 2026' : 'Created 7 November 2026', journey: '',
   permission: 'Created at the project owner’s request', focal: '50% 50%',
 }));

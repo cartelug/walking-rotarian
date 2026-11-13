@@ -215,5 +215,82 @@
       360,
       640
     ]
+  },
+  "editorial-road": {
+    "w": 1536,
+    "h": 1024,
+    "widths": [
+      480,
+      960,
+      1536
+    ]
+  },
+  "collection-essentials": {
+    "w": 1536,
+    "h": 1024,
+    "widths": [
+      480,
+      960,
+      1536
+    ]
+  },
+  "collection-accessories": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960,
+      1254
+    ]
+  },
+  "collection-shirt": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960,
+      1254
+    ]
+  },
+  "collection-journal": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960,
+      1254
+    ]
+  },
+  "collection-cap": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960
+    ]
+  },
+  "collection-bottle": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960
+    ]
+  },
+  "collection-tote": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960
+    ]
+  },
+  "collection-book": {
+    "w": 1254,
+    "h": 1254,
+    "widths": [
+      480,
+      960
+    ]
   }
 }
